@@ -1,0 +1,186 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteApp.master.cs" Inherits="BPWEBAccessControl.SiteApp" %>
+
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <%--To publish through EPICOMS Console--%>
+    <link rel="shortcut icon" href="picture/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application Title</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="Content/w3.css" />
+    <link rel="stylesheet" href="Content/w3-colors-metro.css" />
+    <link rel="stylesheet" href="Content/w3-colors-win8.css" />
+    <link href="Content/CustomStyle.css" rel="stylesheet" />
+    <!-- Google fonts CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <style>
+        body, html {
+            height: 100%;
+        }
+
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins',Calibri,Verdana,sans-serif;
+        }
+    </style>
+</head>
+<body class="bgAppCtl">
+    <form runat="server" enctype="multipart/form-data">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #1089FF;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <div class="navbar-brand menu-btn" style="padding: 10px; font-size: 20pt;"><i class="fas fa-bars"></i></div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="navbar-brand" style="color: white;">PW OIMS</div>
+                    <asp:Label ID="lblSiteID" runat="server" CssClass="navbar-brand" ForeColor="#ABD5EF" Text="Site ID"></asp:Label>
+                    <asp:Label ID="lblFormName" runat="server" CssClass="navbar-brand" ForeColor="#ABD5ED" Text="Form Name"></asp:Label>
+                </div>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;"><i class="fa fa-cog fa-lg" aria-hidden="true"></i>&nbsp;System<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <asp:LinkButton ID="linLogOff2" runat="server" ForeColor="#da532c" Text="Log Off" OnClick="Button_LogOff_Click"><i class="fas fa-info-circle"></i>&nbsp;Log Off</asp:LinkButton>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <asp:LinkButton ID="linBtAbout" runat="server" Text="About" CommandName="About" OnClick="linAbout_Click"></asp:LinkButton>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <asp:LinkButton ID="linBtContact" runat="server" Text="Contact" CommandName="Contact" OnClick="linContact_Click"></asp:LinkButton>
+                                </li>
+                            </ul>
+                        </li>
+                        <asp:Label ID="lblIco1" runat="server" CssClass="navbar-text" ForeColor="White"><i class="fa fal fa-user fa-fw"></i>&nbsp;</asp:Label>
+                        <asp:Label ID="lblUserId" runat="server" CssClass="navbar-text" ForeColor="white" Text="Hallo User"></asp:Label>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container body-content">
+            <div class="side-bar">
+                <div class="close-btn">
+                    &times;
+                </div>
+                <div class="menu">
+                    <%--<div class="item">
+                        <a class="sub-btn"><i class="fas fa-desktop"></i>Dashboard<i class="fas fa-angle-right dropdown"></i></a>
+                        <div class="sub-menu">
+                            <asp:LinkButton ID="LinkButton4" runat="server" CssClass="sub-btn" CommandName="DS View1" CommandArgument="DS View1" Text="Board View 1" OnClick="LinkButton_Click"></asp:LinkButton>
+                        </div>
+                    </div>--%>
+                    <div class="item" id="ACCCTL" runat="server">
+                        <a class="sub-btn"><i class="fa fal fa-user fa-fw"></i>Users Management<i class="fas fa-angle-right dropdown"></i></a>
+                        <div class="sub-menu">
+                            <asp:LinkButton ID="LinkButton5" runat="server" CssClass="sub-btn" CommandName="SECURITYCONTROL" CommandArgument="SECURITYCONTROL" Text="Users Management" OnClick="LinkButton2_Click"></asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton6" runat="server" CssClass="sub-btn" CommandName="PWD_RENEW" CommandArgument="PWD_RENEW" Text="User password renew" OnClick="LinkButton2_Click"></asp:LinkButton>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a class="sub-btn"><i class="fas fa-table"></i>My Transactions<i class="fas fa-angle-right dropdown"></i></a>
+                        <div class="sub-menu">
+                            <asp:LinkButton ID="linEmployeeInfo" runat="server" CssClass="sub-btn" CommandName="Employee Info" CommandArgument="Employee Info" Text="Employee Info" OnClick="LinkButton_Click"></asp:LinkButton>
+                            <asp:LinkButton ID="linBankInfo" runat="server" CssClass="sub-btn" CommandName="Bank Info" CommandArgument="Bank Info" Text="Bank Info" OnClick="LinkButton_Click"></asp:LinkButton>
+                            <asp:LinkButton ID="linLeaseAgreement" runat="server" CssClass="sub-btn" CommandName="Lease Agreement" CommandArgument="Lease Agreement" Text="Lease Agreement" OnClick="LinkButton_Click"></asp:LinkButton>
+                            <asp:LinkButton ID="linFundingInfo" runat="server" CssClass="sub-btn" CommandName="Funding Info" CommandArgument="Funding Info" Text="Funding Info" OnClick="LinkButton_Click"></asp:LinkButton>
+                            <asp:LinkButton ID="linBusinessRegistration" runat="server" CssClass="sub-btn" CommandName="Business Registration" CommandArgument="Business Registration" Text="Business Registration" OnClick="LinkButton_Click"></asp:LinkButton>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a class="sub-btn"><i class="fas fa-th"></i>Reports and Views<i class="fas fa-angle-right dropdown"></i></a>
+                        <div class="sub-menu">
+                            <asp:LinkButton ID="linReport" runat="server" CssClass="sub-btn" CommandName="Reports" CommandArgument="Reports" Text="Reports" OnClick="LinkButton_Click">Reports</asp:LinkButton>
+                            <asp:LinkButton ID="linView" runat="server" CssClass="sub-btn" CommandName="Views" CommandArgument="Views" Text="Views" OnClick="LinkButton_Click">Views</asp:LinkButton>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a class="sub-btn"><i class="fas fa-cogs"></i>Settings<i class="fas fa-angle-right dropdown"></i></a>
+                        <div class="sub-menu">
+                            <asp:LinkButton ID="linSettings" runat="server" CssClass="sub-btn" CommandName="EntityFixedVariables" CommandArgument="EntityFixedVariables" Text="Fixed Entity variables" OnClick="LinkButton_Click"></asp:LinkButton>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <asp:LinkButton ID="linLogOff" runat="server" ForeColor="#da532c" Text="Log Off" OnClick="Button_LogOff_Click"><i class="fas fa-info-circle"></i>&nbsp;Log Off</asp:LinkButton>
+                    </div>
+                </div>
+            </div>
+
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+
+        <!-- Generic Message box view -->
+        <div id="MsgViewBK" runat="server" class="myMsgBoxStyleContainer">
+            <div id="MsgView" runat="server" class="myMsgBoxStyle">
+                <div class="myMsgBoxStyle-header">
+                    <asp:Label ID="lblmyMsgBoxHeader" runat="server" Text="">&nbsp;Message</asp:Label>
+                </div>
+                <div class="myMsgBoxStyle-body">
+                    <asp:Label ID="lblmyMsgBoxTxt" runat="server" Text="" Style="word-wrap: break-word;">Please check void entry...</asp:Label>
+                    <br />
+                    <br />
+                    <div style="text-align: center;">
+                        <asp:LinkButton ID="linMsgViewClose" runat="server" CssClass="btn btn-primary" Style="background-color: #2A4E6C;" OnClick="linMsgViewClose_Click"><span aria-hidden="true" class="glyphicon glyphicon-ok"></span>&nbsp;Ok</asp:LinkButton>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //jquery for toggle sub menus
+            $('.sub-btn').click(function () {
+                $(this).next('.sub-menu').slideToggle();
+                $(this).find('.dropdown').toggleClass('rotate');
+            });
+
+            //jquery for expand and collapse the sidebar
+            $('.menu-btn').click(function () {
+                $('.side-bar').addClass('active');
+                $('.menu-btn').css("visibility", "hidden");
+            });
+
+            $('.close-btn').click(function () {
+                $('.side-bar').removeClass('active');
+                $('.menu-btn').css("visibility", "visible");
+            });
+        });
+    </script>
+</body>
+</html>

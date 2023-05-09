@@ -1,0 +1,134 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="BPWEBAccessControl.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><% = BPWEBAccessControl.Global.TitleText()%></title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="Content/w3.css" />
+    <link rel="stylesheet" href="Content/w3-colors-metro.css" />
+    <link rel="stylesheet" href="Content/w3-colors-win8.css" />
+    <link rel="stylesheet" href="Content/CustomStyle.css" />
+    <link href="Content/jquery.passwordRequirements.css" rel="stylesheet" />
+    <!-- Google fonts CSS -->
+    <%--<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>--%>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Teko:wght@300;400&display=swap" rel="stylesheet" />
+    <style>
+        body, html {
+            height: 100%;
+        }
+
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins',Calibri,Verdana,sans-serif;
+        }
+    </style>
+</head>
+<body id="bdOfSiteMaster" runat="server">
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <%--<asp:ScriptReference Name="jquery.passwordRequirements.js" Assembly="System.Web" Path="~/Scripts/jquery.passwordRequirements.js" />
+                <asp:ScriptReference Name="jquery.passwordRequirements.min.js" Assembly="System.Web" Path="~/Scripts/jquery.passwordRequirements.min.js" />--%>
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+        <div id="panHead" runat="server" class="navbar navbar-inverse navbar-fixed-top" style="background-color: #0e2931;">
+            <div class="container">
+                <div class="navbar-header">
+                   <%-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>--%>
+                    <%--<asp:label ID="lblTitle" runat="server" CssClass="navbar-brand ctrlStyle_Label navtitle" ForeColor="White" Text="Service"></asp:label>--%>
+                    <a href="Default.aspx">
+                        <%--<img src="Picture/PayWiser-logo_H-Color-160x50@2x.png" style="width: 160px; height: 50px; padding-top:3px;" />--%>
+                        <img src="Picture/bhs.png" style="width: 50px; height: 50px; padding-top:3px;" />
+                    </a>
+                    
+                    &nbsp;&nbsp;
+                     <asp:Label ID="lblTitle" runat="server" CssClass="" ForeColor="#94CFD5" Style="font-family: 'Teko',Calibri,Verdana; font-weight: 400; font-size: 25pt;" Text="Application name here"></asp:Label>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <%--<li class="navc-nav">
+                            <asp:LinkButton ID="linHome" runat="server" Text="Home" OnClick="linHome_Click" ForeColor="#f2f2f2"></asp:LinkButton></li>--%>
+                        <%--<li class="navc-nav">
+                            <asp:LinkButton ID="linAbout" runat="server" Text="About" OnClick="linAbout_Click" ForeColor="#f2f2f2"></asp:LinkButton></li>--%>
+                        <%--<li class="navc-nav">
+                            <asp:LinkButton ID="linLogIn" runat="server" Text="Log In" CommandName="LogIn" OnClick="LinkButton_Click" ForeColor="#f2f2f2"></asp:LinkButton></li>--%>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+              <%--          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;">Language <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <asp:LinkButton ID="linENG" runat="server" Text="English" CommandName="English" OnClick="LinkButton_Click" ForeColor="Black"></asp:LinkButton>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <asp:LinkButton ID="linTC" runat="server" Text="Traditional Chinese" CommandName="Traditional Chinese" OnClick="LinkButton_Click" ForeColor="Black"></asp:LinkButton>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <asp:LinkButton ID="linSC" runat="server" Text="Simplified Chinese" CommandName="Simplified Chinese" OnClick="LinkButton_Click" ForeColor="Black"></asp:LinkButton>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <asp:LinkButton ID="linJP" runat="server" Text="Japanese" CommandName="Japanese" OnClick="LinkButton_Click" ForeColor="Black"></asp:LinkButton>
+                                </li>
+                            </ul>
+                        </li>--%>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div id="updatefooterbase" runat="server">
+            <p id="pCenterText" runat="server">
+
+                <% = BPWEBAccessControl.Global.FooterText()%>
+                        (
+                        <% = BPWEBAccessControl.Global.DateAndTimeDisplay()%>
+                        )
+&nbsp;                      
+                Copyright © BHS Infotech Ltd. 2020. All rights reserved.
+                <br />
+                This site best viewed with Microsoft EDGE or Google Chrome.  This site is an application client. If you have any pop up blocking option on you can deactivate for this site. If you are facing any technical problem to view this site, feel free to mail to our 
+        <a href="mailto: BHSAdmin@bhsinfotech.com" target="_blank" style="font-weight: bold; font-size: 8pt; color: #0000FF; font-family: Verdana, Arial; text-decoration: none">tech support team. </a>&nbsp;
+            </p>
+
+        </div>
+    </form>
+
+    <script src="Scripts/jquery.passwordRequirements.js"></script>
+</body>
+</html>
