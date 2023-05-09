@@ -51,7 +51,7 @@ namespace BPWEBAccessControl
         }
         public static string FooterText()
         {
-            string ss = "BPWEBAccAndAppMixV3 (version 4.7.2)(Build no: 01202022.01)";
+            string ss = "BPWEBAccAndAppMixV3 (version 4.7.2)(Build no: 05092023.01)";
             return ss;
         }
         public static string DateAndTimeDisplay()
