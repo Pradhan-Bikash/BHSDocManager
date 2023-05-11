@@ -244,6 +244,92 @@ namespace PWOMS
 
         #endregion
 
+        #region Update employee
+
+        public void GetDataOfEmp(string strUserId, out System.Data.DataSet dsRef)
+        {
+            string strSQl;
+            ConnectionManager.DAL.ConManager objCon;
+            try
+            {
+                strSQl = "select * from tblEmployee where EmployeeId='" + strUserId.Trim() + "' ";
+                objCon = new ConnectionManager.DAL.ConManager("1");
+                objCon.OpenDataSetThroughAdapter(strSQl, out dsRef, false, "1");
+            }
+            catch (System.Exception ex)
+            { throw (ex); }
+            finally
+            {
+                objCon = null;
+            }
+        }//eof
+
+        public void SearchEmpData(string fromDate, string todate, string strKey, string strSiteId, out System.Data.DataSet dsRef)
+        {
+            ConnectionManager.DAL.ConManager objCon;
+            string strSql = "";
+            string strfromdate = "";
+            string strtodate = "";
+            try
+            {
+                strSql = @"SELECT X.EmployeeId,X.EmployeeName,X.Department,X.DOJ FROM (SELECT  EmployeeId, EmployeeName, Department ,
+                         IIF(convert(varchar(20), DOJ, 105)='01-01-1901',NULL,convert(varchar(20), DOJ, 105)) as DOJ
+                         FROM  tblEmployee) X";
+
+                //strSql = strSql + " where SiteId='" + strSiteId.Trim() + "'";
+
+                if (strKey == "")
+                {
+                    strfromdate = bplib.clsWebLib.AppDateConvert(fromDate, bplib.clsWebLib.getUserDateFormat(), "MM/dd/yyyy").ToString("MM/dd/yyyy");
+                    strtodate = bplib.clsWebLib.AppDateConvert(todate, bplib.clsWebLib.getUserDateFormat(), "MM/dd/yyyy").ToString("MM/dd/yyyy");
+
+                    strSql = strSql + " where DOJ between '" + strfromdate + "' and '" + strtodate + "' order by EmployeeId";
+
+                }
+                else
+                {
+                    strSql = strSql + " where " + strKey + " order by EmployeeId";
+                }
+
+                //strSql = strSql + "order by EmployeeId";
+
+                objCon = new ConnectionManager.DAL.ConManager("1");
+                objCon.OpenDataSetThroughAdapter(strSql, out dsRef, false, "1");            // Get the data table as well as data set name
+            }
+            catch (System.Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                objCon = null;
+            }
+        }//eof
+
+        public void DeleteDataOfEmp(string ID, string tblName)
+        {
+            ConnectionManager.DAL.ConManager objCon = null;
+            try
+            {
+                objCon = new ConnectionManager.DAL.ConManager("1");
+                objCon.OpenConnection("1");
+                objCon.BeginTransaction();
+                objCon.ExecuteNonQueryWrapper("Delete from " + tblName + " where EmployeeId='" + ID + "' ", true, "1");
+                objCon.CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                objCon.RollBack();
+                throw (ex);
+            }
+            finally
+            {
+                objCon.CloseConnection();
+                objCon = null;
+            }
+        }	//eof
+        #endregion
+
         #region Update Bank Info
 
         public void GetDataOfBank(string strUserId, string strSiteId, out System.Data.DataSet dsRef)

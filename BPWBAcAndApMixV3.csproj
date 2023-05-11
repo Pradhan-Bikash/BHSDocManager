@@ -48,15 +48,15 @@
       <HintPath>C:\X_Our ref DLLs\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="BPEnCodeDecodeLib">
-      <HintPath>C:\Users\bappa\Desktop\BPEnCryption\EnCodeDeCode_App\bin\Debug\BPEnCodeDecodeLib.dll</HintPath>
+      <HintPath>..\..\X_Our ref DLLs\BPEnCodeDecodeLib.dll</HintPath>
     </Reference>
     <Reference Include="BpRepoGenUtil_ADONET10, Version=10.1.1.31849, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\BpRepoGenUtil_ADONET10.dll</HintPath>
+      <HintPath>..\..\X_Our ref DLLs\BpRepoGenUtil_ADONET10.dll</HintPath>
     </Reference>
     <Reference Include="ConnectionManager10, Version=10.1.1.31892, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\ConnectionManager10.dll</HintPath>
+      <HintPath>..\..\X_Our ref DLLs\ConnectionManager10.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Syncfusion.Compression.Base, Version=14.2400.0.26, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
@@ -224,7 +224,9 @@
     <Content Include="Scripts\jquery.passwordRequirements.js" />
     <Content Include="webFrmBankInfo.aspx" />
     <Content Include="webFrmBizRegInfo.aspx" />
+    <Content Include="WebFrmEmployee.aspx" />
     <Content Include="webFrmEmployeeInfo.aspx" />
+    <Content Include="webfrmEmpReport.aspx" />
     <Content Include="webFrmFundingInfo.aspx" />
     <Content Include="webFrmLeaseAgreement.aspx" />
     <Content Include="WebFrmLogIn.aspx" />
@@ -366,12 +368,26 @@
     <Compile Include="webFrmBizRegInfo.aspx.designer.cs">
       <DependentUpon>webFrmBizRegInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebFrmEmployee.aspx.cs">
+      <DependentUpon>WebFrmEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebFrmEmployee.aspx.designer.cs">
+      <DependentUpon>WebFrmEmployee.aspx</DependentUpon>
+    </Compile>
     <Compile Include="webFrmEmployeeInfo.aspx.cs">
       <DependentUpon>webFrmEmployeeInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="webFrmEmployeeInfo.aspx.designer.cs">
       <DependentUpon>webFrmEmployeeInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webfrmEmpReport.aspx.cs">
+      <DependentUpon>webfrmEmpReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webfrmEmpReport.aspx.designer.cs">
+      <DependentUpon>webfrmEmpReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="webFrmFundingInfo.aspx.cs">
       <DependentUpon>webFrmFundingInfo.aspx</DependentUpon>

@@ -1047,6 +1047,172 @@ namespace PWOMS
 
         #endregion
 
+        #region [PWOMS206] -Employee.XLSX
+        public void EmployeeDataXls(string fromdate, string todate, string strSiteId, string strHeader, ref Syncfusion.XlsIO.IWorksheet sheet)
+        {
+            System.Data.DataSet dsLocal = null;
+            string hex = "#FFDDEBF7";
+            System.Drawing.Color LightBlue_Color = System.Drawing.ColorTranslator.FromHtml(hex);
+            int ROW = 1;
+            int i = 0;
+
+            try
+            {
+                #region Report Titel
+                sheet.Range["A1:R2"].CellStyle.Font.FontName = "Calibri";
+                sheet.Range["A1:R2"].CellStyle.Font.Size = 12f;
+                sheet.Range["A1:R2"].CellStyle.Font.Bold = true;
+                sheet.Range["A1:R2"].RowHeight = 20;
+                sheet.Range["A1:R2"].HorizontalAlignment = ExcelHAlign.HAlignCenter;
+                sheet.Range["A1:R2"].VerticalAlignment = ExcelVAlign.VAlignTop;
+                sheet.Range["A1:R1"].CellStyle.Color = System.Drawing.Color.LightYellow;
+                sheet.Range["A1:R1"].RowHeight = 15;
+                sheet.Range["A1:R1"].Merge();
+                sheet.Range["A1"].Text = strHeader;
+
+                #endregion
+
+                sheet.Range["A4"].FreezePanes();
+
+                ROW = 3;
+
+                GetDataOfEmployee(fromdate, todate, strSiteId, out dsLocal);
+
+                if (dsLocal.Tables[0].Rows.Count > 0)
+                {
+                    #region Details Heading
+
+                    sheet.Range["A" + ROW + ":E" + ROW].HorizontalAlignment = ExcelHAlign.HAlignCenter;
+                    sheet.Range["A" + ROW + ":E" + ROW].VerticalAlignment = ExcelVAlign.VAlignCenter;
+                    sheet.Range["A" + ROW + ":E" + ROW].CellStyle.Font.FontName = "Calibri";
+                    sheet.Range["A" + ROW + ":E" + ROW].CellStyle.Font.Bold = true;
+                    sheet.Range["A" + ROW + ":E" + ROW].CellStyle.Font.Size = 9f;
+                    sheet.Range["A" + ROW + ":E" + ROW].WrapText = true;
+                    sheet.Range["A" + ROW + ":E" + ROW].RowHeight = 36;
+                    sheet.Range["A" + ROW + ":E" + ROW].CellStyle.Borders.LineStyle = ExcelLineStyle.Thin;
+                    sheet.Range["A" + ROW + ":E" + ROW].CellStyle.Borders[ExcelBordersIndex.DiagonalDown].ShowDiagonalLine = false;
+                    sheet.Range["A" + ROW + ":E" + ROW].CellStyle.Borders[ExcelBordersIndex.DiagonalUp].ShowDiagonalLine = false;
+                    sheet.Range["A" + ROW + ":E" + ROW].CellStyle.Interior.Color = LightBlue_Color;
+                    sheet.Range["A" + ROW + ":E" + ROW].VerticalAlignment = ExcelVAlign.VAlignTop;
+
+
+
+                    sheet.Range["A" + ROW].Text = "Employee Name";
+                    sheet.Range["A" + ROW].ColumnWidth = 20;
+                    sheet.Range["B" + ROW].Text = "Employee Code (system generated)";
+                    sheet.Range["B" + ROW].ColumnWidth = 15;
+                    sheet.Range["C" + ROW].Text = "Date of Joining";
+                    sheet.Range["C" + ROW].ColumnWidth = 11;
+                    sheet.Range["D" + ROW].Text = "Department";
+                    sheet.Range["D" + ROW].ColumnWidth = 12;
+                    sheet.Range["E" + ROW].Text = "Current Salary";
+                    sheet.Range["E" + ROW].ColumnWidth = 8;
+
+
+                    #endregion
+
+                    ROW++;
+
+                    i = 0;
+
+                    while (i < dsLocal.Tables[0].Rows.Count)
+                    {
+
+                        sheet.Range["A" + ROW + ":E" + ROW].CellStyle.Font.FontName = "Calibri";
+                        sheet.Range["A" + ROW + ":E" + ROW].CellStyle.Font.Size = 9f;
+                        sheet.Range["A" + ROW + ":E" + ROW].WrapText = true;
+                        sheet.Range["A" + ROW + ":E" + ROW].RowHeight = 13;
+                        sheet.Range["A" + ROW + ":E" + ROW].HorizontalAlignment = ExcelHAlign.HAlignLeft;
+                        sheet.Range["E" + ROW].HorizontalAlignment = ExcelHAlign.HAlignRight;
+                        sheet.Range["A" + ROW + ":E" + ROW].CellStyle.Borders.LineStyle = ExcelLineStyle.Double;
+                        sheet.Range["A" + ROW + ":E" + ROW].CellStyle.Borders[ExcelBordersIndex.DiagonalDown].ShowDiagonalLine = false;
+                        sheet.Range["A" + ROW + ":E" + ROW].CellStyle.Borders[ExcelBordersIndex.DiagonalUp].ShowDiagonalLine = false;
+
+
+                        sheet["A" + ROW].Text = dsLocal.Tables[0].Rows[i]["EmployeeName"].ToString();
+                        sheet["B" + ROW].Text = dsLocal.Tables[0].Rows[i]["EmployeeId"].ToString();
+                        sheet["C" + ROW].Text = bplib.clsWebLib.makeBaseBlank(bplib.clsWebLib.DateData_DBToApp(dsLocal.Tables[0].Rows[i]["DOJ"].ToString(), bplib.clsWebLib.DB_DATE_FORMAT).ToString("dd-MMM-yyyy"));
+                        sheet["D" + ROW].Text = dsLocal.Tables[0].Rows[i]["Department"].ToString();
+                        sheet["E" + ROW].Number = Convert.ToDouble(bplib.clsWebLib.GetNumData(dsLocal.Tables[0].Rows[i]["Salary"].ToString()));
+
+                        i++;
+                        ROW++;
+
+                    }
+
+                }
+                else
+                {
+                    sheet.Range["A" + ROW + ":R" + ROW].Text = "No Data Available................";
+                    sheet.Range["A" + ROW + ":R" + ROW].CellStyle.Font.FontName = "Tahoma";
+                    sheet.Range["A" + ROW + ":R" + ROW].CellStyle.Font.Size = 8f;
+                    sheet.Range["A" + ROW + ":R" + ROW].CellStyle.Font.Bold = true;
+                    sheet.Range["A" + ROW + ":R" + ROW].CellStyle.Font.Color = Syncfusion.XlsIO.ExcelKnownColors.White;
+                    sheet.Range["A" + ROW + ":R" + ROW].CellStyle.Interior.Color = System.Drawing.Color.Red;
+                    sheet.Range["A" + ROW + ":R" + ROW].Merge();
+                    sheet.Range["A" + ROW + ":R" + ROW].CellStyle.Borders.LineStyle = ExcelLineStyle.Thin;
+                    sheet.Range["A" + ROW + ":R" + ROW].CellStyle.Borders[ExcelBordersIndex.DiagonalDown].ShowDiagonalLine = false;
+                    sheet.Range["A" + ROW + ":R" + ROW].CellStyle.Borders[ExcelBordersIndex.DiagonalUp].ShowDiagonalLine = false;
+                    //ROW++;
+                }
+
+
+                ////Protecting Worksheet using Password
+                //sheet.UsedRange.CellStyle.Locked = true;
+                //sheet.Protect(bplib.clsWebLib.REPORT_PASSWORD.ToString());
+
+                //optional - set a border during print
+                //sheet.UsedRange.BorderAround(ExcelLineStyle.Medium, ExcelKnownColors.Black);
+
+                //Setting Page format - Actual page set to be used to all reports must 
+                sheet.PageSetup.TopMargin = .17;
+                sheet.PageSetup.BottomMargin = .24;
+                sheet.PageSetup.FooterMargin = .17;
+                sheet.PageSetup.LeftFooter = "&\"Times New Roman\"&06" + "Printing Date : " + System.DateTime.Now.ToString("dd-MMM-yyyy");
+                sheet.PageSetup.RightFooter = "&\"Times New Roman\"&06" + "Page &P of &N";
+                sheet.PageSetup.LeftMargin = .17;
+                sheet.PageSetup.RightMargin = .17;
+                sheet.PageSetup.Orientation = ExcelPageOrientation.Landscape;
+                sheet.PageSetup.FitToPagesTall = 0;
+                sheet.PageSetup.FitToPagesWide = 1;
+                sheet.PageSetup.PrintTitleRows = "$1:$1";
+                //---------------------------
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                dsLocal = null;
+            }
+        }//EOF
+        private DataTable GetDataOfEmployee(string fromdate, string todate, string strUserRef, out System.Data.DataSet dsRef)
+        {
+            string strSQl;
+            ConnectionManager.DAL.ConManager objCon;
+            try
+            {
+
+                strSQl = @"Select * from tblEmployee  
+                        Where DOJ Between '" + fromdate + "' and '" + todate + @"'
+                        Order By EmployeeId";
+                objCon = new ConnectionManager.DAL.ConManager("1");
+                objCon.OpenDataSetThroughAdapter(strSQl, out dsRef, false, "1");
+
+                return dsRef.Tables[0];
+
+            }
+            catch (System.Exception ex)
+            { throw (ex); }
+            finally
+            {
+                objCon = null;
+            }
+        }//EOF
+
+        #endregion       
+
         #region Common Function
 
         public void GetDataOfCompanyInfo(string strSiteId, out System.Data.DataSet dsRef)

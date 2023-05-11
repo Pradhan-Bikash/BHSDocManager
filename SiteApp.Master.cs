@@ -166,6 +166,9 @@ namespace BPWEBAccessControl
                     case "EMPLOYEE INFO":
                         Response.Redirect("webFrmEmployeeInfo.aspx");
                         break;
+                    case "EMPLOYEE":
+                        Response.Redirect("WebFrmEmployee.aspx");
+                        break;
                     case "BANK INFO":
                         Response.Redirect("webFrmBankInfo.aspx");
                         break;
@@ -186,6 +189,9 @@ namespace BPWEBAccessControl
 
                     case "REPORTS":
                         Response.Redirect("webfrmPWOMSReport.aspx");
+                        break;
+                    case "EMPREPORT":
+                        Response.Redirect("webfrmEmpReport.aspx");
                         break;
 
                     default:

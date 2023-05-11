@@ -122,6 +122,13 @@
                         </div>
                     </div>
                     <div class="item">
+                        <a class="sub-btn"><i class="fas fa-table"></i>Demo<i class="fas fa-angle-right dropdown"></i></a>
+                        <div class="sub-menu">
+                            <asp:LinkButton ID="LinkEmp" runat="server" CssClass="sub-btn" CommandName="Employee" CommandArgument="Employee" Text="Employee" OnClick="LinkButton_Click"></asp:LinkButton>  
+                            <asp:LinkButton ID="LinkEmpReport" runat="server" CssClass="sub-btn" CommandName="EMPREPORT" CommandArgument="EMPREPORT" Text="Report" OnClick="LinkButton_Click"></asp:LinkButton>
+                        </div>
+                    </div>
+                    <div class="item">
                         <a class="sub-btn"><i class="fas fa-th"></i>Reports and Views<i class="fas fa-angle-right dropdown"></i></a>
                         <div class="sub-menu">
                             <asp:LinkButton ID="linReport" runat="server" CssClass="sub-btn" CommandName="Reports" CommandArgument="Reports" Text="Reports" OnClick="LinkButton_Click">Reports</asp:LinkButton>
