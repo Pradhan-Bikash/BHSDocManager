@@ -109,19 +109,20 @@
 
                             <div class="form-row">
                                 <div class="container-fluid myFrame">
-                                     <div class="col-sm-3 btn-group" role="group">
+                                    <div class="col-sm-3 btn-group" role="group">
                                         <asp:Button ID="Button_AddNew" CssClass="btn btn-default" runat="server" OnClick="Button_AddNew_Click" Text="Add New" />
                                         <asp:Button ID="Button_Edit" CssClass="btn btn-default" runat="server" OnClick="Button_Edit_Click" Text="Edit"></asp:Button>
                                     </div>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                     </div>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                     </div>
                                     <div class="col-sm-3" style="text-align: right;">
-                                        <%--<asp:Button ID="Button_LogOff" runat="server" CssClass="btn btn-default" SkinID="btnRed" TabIndex="0" OnClick="Button_LogOff_Click" Text="Close"></asp:Button>--%>
+                                        <asp:Button ID="Button_LogOff" runat="server" CssClass="btn btn-default" SkinID="btnRed" TabIndex="0" OnClick="Button_LogOff_Click" Text="Close"></asp:Button>
                                     </div>
                                 </div>
                             </div>
+
                                 <div class="form-row">
                                     <div class="container-fluid myFrame">
 
@@ -166,7 +167,7 @@
                                 </div>
                             </div>
 
-                        </div>
+                       
                     </asp:View>
                     <%--Data Entry End--%>
                 </asp:MultiView>

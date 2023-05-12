@@ -128,27 +128,20 @@
                                    <%--<div class="form-row" style="margin-top: 10px;">--%>
                                     <div class="form-group col-sm-6" style="margin-top: 16px;">
                                         <div id="DOCX" runat="server">
-                                            <asp:Label ID="Label1" ForeColor="Blue" CssClass="ctrlStyle_Label" runat="server" Text="Text Text  Text  Text  Text  Text  Text  Text Text Text  Text  Text  Text  Text  Text  Text"></asp:Label>
+                                            <asp:Label ID="Label1" ForeColor="Blue" CssClass="ctrlStyle_Label" runat="server" Text="Text Text  Text  Text  Text  Text  Text  Text Text Text  Text  Text  Text  Text  Text  Text
+                                                                                                                        Text Text  Text  Text  Text  Text  Text  Text Text Text  Text  Text  Text  Text  Text  Text"></asp:Label>
                                          </div>
                                     </div>
                                    <%--</div>--%>
                                 </div>
                              </div>
 
-                            <%--<div class="form-row" style="margin-top: 10px;">
-                                <div class="form-group col-sm-12">
-                                    <div id="DOCX" runat="server">
-                                        <asp:Label ID="Label1" CssClass="ctrlStyle_Label" runat="server" Text="Text"></asp:Label>
-                                    </div>
-                                </div>
-                            </div>--%>
-
                             <div class="container-fluid myFrame">
 
                               <div class="row">
                                 <div class="col-sm-12">
                                     <asp:Panel ID="Panel1" runat="server" Height="400px" CssClass="table-responsive" ScrollBars="Auto">
-                                        <asp:DataGrid ID="DataGrid1" OnItemDataBound='ItemDB' runat="server" CssClass="datagrid table table-striped table-bordered table-condensed" Font-Size="10pt" Font-Names="Calibri,Tahoma,Verdana,Arial" OnItemCommand="Grid_Command"
+                                        <asp:DataGrid ID="ReportGrid" AutoGenerateColumns="False" runat="server" CssClass="datagrid table table-striped table-bordered table-condensed" Font-Size="10pt" Font-Names="Calibri,Tahoma,Verdana,Arial" OnItemCommand="Grid_Command"
                                             CellPadding="4" GridLines="None" ForeColor="#333333">
                                             <AlternatingItemStyle BorderWidth="1px" BorderStyle="Groove" BorderColor="White"
                                                 BackColor="White" ForeColor="#284775"></AlternatingItemStyle>
@@ -156,24 +149,48 @@
                                             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                                             <HeaderStyle BorderStyle="None" BackColor="#5D7B9D" Font-Bold="True" ForeColor="White"></HeaderStyle>
                                             <ItemStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                                            <Columns>
-                                                <%--<asp:BoundField HeaderText="Column 1" DataField="Column1" ControlStyle-CssClass="Group 1" />
-                                                <asp:BoundField HeaderText="Column 1" DataField="Column1" ControlStyle-CssClass="Group 1" />
-                                                <asp:BoundField HeaderText="Column 1" DataField="Column1" ControlStyle-CssClass="Group 1" />--%>
 
-                                                <asp:ButtonColumn HeaderImageUrl="~/picture/reports.png" CommandName="EditFile" ItemStyle-Font-Underline="False"
-                                                    ItemStyle-ForeColor="blue" ButtonType="LinkButton">
-                                                    <ItemStyle Font-Underline="False" ForeColor="Blue" />
-                                                </asp:ButtonColumn>
+                                            <Columns>
+                                               <asp:TemplateColumn HeaderText ="">
+                                                   <ItemTemplate>
+                                                       <asp:HiddenField ID="imgbtn" runat="server" Value="Report" />
+                                                       <asp:ImageButton ID="ImageActual" runat="server" ImageUrl="~/picture/reports.png" Height="30px" ImageAlign="Middle" />
+                                                   </ItemTemplate>
+                                                   <ItemStyle HorizontalAlign="Center" />
+                                               </asp:TemplateColumn>
+                                            
+
+                                            <asp:TemplateColumn HeaderText="Report Number" HeaderStyle-HorizontalAlign="Center">
+                                                    <ItemTemplate>
+                                                        <%# Eval("Report Number") %>
+                                                    </ItemTemplate>
+                                                
+                                                </asp:TemplateColumn>
+
+                                                <asp:TemplateColumn HeaderText="How To Process" HeaderStyle-HorizontalAlign="Center">
+                                                    <ItemTemplate>
+                                                        <%# Eval("How To Process") %>
+                                                    </ItemTemplate>
+                                                    
+                                                </asp:TemplateColumn> 
+                                                                                          
+                                                <asp:TemplateColumn HeaderText="Process" HeaderStyle-HorizontalAlign="Center">                                                   
+                                                    <ItemTemplate>                                                               
+                                                        <asp:HiddenField ID="viewbtn" runat="server" Value="View" />
+                                                        <asp:Button ID="ImgView" Text="View" runat="server" BackColor="#00A300" Height="30px" Width="50px" ForeColor="White" BorderStyle="None"/> 
+                                                    </ItemTemplate>   
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:TemplateColumn>
                                             </Columns>
+
                                             <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                                             <SelectedItemStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
                                         </asp:DataGrid>
                                     </asp:Panel>
                                 </div>
-
                             </div>
-                                <div class="form-row col-sm-3 myCard text-center" style="margin: 5px;">
+
+<%--                                <div class="form-row col-sm-3 myCard text-center" style="margin: 5px;">
                                     <asp:ImageButton ID="imgbtnXL206" runat="server"
                                         CommandName="Employee" AlternateText="Employee"
                                         OnClick="imgbtnXL206_Click" ImageUrl="~/picture/reports.png" Height="40px"
@@ -184,8 +201,7 @@
                                     <asp:Label ID="lblParameterPWOMS206" CssClass="ctrlStyle_Label" runat="server" Text="(note: [1A],[1B](Date Of Join) parameter input needed for this view process)"></asp:Label>
                                 </div>
                             </div>
-
-                        </div>
+                        </div>--%>
 
                         <div class="row">
                             <div class="col-sm-12">
@@ -207,7 +223,7 @@
 
             <%--if there are any file uploader; mention it in Post Back trigger; not in AsyncPostbackTrigger--%>
             <asp:PostBackTrigger ControlID="btnLogOff" />
-            <asp:PostBackTrigger ControlID="imgbtnXL206" />
+            <%--<asp:PostBackTrigger ControlID="imgbtnXL206" />--%>
 
         </Triggers>
     </asp:UpdatePanel>

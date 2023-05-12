@@ -47,6 +47,7 @@ namespace BPWEBAccessControl
                     Session["VERIFICATION_STATE"] = 0;
                     LoadDynamicData();
                     loadLanguageOnLabel();
+                    LoadReportDataGrid();
                     this.txtFromDate.Text = System.DateTime.Now.AddDays(-15).ToString("dd-MMM-yyyy");
                     this.txtToDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
 
@@ -62,26 +63,6 @@ namespace BPWEBAccessControl
             }
         }
 
-        //protected void ItemDB(object sender, System.EventArgs e)
-        //{
-        //    DataGridItem dgItem = new DataGridItem(0, 0, ListItemType.Header);
-        //    TableCell tbCell = new TableCell();
-        //    tbCell.ColumnSpan = 4;// Set it to the colspan that you want
-        //    tbCell.Text = "";
-        //    tbCell.Attributes.Add("style", "text-align:center");
-        //    dgItem.Cells.Add(tbCell);
-        //    DataGrid1.Controls[0].Controls.AddAt(0, dgItem);
-        //}
-
-        protected void ItemDB(Object sender, System.Web.UI.WebControls.DataGridItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Header)
-            {
-                e.Item.Cells[0].Text = "T";
-                e.Item.Cells[1].Text = "Report Number";
-                e.Item.Cells[2].Text = "How To Process";
-            }
-        }
         #endregion
 
         #region Form Common Functions
@@ -565,6 +546,24 @@ namespace BPWEBAccessControl
         #endregion
 
         #region DATA ENTRY RELATED FUNCTIONS
+
+        private void LoadReportDataGrid()
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Report Number");
+            table.Columns.Add("How To Process");
+            //table.Columns.Add("Process");
+            table.Rows.Add("[R01]-Case List", "Using Parameter [1A] and [1B]");
+            table.Rows.Add("[R02]-Next Review List", "no parameters input nedded");
+            table.Rows.Add("[R03]-OEM Register", "Using Parameter [1A] and [1B]");
+            table.Rows.Add("[R04]-TopUp Request Alert", "Using Parameter [1A] and [1B]");
+            table.Rows.Add("[A01]-TopUp Status Alert", "no parameters input nedded");
+            table.Rows.Add("[A02]-Next Review Alert", "no parameters input nedded");
+
+            ReportGrid.DataSource = table;
+            ReportGrid.DataBind();
+        }
+
         private void LoadDynamicData()
         {
             System.Data.DataSet dsLocal;

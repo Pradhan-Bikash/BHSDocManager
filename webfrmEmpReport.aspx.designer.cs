@@ -330,40 +330,13 @@ namespace BPWEBAccessControl
         protected global::System.Web.UI.WebControls.Panel Panel1;
 
         /// <summary>
-        /// DataGrid1 control.
+        /// ReportGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataGrid DataGrid1;
-
-        /// <summary>
-        /// imgbtnXL206 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgbtnXL206;
-
-        /// <summary>
-        /// lblPWOMS206 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPWOMS206;
-
-        /// <summary>
-        /// lblParameterPWOMS206 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblParameterPWOMS206;
+        protected global::System.Web.UI.WebControls.DataGrid ReportGrid;
 
         /// <summary>
         /// TxtMsgBox control.
