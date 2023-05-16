@@ -593,9 +593,9 @@ namespace BPWEBAccessControl
                     //    System.Exception ex = new Exception("Define the Employee Id...(Max length allowed 20)");
                     //    throw (ex);
                     //}
-                    if (this.txtEmpName.Text.Trim() == "" || this.txtEmpName.Text.Trim().Length > 100)
+                    if (this.txtEmpName.Text.Trim() == "" || this.txtEmpName.Text.Trim().Length > 20)
                     {
-                        System.Exception ex = new Exception("Define the Name...(Max length allowed 100)");
+                        System.Exception ex = new Exception("Define the Name...(Max length allowed 20)");
                         throw (ex);
                     }
                     if (this.txtDOJ.Text == "" || bplib.clsWebLib.IsDateOK(this.txtDOJ.Text.Trim()) == false)
@@ -624,6 +624,8 @@ namespace BPWEBAccessControl
                     dtLocal = dsLocal.Tables[0];
                     dvLocal = new DataView();
                     dvLocal.Table = dtLocal;
+
+                    //Isolate the specific row to edit or is not available then add
                     dvLocal.RowFilter = "EmployeeId='" + this.txtEmpId.Text.Trim() + "'";
 
                     if (dvLocal.Count == 0)
@@ -639,7 +641,8 @@ namespace BPWEBAccessControl
                         UpdateTheDataRow("EDIT", ref drLocal);
                         drLocal.EndEdit();
                     }
-                    //dvLocal.RowFilter = null;
+                    // Reset the filter
+                    dvLocal.RowFilter = null;
                     objApp.SaveData(ref dsLocal);
 
                     Cancel();
@@ -676,10 +679,10 @@ namespace BPWEBAccessControl
                     //drLocal["DateAdded"] = "" + bplib.clsWebLib.DateData_AppToDB(System.DateTime.Now.ToShortDateString(), bplib.clsWebLib.DB_DATE_FORMAT);
                     //drLocal["AddedBy"] = bplib.clsWebLib.RetValidLen(((string)Session["USER"]), 20);
                 }
-                drLocal["EmployeeName"] = bplib.clsWebLib.RetValidLen(this.txtEmpName.Text.Trim(), 100);
-                drLocal["Department"] = bplib.clsWebLib.RetValidLen(this.ddldeptId.SelectedValue.ToString().Trim(), 150);
+                drLocal["EmployeeName"] = bplib.clsWebLib.RetValidLen(this.txtEmpName.Text.Trim(), 20);
+                drLocal["Department"] = bplib.clsWebLib.RetValidLen(this.ddldeptId.SelectedValue.ToString().Trim(), 20);
                 drLocal["DOJ"] = "" + bplib.clsWebLib.DateData_AppToDB(this.txtDOJ.Text.ToString(), bplib.clsWebLib.DB_DATE_FORMAT);
-                drLocal["Salary"] = bplib.clsWebLib.RetValidLen(this.txtSalary.Text.Trim(), 100);
+                drLocal["Salary"] = bplib.clsWebLib.GetNumData(this.txtSalary.Text.Trim());
 
                 //drLocal["UpdateOn"] = "" + bplib.clsWebLib.DateData_AppToDB(System.DateTime.Now.ToShortDateString(), bplib.clsWebLib.DB_DATE_FORMAT);
                 //drLocal["UpdateBy"] = bplib.clsWebLib.RetValidLen(((string)Session["USER"]), 20);
