@@ -820,7 +820,18 @@ namespace BPWEBAccessControl
                     this.txtCon1.Text = "" + dsLocal.Tables[0].Rows[0]["Content1"].ToString();
                     this.txtCon2.Text = "" + dsLocal.Tables[0].Rows[0]["Content2"].ToString();
                     this.txtFooter.Text = "" + dsLocal.Tables[0].Rows[0]["Footer"].ToString();
-
+                    if (!string.IsNullOrEmpty(dsLocal.Tables[0].Rows[0]["FilePath1"].ToString()))
+                    {
+                        lblFileP1.Text = dsLocal.Tables[0].Rows[0]["FilePath1"].ToString();
+                    }
+                    if (!string.IsNullOrEmpty(dsLocal.Tables[0].Rows[0]["FilePath2"].ToString()))
+                    {
+                        lblFileP2.Text = dsLocal.Tables[0].Rows[0]["FilePath2"].ToString();
+                    }
+                    if (!string.IsNullOrEmpty(dsLocal.Tables[0].Rows[0]["FilePath3"].ToString()))
+                    {
+                        lblFileP3.Text = dsLocal.Tables[0].Rows[0]["FilePath3"].ToString();
+                    }
                     Session["VERIFICATION_STATE"] = 1;
                     this.btnSave.Text = "Save";
                     Button_AddNew.Visible = false;
