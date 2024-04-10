@@ -8,15 +8,14 @@ using System.Web.UI.WebControls;
 
 namespace BPWEBAccessControl
 {
-    public partial class WebFrmEmployee : System.Web.UI.Page
-    {
-        #region Form's Events
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            Master.Page.Title = BPWEBAccessControl.Global.PageTitle;
-            Master.masterlblFormName.Text = "Employee";
-            this.lblfrmName.Text = "Employee";
-
+	public partial class WebFrmCustomer : System.Web.UI.Page
+	{
+		#region Form's Events
+		protected void Page_Load(object sender, EventArgs e)
+		{
+			Master.Page.Title = BPWEBAccessControl.Global.PageTitle;
+			Master.masterlblFormName.Text = "Customer";
+			this.lblfrmName.Text = "Customer";
             if ((int)Session["DEAFULT_LOGIN"] == 0)
             {
                 Page.Response.Redirect("default.aspx");
@@ -43,23 +42,21 @@ namespace BPWEBAccessControl
                 {
 
                     Session["VERIFICATION_STATE"] = 0;
-                    //lblInfo.Text = "The entry form is in default state. If you want to add new data, press [add new] button. If you want to edit any existing data please press [Edit] button.";
                     LoadDynamicData();
                     loadLanguageOnLabel();
-                    Cancel();
+                   Cancel();
 
                 }
             }
             catch (System.Exception ex)
             {
-                ShowLog("Error: \n" + ex.Message.ToString());
+               // ShowLog("Error: \n" + ex.Message.ToString());
             }
             finally
             {
             }
         }
         #endregion
-
         #region Form Common Functions
 
         private void ClearTheForm()
@@ -241,10 +238,10 @@ namespace BPWEBAccessControl
                     //this.TextEntryID.Text = DOCID;
                     //LoadDetails();
                 }
-                if (this.lblViewState.Text.Trim() == "Employee")
+                if (this.lblViewState.Text.Trim() == "Customer")
                 {
                     Cancel();
-                    this.txtEmpId.Text = DOCID;
+                    this.txtCusId.Text = DOCID;
                     LoadDetails();
                 }
                 this.mvwDataVw.ActiveViewIndex = returnView(vwIndex.Trim());
@@ -343,9 +340,9 @@ namespace BPWEBAccessControl
                 {
                     //objApp.SearchTeleData(fromDate, toDate, strKey,strSiteId, out dsLocal);
                 }
-                if (FLAG == "Employee")
+                if (FLAG == "Customer")
                 {
-                    objApp.SearchEmpData(fromDate, toDate, strKey, strSiteId, out dsLocal);
+                    objApp.SearchCustomerData(fromDate, toDate, strKey, strSiteId, out dsLocal);
                 }
                 this.lblViewState.Text = FLAG;
                 //Make the 1/1/1901 blank
@@ -539,24 +536,24 @@ namespace BPWEBAccessControl
 
         private void AddNew()
         {
-            bplib.clsGenID objGenID = null;
+            bplib.cusGenID objGenID = null;
             string strResCode = null;
             try
             {
                 Cancel();
                 Session["VERIFICATION_STATE"] = 2;                                              //*********************//
 
-                this.txtEmpId.Text = "";
-                this.txtEmpId.Enabled = false;
+                this.txtCusId.Text = "";
+                this.txtCusId.Enabled = false;
 
                 // for add new a new auto Company Id will be added
                 if ((int)Session["VERIFICATION_STATE"] == 2)
                 {
-                    objGenID = new bplib.clsGenID();
-                    objGenID.GenEmpIdTest(System.DateTime.Now.ToShortDateString().ToString(), "EMPLOYEE", out strResCode);
-                    strResCode = "EMP" + strResCode;
-                    this.txtEmpId.Text = strResCode;
-                    //this.ddlEmployeeStatus.SelectedValue = "Active";
+                    objGenID = new bplib.cusGenID();
+                    objGenID.GenCusIdTest(System.DateTime.Now.ToShortDateString().ToString(), "CUSTOMER", out strResCode);
+                    strResCode = "CUS" + strResCode;
+                    this.txtCusId.Text = strResCode;
+                    
                 }
 
                 this.btnSave.Text = "Create";
@@ -577,8 +574,8 @@ namespace BPWEBAccessControl
             System.Data.DataTable dtLocal = null;
             System.Data.DataRow drLocal = null;
             System.Data.DataView dvLocal = null;
-            string modulename = "Employee.EDIT";
-            //string strSiteId = Session["USER_SITE"].ToString().Trim();
+            string modulename = "Customer.EDIT";
+            
             PWOMS.clsApplication objApp = null;
 
             bool DATA_OK = false;
@@ -588,30 +585,29 @@ namespace BPWEBAccessControl
                 objApp = new PWOMS.clsApplication();
                 if (DATA_OK == false)
                 {
-                    //if (this.txtEmpId.Text.Trim() == "" || this.txtEmpId.Text.Trim().Length > 20)
-                    //{
-                    //    System.Exception ex = new Exception("Define the Employee Id...(Max length allowed 20)");
-                    //    throw (ex);
-                    //}
-                    if (this.txtEmpName.Text.Trim() == "" || this.txtEmpName.Text.Trim().Length > 20)
+                    
+                    if (this.txtCusName.Text.Trim() == "" || this.txtCusName.Text.Trim().Length > 20)
                     {
                         System.Exception ex = new Exception("Define the Name...(Max length allowed 20)");
                         throw (ex);
                     }
                     if (this.txtDOJ.Text == "" || bplib.clsWebLib.IsDateOK(this.txtDOJ.Text.Trim()) == false)
                     {
-                        System.Exception ex = new Exception("Define the Date of Joining........... (allowed format is  dd-MMM-yyyy ex: '01-jan-20023')");
+                        System.Exception ex = new Exception("Define the Date of Join........... (allowed format is  dd-MMM-yyyy ex: '01-jan-20023')");
                         throw (ex);
                     }
-                    if (this.ddldeptId.Text.Trim() == "" || this.ddldeptId.Text.Trim().Length > 100)
+                    if (this.ddlCusType.Text.Trim() == "" || this.ddlCusType.Text.Trim().Length > 100)
                     {
-                        System.Exception ex = new Exception("Define the Department...");
+                        System.Exception ex = new Exception("Define the Customer Type...");
                         throw (ex);
                     }
-                    if (this.txtSalary.Text.Trim() == "" || this.txtSalary.Text.Trim().Length > 100)
+                    if (int.TryParse(this.txtPhone.Text.Trim(), out int phoneNumber))
                     {
-                        System.Exception ex = new Exception("Define the Salary...");
-                        throw (ex);
+                        if (this.txtPhone.Text.Trim().Length != 10)
+                        {
+                            System.Exception ex = new Exception("Please enter a valid 10-digit phone number.");
+                            throw ex;
+                        }
                     }
 
 
@@ -620,13 +616,13 @@ namespace BPWEBAccessControl
 
                 if (DATA_OK == true)
                 {
-                    objApp.GetDataOfEmp(this.txtEmpId.Text.Trim(), /*strSiteId.ToString(),*/ out dsLocal);
+                    objApp.GetDataOfCustomer(this.txtCusId.Text.Trim(),  out dsLocal);
                     dtLocal = dsLocal.Tables[0];
                     dvLocal = new DataView();
                     dvLocal.Table = dtLocal;
 
                     //Isolate the specific row to edit or is not available then add
-                    dvLocal.RowFilter = "EmployeeId='" + this.txtEmpId.Text.Trim() + "'";
+                    dvLocal.RowFilter = "CustomerId='" + this.txtCusId.Text.Trim() + "'";
 
                     if (dvLocal.Count == 0)
                     { // Add new block
@@ -675,14 +671,14 @@ namespace BPWEBAccessControl
 
                 if (OPN_FLAG == "ADDNEW")
                 {
-                    drLocal["EmployeeId"] = bplib.clsWebLib.RetValidLen(this.txtEmpId.Text.ToString().Trim().ToUpper(), 20);
+                    drLocal["CustomerId"] = bplib.clsWebLib.RetValidLen(this.txtCusId.Text.ToString().Trim().ToUpper(), 20);
                     //drLocal["DateAdded"] = "" + bplib.clsWebLib.DateData_AppToDB(System.DateTime.Now.ToShortDateString(), bplib.clsWebLib.DB_DATE_FORMAT);
                     //drLocal["AddedBy"] = bplib.clsWebLib.RetValidLen(((string)Session["USER"]), 20);
                 }
-                drLocal["EmployeeName"] = bplib.clsWebLib.RetValidLen(this.txtEmpName.Text.Trim(), 20);
-                drLocal["Department"] = bplib.clsWebLib.RetValidLen(this.ddldeptId.SelectedValue.ToString().Trim(), 20);
-                drLocal["DOJ"] = "" + bplib.clsWebLib.DateData_AppToDB(this.txtDOJ.Text.ToString(), bplib.clsWebLib.DB_DATE_FORMAT);
-                drLocal["Salary"] = bplib.clsWebLib.GetNumData(this.txtSalary.Text.Trim());
+                drLocal["CustomerName"] = bplib.clsWebLib.RetValidLen(this.txtCusName.Text.Trim(), 20);
+                drLocal["CustomerType"] = bplib.clsWebLib.RetValidLen(this.ddlCusType.SelectedValue.ToString().Trim(), 20);
+                drLocal["RegisterDate"] = "" + bplib.clsWebLib.DateData_AppToDB(this.txtDOJ.Text.ToString(), bplib.clsWebLib.DB_DATE_FORMAT);
+                drLocal["Phone"] = bplib.clsWebLib.GetNumData(this.txtPhone.Text.Trim());
 
                 //drLocal["UpdateOn"] = "" + bplib.clsWebLib.DateData_AppToDB(System.DateTime.Now.ToShortDateString(), bplib.clsWebLib.DB_DATE_FORMAT);
                 //drLocal["UpdateBy"] = bplib.clsWebLib.RetValidLen(((string)Session["USER"]), 20);
@@ -704,9 +700,9 @@ namespace BPWEBAccessControl
             try
             {
                 this.lblViewName.Text = this.mvwDataVw.GetActiveView().ID.ToString();
-                LoadData(true, "", "Employee");
+                LoadData(true, "", "Customer");
                 this.tbValue.Text = "";
-                this.lblSearchTitle.Text = "Search : Employee";
+                this.lblSearchTitle.Text = "Search : Customer";
                 this.btnCancelSearch.Visible = true; //set as false in Cancel() function; if the search screen is the first screen
                 this.mvwDataVw.SetActiveView(this.vw00);
             }
@@ -727,19 +723,19 @@ namespace BPWEBAccessControl
 
             try
             {
-                if (this.txtEmpId.Text.Trim() == "" || this.txtEmpId.Text.Trim().Length > 20)
+                if (this.txtCusId.Text.Trim() == "" || this.txtCusId.Text.Trim().Length > 20)
                 {
                     return;
                 }
                 objApp = new PWOMS.clsApplication();
-                objApp.GetDataOfEmp(this.txtEmpId.Text.Trim(), /*strSiteId.ToString(),*/ out dsLocal);
+                objApp.GetDataOfCustomer(this.txtCusId.Text.Trim(), /*strSiteId.ToString(),*/ out dsLocal);
                 if (dsLocal.Tables[0].Rows.Count > 0)
                 {
-                    this.txtEmpId.Text = "" + dsLocal.Tables[0].Rows[0]["EmployeeId"].ToString();
-                    this.txtEmpName.Text = "" + dsLocal.Tables[0].Rows[0]["EmployeeName"].ToString();
-                    this.txtDOJ.Text = "" + bplib.clsWebLib.makeBaseBlank(bplib.clsWebLib.DateData_DBToApp(dsLocal.Tables[0].Rows[0]["DOJ"].ToString().Trim(), bplib.clsWebLib.STD_DATE_FORMAT).ToString("dd-MMM-yyyy"));
-                    this.ddldeptId.SelectedValue = "" + dsLocal.Tables[0].Rows[0]["Department"].ToString();
-                    this.txtSalary.Text = "" + dsLocal.Tables[0].Rows[0]["Salary"].ToString();
+                    this.txtCusId.Text = "" + dsLocal.Tables[0].Rows[0]["CustomerId"].ToString();
+                    this.txtCusName.Text = "" + dsLocal.Tables[0].Rows[0]["CustomerName"].ToString();
+                    this.ddlCusType.SelectedValue = "" + dsLocal.Tables[0].Rows[0]["CustomerType"].ToString();
+                    this.txtDOJ.Text = "" + bplib.clsWebLib.makeBaseBlank(bplib.clsWebLib.DateData_DBToApp(dsLocal.Tables[0].Rows[0]["RegisterDate"].ToString().Trim(), bplib.clsWebLib.STD_DATE_FORMAT).ToString("dd-MMM-yyyy"));
+                    this.txtPhone.Text = "" + dsLocal.Tables[0].Rows[0]["Phone"].ToString();
 
                     Session["VERIFICATION_STATE"] = 1;
                     this.btnSave.Text = "Save";
@@ -762,16 +758,16 @@ namespace BPWEBAccessControl
             PWOMS.clsApplication objApp = null;
             bool DATA_OK = false;
             string strSiteId = Session["USER_SITE"].ToString().Trim();
-            string modulename = "Employee.DELETE";
+            string modulename = "Customer.DELETE";
             try
             {
                 bplib.clsAppSeq.CheckUserAccess((string)Session["USER"], modulename.ToUpper());
                 objApp = new PWOMS.clsApplication();
                 if (DATA_OK == false)
                 {
-                    if (this.txtEmpId.Text.Trim() == "" || this.txtEmpId.Text.Trim().Length > 20)
+                    if (this.txtCusId.Text.Trim() == "" || this.txtCusId.Text.Trim().Length > 20)
                     {
-                        System.Exception ex = new Exception("Define the Employee Id...");
+                        System.Exception ex = new Exception("Define the Customer Id...");
                         throw (ex);
                     }
 
@@ -779,7 +775,7 @@ namespace BPWEBAccessControl
                 }
                 if (DATA_OK == true)
                 {
-                    objApp.DeleteDataOfEmp(this.txtEmpId.Text.Trim(), /*strSiteId.ToString(),*/ "tblEmployee");
+                    objApp.DeleteDataOfCustomer(this.txtCusId.Text.Trim(), /*strSiteId.ToString(),*/ "tbl_customer");
 
                     Cancel();
                     displayMsgs("Data delete successful !!!", "Ok", "DEL");
@@ -800,7 +796,7 @@ namespace BPWEBAccessControl
             System.Data.DataSet dsLocal;
             System.Data.DataTable dtLocal;
             bplib.clsFixedVariable objFix = null;
-             PWOMS.clsApplication objApp = null;
+            PWOMS.clsApplication objApp = null;
 
             string strSiteId = Session["USER_SITE"].ToString().Trim();
 
@@ -815,12 +811,12 @@ namespace BPWEBAccessControl
 
                 //EMPLOYEE_STATUS data - FixedVariables
                 //Department data - FixedVariables
-                objFix.GetEntityFixedValiablesDesc(out dsLocal, "DEPARTMENT_LIST");
-                this.ddldeptId.DataSource = dsLocal;
-                this.ddldeptId.DataTextField = "CODE";
-                this.ddldeptId.DataValueField = "CODE";
-                this.ddldeptId.DataBind();
-                this.ddldeptId.Items.Insert(0, new ListItem("", ""));
+                objFix.GetEntityFixedValiablesDesc(out dsLocal, "CUSTOMERTYPE_LIST");
+                this.ddlCusType.DataSource = dsLocal;
+                this.ddlCusType.DataTextField = "CODE";
+                this.ddlCusType.DataValueField = "CODE";
+                this.ddlCusType.DataBind();
+                this.ddlCusType.Items.Insert(0, new ListItem("", ""));
             }
             catch (System.Exception ex)
             {
@@ -848,11 +844,11 @@ namespace BPWEBAccessControl
         {
             try
             {
-                this.txtEmpId.Text = "";
-                this.txtEmpName.Text = "";
-                this.ddldeptId.SelectedIndex = -1;
+                this.txtCusId.Text = "";
+                this.txtCusName.Text = "";
+                this.ddlCusType.SelectedIndex = -1;
                 this.txtDOJ.Text = "";
-                this.txtSalary.Text = "";
+                this.txtPhone.Text = "";
             }
             catch (System.Exception ex)
             {

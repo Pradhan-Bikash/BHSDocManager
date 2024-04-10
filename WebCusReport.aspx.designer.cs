@@ -11,250 +11,336 @@ namespace BPWEBAccessControl
 {
 
 
-	public partial class SiteApp
+	public partial class CustomerReport
 	{
 
 		/// <summary>
-		/// lblSiteID control.
+		/// UpdatePanel1 control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblSiteID;
+		protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
 		/// <summary>
-		/// lblFormName control.
+		/// dataUpdatePanel control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblFormName;
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl dataUpdatePanel;
 
 		/// <summary>
-		/// linLogOff2 control.
+		/// lblfrmName control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linLogOff2;
+		protected global::System.Web.UI.WebControls.Label lblfrmName;
 
 		/// <summary>
-		/// linBtAbout control.
+		/// mvwDataVw control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linBtAbout;
+		protected global::System.Web.UI.WebControls.MultiView mvwDataVw;
 
 		/// <summary>
-		/// linBtContact control.
+		/// vw00 control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linBtContact;
+		protected global::System.Web.UI.WebControls.View vw00;
 
 		/// <summary>
-		/// lblIco1 control.
+		/// lblSearchTitle control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblIco1;
+		protected global::System.Web.UI.WebControls.Label lblSearchTitle;
 
 		/// <summary>
-		/// lblUserId control.
+		/// lblSearchBy control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblUserId;
+		protected global::System.Web.UI.WebControls.Label lblSearchBy;
 
 		/// <summary>
-		/// ACCCTL control.
+		/// ddlSearchBy control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.HtmlControls.HtmlGenericControl ACCCTL;
+		protected global::System.Web.UI.WebControls.DropDownList ddlSearchBy;
 
 		/// <summary>
-		/// LinkButton5 control.
+		/// lblValue control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton LinkButton5;
+		protected global::System.Web.UI.WebControls.Label lblValue;
 
 		/// <summary>
-		/// LinkButton6 control.
+		/// tbValue control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton LinkButton6;
+		protected global::System.Web.UI.WebControls.TextBox tbValue;
 
 		/// <summary>
-		/// linEmployeeInfo control.
+		/// btnSearch control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linEmployeeInfo;
+		protected global::System.Web.UI.WebControls.Button btnSearch;
 
 		/// <summary>
-		/// linBankInfo control.
+		/// btnCancelSearch control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linBankInfo;
+		protected global::System.Web.UI.WebControls.Button btnCancelSearch;
 
 		/// <summary>
-		/// linLeaseAgreement control.
+		/// lblViewState control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linLeaseAgreement;
+		protected global::System.Web.UI.WebControls.Label lblViewState;
 
 		/// <summary>
-		/// linFundingInfo control.
+		/// lblViewName control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linFundingInfo;
+		protected global::System.Web.UI.WebControls.Label lblViewName;
 
 		/// <summary>
-		/// linBusinessRegistration control.
+		/// lblInfoDox control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linBusinessRegistration;
+		protected global::System.Web.UI.WebControls.Label lblInfoDox;
 
 		/// <summary>
-		/// LinkDOCUpdate control.
+		/// panSearch control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton LinkDOCUpdate;
+		protected global::System.Web.UI.WebControls.Panel panSearch;
 
 		/// <summary>
-		/// LinkDocView control.
+		/// dgSearch control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton LinkDocView;
+		protected global::System.Web.UI.WebControls.DataGrid dgSearch;
 
 		/// <summary>
-		/// linReport control.
+		/// vw01 control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linReport;
+		protected global::System.Web.UI.WebControls.View vw01;
 
 		/// <summary>
-		/// linView control.
+		/// dlgImage control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linView;
+		protected global::System.Web.UI.WebControls.Image dlgImage;
 
 		/// <summary>
-		/// linSettings control.
+		/// lblMessageBoard control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linSettings;
+		protected global::System.Web.UI.WebControls.Label lblMessageBoard;
 
 		/// <summary>
-		/// linLogOff control.
+		/// dlgMsg control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linLogOff;
+		protected global::System.Web.UI.WebControls.Label dlgMsg;
 
 		/// <summary>
-		/// MainContent control.
+		/// dlgOk control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+		protected global::System.Web.UI.WebControls.Button dlgOk;
 
 		/// <summary>
-		/// MsgViewBK control.
+		/// dlgCancel control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.HtmlControls.HtmlGenericControl MsgViewBK;
+		protected global::System.Web.UI.WebControls.Button dlgCancel;
 
 		/// <summary>
-		/// MsgView control.
+		/// lblDlgState control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.HtmlControls.HtmlGenericControl MsgView;
+		protected global::System.Web.UI.WebControls.Label lblDlgState;
 
 		/// <summary>
-		/// lblmyMsgBoxHeader control.
+		/// vw02 control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblmyMsgBoxHeader;
+		protected global::System.Web.UI.WebControls.View vw02;
 
 		/// <summary>
-		/// lblmyMsgBoxTxt control.
+		/// btnLogOff control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblmyMsgBoxTxt;
+		protected global::System.Web.UI.WebControls.Button btnLogOff;
 
 		/// <summary>
-		/// linMsgViewClose control.
+		/// lblFromDate control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linMsgViewClose;
+		protected global::System.Web.UI.WebControls.Label lblFromDate;
+
+		/// <summary>
+		/// txtFromDate control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtFromDate;
+
+		/// <summary>
+		/// lblToDate control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblToDate;
+
+		/// <summary>
+		/// txtToDate control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtToDate;
+
+		/// <summary>
+		/// DOCX control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl DOCX;
+
+		/// <summary>
+		/// imgbtnXL207 control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.ImageButton imgbtnXL207;
+
+		/// <summary>
+		/// lblPWOMS207 control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblPWOMS207;
+
+		/// <summary>
+		/// lblParameterPWOMS207 control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblParameterPWOMS207;
+
+		/// <summary>
+		/// TxtMsgBox control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox TxtMsgBox;
+
+		/// <summary>
+		/// Master property.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated property.
+		/// </remarks>
+		public new BPWEBAccessControl.SiteApp Master
+		{
+			get
+			{
+				return ((BPWEBAccessControl.SiteApp)(base.Master));
+			}
+		}
 	}
 }

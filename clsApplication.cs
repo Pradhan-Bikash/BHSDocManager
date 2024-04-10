@@ -776,6 +776,91 @@ namespace PWOMS
 
         #endregion
 
+        #region Update Customer
+        public void GetDataOfCustomer(string strUserId, out System.Data.DataSet dsRef)
+        {
+            string strSQl;
+            ConnectionManager.DAL.ConManager objCon;
+            try
+            {
+                strSQl = "select * from tblDOCMgt where EntryID='" + strUserId.Trim() + "' ";
+                objCon = new ConnectionManager.DAL.ConManager("1");
+                objCon.OpenDataSetThroughAdapter(strSQl, out dsRef, false, "1");
+            }
+            catch (System.Exception ex)
+            { throw (ex); }
+            finally
+            {
+                objCon = null;
+            }
+        }//eof
+
+        public void SearchCustomerData(string fromDate, string todate, string strKey, string strSiteId, out System.Data.DataSet dsRef)
+        {
+            ConnectionManager.DAL.ConManager objCon;
+            string strSql = "";
+            string strfromdate = "";
+            string strtodate = "";
+            try
+            {
+                strSql = @"SELECT X.CustomerId,X.CustomerName,X.CustomerType,X.DOB,x.Phone FROM (SELECT  CustomerId, CustomerName, CustomerType ,
+                         IIF(convert(varchar(20), DOB, 105)='01-01-1901',NULL,convert(varchar(20), DOB, 105)) as DOB,Phone
+                         FROM  TBL_Customer) X";
+
+                //strSql = strSql + " where SiteId='" + strSiteId.Trim() + "'";
+
+                if (strKey == "")
+                {
+                    strfromdate = bplib.clsWebLib.AppDateConvert(fromDate, bplib.clsWebLib.getUserDateFormat(), "MM/dd/yyyy").ToString("MM/dd/yyyy");
+                    strtodate = bplib.clsWebLib.AppDateConvert(todate, bplib.clsWebLib.getUserDateFormat(), "MM/dd/yyyy").ToString("MM/dd/yyyy");
+
+                    strSql = strSql + " where DOB between '" + strfromdate + "' and '" + strtodate + "' order by CustomerId";
+
+                }
+                else
+                {
+                    strSql = strSql + " where " + strKey + " order by CustomerId";
+                }
+
+                //strSql = strSql + "order by EmployeeId";
+
+                objCon = new ConnectionManager.DAL.ConManager("1");
+                objCon.OpenDataSetThroughAdapter(strSql, out dsRef, false, "1");            // Get the data table as well as data set name
+            }
+            catch (System.Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                objCon = null;
+            }
+        }//eof
+
+        public void DeleteDataOfCustomer(string ID, string tblName)
+        {
+            ConnectionManager.DAL.ConManager objCon = null;
+            try
+            {
+                objCon = new ConnectionManager.DAL.ConManager("1");
+                objCon.OpenConnection("1");
+                objCon.BeginTransaction();
+                objCon.ExecuteNonQueryWrapper("Delete from " + tblName + " where CustomerId='" + ID + "' ", true, "1");
+                objCon.CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                objCon.RollBack();
+                throw (ex);
+            }
+            finally
+            {
+                objCon.CloseConnection();
+                objCon = null;
+            }
+        }   //eof
+
+        #endregion
 
     }
 }

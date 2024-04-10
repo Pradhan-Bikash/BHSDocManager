@@ -13,10 +13,13 @@
     background-color: #FFFFFF;
     text-align: center;
 }
+.custom-textbox-height{
+    height:100px
+}
 
-    .webfooter p {
-        background-color: #efefef;
-    }
+.webfooter p {
+    background-color: #efefef;
+}
 
 .label-infos {
     color: #0A337F;

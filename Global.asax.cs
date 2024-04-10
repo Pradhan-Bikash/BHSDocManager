@@ -14,7 +14,7 @@ namespace BPWEBAccessControl
         private System.ComponentModel.IContainer components = null;
 
         public static string SystemFilePath = "COMM_APP_DOX";
-        public static readonly string PageTitle = "BHS Infotech Ltd. (Web client)";
+        public static readonly string PageTitle = "BHS DOC MANAGER";
         
         //public static string CipherKey = @"KEY2020";
 
@@ -46,7 +46,7 @@ namespace BPWEBAccessControl
         #region Customized functions
         public static string TitleText()
         {
-            string ss = "BHS (Web client)";
+            string ss = "BHS DOC MANAGER";
             return ss;
         }
         public static string FooterText()

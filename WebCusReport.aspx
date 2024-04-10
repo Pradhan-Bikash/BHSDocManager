@@ -1,7 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SiteApp.master" CodeBehind="webfrmEmpReport.aspx.cs" Inherits="BPWEBAccessControl.webfrmEmpReport" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SiteApp.master" CodeBehind="WebCusReport.aspx.cs" Inherits="BPWEBAccessControl.CustomerReport" %>
 
 <%@ MasterType VirtualPath="~/SiteApp.master" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
@@ -119,26 +118,34 @@
                                         <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txtToDate" Format="dd-MMM-yyyy" CssClass="ajaxcald"></ajaxToolkit:CalendarExtender>
                                     </div>
                                 </div>
+                                
+                            </div>
 
-                               <div class="row">
-                                    <div class="form-group col-sm-3 required">
-                                        <asp:Label ID="lblReportGrp" ForeColor="Blue" CssClass="ctrlStyle_Label" runat="server" Text="Report Group" required="required"></asp:Label>
-                                         <asp:DropDownList ID="ddlReportGrp" CssClass="form-control form-group-sm" runat="server"></asp:DropDownList>
-                                    </div>  
-                                   <%--<div class="form-row" style="margin-top: 10px;">--%>
-                                    <div class="form-group col-sm-6" style="margin-top: 16px;">
-                                        <div id="DOCX" runat="server">
-                                            <asp:Label ID="Label1" ForeColor="Blue" CssClass="ctrlStyle_Label" runat="server" Text="Text Text  Text  Text  Text  Text  Text  Text Text Text  Text  Text  Text  Text  Text  Text
-                                                                                                                        Text Text  Text  Text  Text  Text  Text  Text Text Text  Text  Text  Text  Text  Text  Text"></asp:Label>
-                                         </div>
+                            <div class="form-row" style="margin-top: 10px;">
+                                <div class="form-group col-sm-12">
+                                    <div id="DOCX" runat="server">
                                     </div>
-                                   <%--</div>--%>
                                 </div>
-                             </div>
+                            </div>
 
                             <div class="container-fluid myFrame">
 
-                              <div class="row">
+                                <div class="form-row col-sm-3 myCard text-center" style="margin: 5px;">
+                                    <asp:ImageButton ID="imgbtnXL207" runat="server"
+                                        CommandName="Customer Info" AlternateText="Customer Info"
+                                        OnClick="imgbtnXL207_Click" ImageUrl="~/picture/reports.png" Height="40px"
+                                        Width="40px" />
+                                    <br />
+                                    <asp:Label ID="lblPWOMS207" CssClass="ctrlStyle_Label" runat="server" Text="[PWOMS207] <br /> Customer Details" AssociatedControlID="imgbtnXL207"></asp:Label>
+                                    <br />
+                                    <asp:Label ID="lblParameterPWOMS207" CssClass="ctrlStyle_Label" runat="server" Text="(note: [1A],[1B](Update On) parameter input needed for this view process)"></asp:Label>
+                                </div>
+                            </div>
+
+
+
+
+                           <%-- <div class="row">
                                 <div class="col-sm-12">
                                     <asp:Panel ID="Panel1" runat="server" Height="400px" CssClass="table-responsive" ScrollBars="Auto">
                                         <asp:DataGrid ID="ReportGrid" AutoGenerateColumns="False" runat="server" CssClass="datagrid table table-striped table-bordered table-condensed" Font-Size="10pt" Font-Names="Calibri,Tahoma,Verdana,Arial" OnItemCommand="Grid_Command"
@@ -154,7 +161,7 @@
                                                <asp:TemplateColumn HeaderText ="">
                                                    <ItemTemplate>
                                                        <asp:HiddenField ID="imgbtn" runat="server" Value="Report" />
-                                                       <asp:ImageButton ID="ImageActual" runat="server" ImageUrl="~/picture/reports.png" Height="30px" ImageAlign="Middle" />
+                                                       <asp:ImageButton ID="ImageActual" runat="server" ImageUrl="~/picture/reports.png" Height="30px" ImageAlign="Middle"  />
                                                    </ItemTemplate>
                                                    <ItemStyle HorizontalAlign="Center" />
                                                </asp:TemplateColumn>
@@ -188,20 +195,16 @@
                                         </asp:DataGrid>
                                     </asp:Panel>
                                 </div>
-                            </div>
+                            </div>--%>
 
-<%--                                <div class="form-row col-sm-3 myCard text-center" style="margin: 5px;">
-                                    <asp:ImageButton ID="imgbtnXL206" runat="server"
-                                        CommandName="Employee" AlternateText="Employee"
-                                        OnClick="imgbtnXL206_Click" ImageUrl="~/picture/reports.png" Height="40px"
-                                        Width="40px" />
-                                    <br />
-                                    <asp:Label ID="lblPWOMS206" CssClass="ctrlStyle_Label" runat="server" Text="[PWOMS206] <br /> Employee" AssociatedControlID="imgbtnXL206"></asp:Label>
-                                    <br />
-                                    <asp:Label ID="lblParameterPWOMS206" CssClass="ctrlStyle_Label" runat="server" Text="(note: [1A],[1B](Date Of Join) parameter input needed for this view process)"></asp:Label>
-                                </div>
-                            </div>
-                        </div>--%>
+
+
+
+
+
+
+
+                        </div>
 
                         <div class="row">
                             <div class="col-sm-12">
@@ -220,13 +223,13 @@
             <asp:AsyncPostBackTrigger EventName="click" ControlID="btnSearch" />
             <asp:AsyncPostBackTrigger EventName="click" ControlID="btnCancelSearch" />
             <%--<asp:AsyncPostBackTrigger EventName="click" ControlID="ibTeleContactsChart" />--%>
-            
+
             <%--if there are any file uploader; mention it in Post Back trigger; not in AsyncPostbackTrigger--%>
             <asp:PostBackTrigger ControlID="btnLogOff" />
             <asp:PostBackTrigger ControlID="ReportGrid" />
-            <%--<asp:PostBackTrigger ControlID="imgbtnXL206" />--%>
+            <%--<asp:PostBackTrigger ControlID="imgbtnXL207" />--%>
+            
 
         </Triggers>
-    </asp:UpdatePanel>
-</asp:Content>
-
+        </asp:UpdatePanel>
+    </asp:Content>

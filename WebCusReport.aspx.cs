@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace BPWEBAccessControl
 {
-    public partial class webfrmEmpReport : System.Web.UI.Page
+    public partial class CustomerReport : System.Web.UI.Page
     {
         #region Form's Events
         private void Page_Load(object sender, System.EventArgs e)
@@ -47,7 +47,6 @@ namespace BPWEBAccessControl
                     Session["VERIFICATION_STATE"] = 0;
                     LoadDynamicData();
                     loadLanguageOnLabel();
-                    LoadReportDataGrid();
                     this.txtFromDate.Text = System.DateTime.Now.AddDays(-15).ToString("dd-MMM-yyyy");
                     this.txtToDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
 
@@ -226,7 +225,7 @@ namespace BPWEBAccessControl
             string vwIndex = this.lblViewName.Text;
             string DOCID = "";
             string CollectionID = "";
-            if (((Button)e.CommandSource).CommandName != "Page")
+            if (((LinkButton)e.CommandSource).CommandName != "Page")
             {
                 // e.Item is the row of the table where the command fired
                 // For bound columns the value is stored in the Text property of TableCell
@@ -236,7 +235,7 @@ namespace BPWEBAccessControl
                 DOCID = DOCIDCell.Text;
                 CollectionID = CollectionIDCell.Text;
             }
-            if (((Button)e.CommandSource).CommandName == "EditFile")
+            if (((LinkButton)e.CommandSource).CommandName == "EditFile")
             {
                 //Edit
                 if (this.lblViewState.Text.Trim() == "")
@@ -288,10 +287,12 @@ namespace BPWEBAccessControl
         #endregion
 
         #region DATA ENTRY EVENTS
-        protected void imgbtnXL206_Click(object sender, ImageClickEventArgs e)
+
+        protected void imgbtnXL207_Click(object sender, ImageClickEventArgs e)
         {
-            ProcessToViewEmployee();
-        }//eof 
+            ProcessToViewCustomerInfo();
+        }
+         
 
         protected void btnLogOff_Click(object sender, EventArgs e)
         {
@@ -546,24 +547,6 @@ namespace BPWEBAccessControl
         #endregion
 
         #region DATA ENTRY RELATED FUNCTIONS
-
-        private void LoadReportDataGrid()
-        {
-            DataTable table = new DataTable();
-            table.Columns.Add("Report Number");
-            table.Columns.Add("How To Process");
-            //table.Columns.Add("Process");
-            table.Rows.Add("[R01]-Case List", "Using Parameter [1A] and [1B]");
-            table.Rows.Add("[R02]-Next Review List", "no parameters input nedded");
-            table.Rows.Add("[R03]-OEM Register", "Using Parameter [1A] and [1B]");
-            table.Rows.Add("[R04]-TopUp Request Alert", "Using Parameter [1A] and [1B]");
-            table.Rows.Add("[A01]-TopUp Status Alert", "no parameters input nedded");
-            table.Rows.Add("[A02]-Next Review Alert", "no parameters input nedded");
-
-            ReportGrid.DataSource = table;
-            ReportGrid.DataBind();
-        }
-
         private void LoadDynamicData()
         {
             System.Data.DataSet dsLocal;
@@ -660,8 +643,8 @@ namespace BPWEBAccessControl
 
         #region Excel Reports
 
-        #region Employee (PWOMS206)
-        private void ProcessToViewEmployee()
+        #region Employee Info (PWOMS207)
+        private void ProcessToViewCustomerInfo()
         {
             PWOMS.clsPWOMSRepo objApp = null;
             string strViewHeader = "";
@@ -690,12 +673,13 @@ namespace BPWEBAccessControl
                 }
                 if (DATA_OK == true)
                 {
-                    //procloc                   
+                    //procloc
+
                     string fromDate = bplib.clsWebLib.DateData_DBToApp(this.txtFromDate.Text.ToString().Trim().ToString(), bplib.clsWebLib.STD_DATE_FORMAT).ToString("dd-MMM-yyyy");
 
                     string toDate = bplib.clsWebLib.DateData_DBToApp(this.txtToDate.Text.ToString().Trim().ToString(), bplib.clsWebLib.STD_DATE_FORMAT).ToString("dd-MMM-yyyy");
 
-                    this.DOCX.InnerHtml = clsWebProcDataBuilder.CheckAndLock_PROC("PWOMS206", ((string)Session["user"]));       //********* this.DOCS.InnerHtml = "" = ?//        //Add Button in BpProcLoc table
+                    this.DOCX.InnerHtml = clsWebProcDataBuilder.CheckAndLock_PROC("PWOMS207", ((string)Session["user"]));
                     if (this.DOCX.InnerHtml.Trim() == "")
                     {
                         if (strMessage != "")
@@ -703,19 +687,18 @@ namespace BPWEBAccessControl
                             this.DOCX.InnerHtml = strMessage;
                             return;
                         }
-                        strViewHeader = "[PWOMS206] Employee (Update Date Between: " + fromDate + " and " + toDate + ")";
-                        strFileName = Server.MapPath("Employee.xlsx");                                                      // strFileName = C:\CCC\DEV TEAM BUILD\BPWEBAccAndAppMixV3\EmployeeInfo.xlsx //
-                        CreateEmployeeDataXL(fromDate, toDate, strFileName, strViewHeader);
+                        strViewHeader = "[PWOMS207] Customer Info (Update Date Between: " + fromDate + " and " + toDate + ")";
+                        strFileName = Server.MapPath("CustomerInfo.xlsx");
+                        CreateCustomerInfoDataXL(fromDate, toDate, strFileName, strViewHeader);
                         ShowLog("Report gen process executed sucessfully.....");
-                        clsWebProcDataBuilder.RemoveLock_PROC("PWOMS206");
+                        clsWebProcDataBuilder.RemoveLock_PROC("PWOMS207");
                         //proloc end
                     }
                 }
             }
-
             catch (Exception ex)
             {
-                clsWebProcDataBuilder.RemoveLock_PROC("PWOMS206");
+                clsWebProcDataBuilder.RemoveLock_PROC("PWOMS207");
                 ShowLog("Error:" + ex.Message.ToString());
             }
             finally
@@ -724,20 +707,19 @@ namespace BPWEBAccessControl
                 objApp = null;
             }
         } //eof
-
-        public void CreateEmployeeDataXL(string fromDate, string toDate, string fileName, string strHeader)
+        public void CreateCustomerInfoDataXL(string fromdate, string todate, string fileName, string strHeader)
         {
             ExcelEngine excelEngine = null;
             IApplication application = null;
             IWorkbook workbook = null;
             string strSiteId = Session["USER_SITE"].ToString();
-            PWOMS.clsPWOMSRepo objView;
+            PWOMS.clsCustomerRepo objView;
             System.IO.FileInfo myFile = null;
 
             try
             {
                 /// Writer 	
-                myFile = new System.IO.FileInfo(fileName);          // C:\CCC\DEV TEAM BUILD\BPWEBAccAndAppMixV3\EmployeeInfo.xlsx //
+                myFile = new System.IO.FileInfo(fileName);
                 if (myFile.Exists == true)
                 {
                     myFile.Delete();
@@ -753,13 +735,13 @@ namespace BPWEBAccessControl
                 workbook = application.Workbooks.Create(1);
                 //The first worksheet object in the worksheets collection is accessed.
                 IWorksheet sheet = workbook.Worksheets[0];
-                sheet.Name = "Employee";
+                sheet.Name = "CustomerInfo";
                 //Grid Line False
                 sheet.IsGridLinesVisible = false;
                 workbook.Version = ExcelVersion.Excel2016;
 
-                objView = new PWOMS.clsPWOMSRepo();
-                objView.EmployeeDataXls(fromDate, toDate, strSiteId, strHeader, ref sheet);
+                objView = new PWOMS.clsCustomerRepo();
+                objView.CustomerInfoDataXls(fromdate, todate, strSiteId, strHeader, ref sheet);
 
                 //Saving the workbook to disk.
                 workbook.SaveAs(fileName, ExcelSaveType.SaveAsXLS, Response, ExcelDownloadType.PromptDialog);

@@ -198,7 +198,7 @@ namespace bplib
             string strSQl;
             ConnectionManager.DAL.ConManager objCon;
             try
-            {
+                   {
                 strSQl = "select Description as CODE from EntityFixedVariables";
                 if (EntityType.Trim() != "")
                 {

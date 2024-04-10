@@ -711,8 +711,8 @@ namespace PWOMS
             }
             catch (Exception ex)
             {
-                clsWebProcDataBuilder.RemoveLock_PROC("PWOMS201");
-                ShowLog("Error:" + ex.Message.ToString());
+				clsWebProcDataBuilder.RemoveLock_PROC("PWOMS201");
+				ShowLog("Error:" + ex.Message.ToString());
             }
             finally
             {

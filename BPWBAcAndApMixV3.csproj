@@ -54,8 +54,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\BpRepoGenUtil_ADONET10.dll</HintPath>
     </Reference>
-    <Reference Include="ConnectionManager10">
-      <HintPath>..\..\X_Our ref DLLs\ConnectionManager10.dll</HintPath>
+    <Reference Include="ConnectionManager10, Version=10.1.1.31892, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\X_Our ref DLLs\ConnectionManager10.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -187,6 +188,9 @@
     <Content Include="Content\w3-colors-metro.css" />
     <Content Include="Content\w3-colors-win8.css" />
     <Content Include="Content\w3.css" />
+    <Content Include="DocMgtUpdate.aspx" />
+    <Content Include="DocMgtView.aspx" />
+    <Content Include="WebCusReport.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -221,6 +225,7 @@
     <Content Include="Scripts\jquery.passwordRequirements.js" />
     <Content Include="webFrmBankInfo.aspx" />
     <Content Include="webFrmBizRegInfo.aspx" />
+    <Content Include="WebFrmCustomer.aspx" />
     <Content Include="WebFrmEmployee.aspx" />
     <Content Include="webFrmEmployeeInfo.aspx" />
     <Content Include="webfrmEmpReport.aspx" />
@@ -293,6 +298,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="clsApplication.cs" />
     <Compile Include="clsAppSeq.cs" />
+    <Compile Include="clsCustomerRepo.cs" />
     <Compile Include="clsFileIO.cs" />
     <Compile Include="clsFixedVariable.cs" />
     <Compile Include="clsGenID.cs" />
@@ -311,6 +317,30 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cusGenID.cs" />
+    <Compile Include="clsDocApplication.cs" />
+    <Compile Include="DocMgtUpdate.aspx.cs">
+      <DependentUpon>DocMgtUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DocMgtUpdate.aspx.designer.cs">
+      <DependentUpon>DocMgtUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DocMgtView.aspx.cs">
+      <DependentUpon>DocMgtView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DocMgtView.aspx.designer.cs">
+      <DependentUpon>DocMgtView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GenDocID.cs" />
+    <Compile Include="WebCusReport.aspx.cs">
+      <DependentUpon>WebCusReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebCusReport.aspx.designer.cs">
+      <DependentUpon>WebCusReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -364,6 +394,13 @@
     </Compile>
     <Compile Include="webFrmBizRegInfo.aspx.designer.cs">
       <DependentUpon>webFrmBizRegInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebFrmCustomer.aspx.cs">
+      <DependentUpon>WebFrmCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebFrmCustomer.aspx.designer.cs">
+      <DependentUpon>WebFrmCustomer.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebFrmEmployee.aspx.cs">
       <DependentUpon>WebFrmEmployee.aspx</DependentUpon>
@@ -431,6 +468,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Documents\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
