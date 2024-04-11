@@ -783,7 +783,7 @@ namespace PWOMS
             ConnectionManager.DAL.ConManager objCon;
             try
             {
-                strSQl = "select * from tblDOCMgt where EntryID='" + strUserId.Trim() + "' ";
+                strSQl = "select * from tbl_customer where EntryID='" + strUserId.Trim() + "' ";
                 objCon = new ConnectionManager.DAL.ConManager("1");
                 objCon.OpenDataSetThroughAdapter(strSQl, out dsRef, false, "1");
             }
