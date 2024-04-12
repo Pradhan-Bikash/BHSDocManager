@@ -48,11 +48,7 @@
       <HintPath>C:\X_Our ref DLLs\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="BPEnCodeDecodeLib">
-      <HintPath>..\..\X_Our ref DLLs\BPEnCodeDecodeLib.dll</HintPath>
-    </Reference>
-    <Reference Include="BpRepoGenUtil_ADONET10, Version=10.1.1.31849, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\BpRepoGenUtil_ADONET10.dll</HintPath>
+      <HintPath>C:\X_Our ref DLLs\BPEnCodeDecodeLib.dll</HintPath>
     </Reference>
     <Reference Include="ConnectionManager10, Version=10.1.1.31892, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

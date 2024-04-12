@@ -135,8 +135,8 @@
                                         <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txtEntryDT" Format="dd-MMM-yyyy" CssClass="ajaxcald"></ajaxToolkit:CalendarExtender>
                                    </div>
                                         <div class="form-group col-sm-3 required">
-                                        <asp:Label ID="lblDocType" CssClass="ctrlStyle_Label" runat="server" Text="Document Group"></asp:Label>
-                                         <asp:DropDownList ID="ddlDocType" CssClass="form-control form-group-sm" runat="server"></asp:DropDownList>
+                                        <asp:Label ID="lblDocGroup" CssClass="ctrlStyle_Label" runat="server" Text="Document Group"></asp:Label>
+                                         <asp:DropDownList ID="ddlDocGroup" CssClass="form-control form-group-sm" runat="server"></asp:DropDownList>
                                    </div>
                                    <div class="form-group col-sm-3 required">
                                         <asp:Label ID="lblDocName" CssClass="ctrlStyle_Label" runat="server" Text="Document Name"></asp:Label>

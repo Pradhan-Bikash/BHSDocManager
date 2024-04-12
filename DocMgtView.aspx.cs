@@ -8,11 +8,11 @@ using System.Web.UI.WebControls;
 
 namespace BPWEBAccessControl
 {
-	public partial class DocMgtView : System.Web.UI.Page
-	{
-		#region Form Event
-		protected void Page_Load(object sender, EventArgs e)
-		{
+    public partial class DocMgtView : System.Web.UI.Page
+    {
+        #region Form Event
+        protected void Page_Load(object sender, EventArgs e)
+        {
             Master.Page.Title = BPWEBAccessControl.Global.PageTitle;
             Master.masterlblFormName.Text = "Document View";
             this.lblfrmName.Text = "Document View";
@@ -28,11 +28,11 @@ namespace BPWEBAccessControl
                     Page.Response.Redirect("default.aspx");
                     return;
                 }
-				//DisplayUserName();
-			}
-			//----------------
-			//HideLog();
-			try
+                //DisplayUserName();
+            }
+            //----------------
+            //HideLog();
+            try
             {
                 if (Page.IsPostBack == true)
                 {
@@ -42,11 +42,11 @@ namespace BPWEBAccessControl
                 {
 
                     Session["VERIFICATION_STATE"] = 0;
-					LoadDynamicData();
-					loadLanguageOnLabel();
-					//Cancel();
+                    LoadDynamicData();
+                    loadLanguageOnLabel();
+                    //Cancel();
 
-				}
+                }
             }
             catch (System.Exception ex)
             {
@@ -107,39 +107,63 @@ namespace BPWEBAccessControl
 
             try
             {
-                objCon = new ConnectionManager.DAL.ConManager("1");
+                objCon = new ConnectionManager.DAL.ConManager("1"); // Assuming "1" is a connection string identifier
                 DataSet dsLocal;
-                objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1");
+                objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1"); // Open dataset
+
                 if (dsLocal != null && dsLocal.Tables.Count > 0)
                 {
-                dsLocal.Relations.Add("ChildRows", dsLocal.Tables[0].Columns["EntryID"], dsLocal.Tables[0].Columns["PrenID"]);
-                    foreach (DataRow lbl1Datarow in dsLocal.Tables[0].Rows)
+                    DataTable table = dsLocal.Tables[0];
+                    DataView view = new DataView(table);
+                    // HashSet<string> uniqueGroups = new HashSet<string>(); // HashSet to store unique group names
+                    Dictionary<string, TreeNode> groupNodes = new Dictionary<string, TreeNode>();
+                    foreach (DataRowView row in view)
                     {
-                        //TreeNode parentTreeNode = new TreeNode();
-                        //parentTreeNode.Text = lbl1Datarow["Header"].ToString(); // Assuming 'HeaderText' is the column name for node text
-                        //parentTreeNode.NavigateUrl = lbl1Datarow["FilePath1"].ToString(); // Assuming 'ID' is the primary key column name
-                        //                                                                 // You can add additional properties to the node if needed
-                        //DataRow[] childRows = lbl1Datarow.GetChildRows("ChildRows");
-                        //foreach(DataRow lbl2DataRow in ch)
-                        //// Add the node to the TreeView
-                        //TreeView1.Nodes.Add(node);
+                        string groupName = row["Documents_Group"].ToString();
+                        string docName = row["DocumentName"].ToString();
+
+                        if (!groupNodes.ContainsKey(groupName))
+                        {
+                            TreeNode groupNode = new TreeNode(groupName);
+                            TreeView1.Nodes.Add(groupNode);
+                            groupNodes[groupName] = groupNode;
+                        }
+
+                        // Add the header as a child node under the corresponding group node
+                        TreeNode headerNode = new TreeNode(docName);
+                        groupNodes[groupName].ChildNodes.Add(headerNode);
                     }
+                    TreeView1.ExpandAll();
                 }
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
+                // Log and/or rethrow or handle the exception as needed
                 throw ex;
             }
             finally
             {
                 if (objCon != null)
                 {
-                    objCon=null;
+                    // Make sure to close the connection
+                    objCon = null;
                 }
             }
         }
 
+        private void PopulateSubNodes(TreeNode parentNode, DataTable table)
+        {
+            DataView view = new DataView(table);
+            view.RowFilter = $"PrenID = {parentNode.Value}"; // Filter to find child nodes
+
+            foreach (DataRowView row in view)
+            {
+                TreeNode childNode = new TreeNode(row["Header"].ToString(), row["EntryID"].ToString());
+                childNode.NavigateUrl = row["FilePath1"].ToString();
+                parentNode.ChildNodes.Add(childNode); // Add child node to the parent node
+                PopulateSubNodes(childNode, table); // Recursive call to add further child nodes
+            }
+        }
 
     }
-
 }

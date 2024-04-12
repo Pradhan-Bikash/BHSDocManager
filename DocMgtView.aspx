@@ -17,15 +17,14 @@
                        <div class="sidebar_wrapper">
                            <div class="sideBar sticky ">
                                <div class="sideBar--wrap newLeftbar  ">
-                                   <ul class="leftBarList" style="list-style-type:none">
-                                      <asp:TreeView ID="TreeView1" runat="server" ShowLines="True">
-                                       <Nodes>
-                                         <asp:TreeNode Text="Header">
-                                             
-                                         </asp:TreeNode>
-                                        </Nodes>
-                                     </asp:TreeView>
-                                   </ul>
+                                  
+                                       
+                                <asp:TreeView ID="TreeView1" runat="server">
+                                    <Nodes>
+                                        
+                                    </Nodes>
+                                </asp:TreeView>
+                                  
                                </div>
                            </div>
                        </div>

@@ -745,7 +745,7 @@ namespace BPWEBAccessControl
                     drLocal["EntryID"] = bplib.clsWebLib.RetValidLen(this.txtEntryId.Text.ToString().Trim().ToUpper(), 20);  
                 }
                 drLocal["EntryDateTime"] = "" + bplib.clsWebLib.DateData_AppToDB(this.txtEntryDT.Text.ToString(), bplib.clsWebLib.DB_DATE_FORMAT);
-                drLocal["Documents_Group"] = bplib.clsWebLib.RetValidLen(this.ddlDocType.Text.Trim(),50);
+                drLocal["Documents_Group"] = bplib.clsWebLib.RetValidLen(this.ddlDocGroup.Text.Trim(),50);
                 drLocal["DocumentName"] = bplib.clsWebLib.RetValidLen(this.txtDocName.Text.Trim(),500);
                 drLocal["DocumentDescription"] = bplib.clsWebLib.RetValidLen(this.txtDocName.Text.Trim(),500);
                 drLocal["VersionNo"] = bplib.clsWebLib.RetValidLen(this.txtVersion.Text.Trim(),50);
@@ -812,7 +812,7 @@ namespace BPWEBAccessControl
                     string decodedSection1HTML = Server.HtmlDecode("" + dsLocal.Tables[0].Rows[0]["Section1"].ToString());
                     this.txtEntryId.Text = "" + dsLocal.Tables[0].Rows[0]["EntryID"].ToString();
                     this.txtEntryDT.Text = "" + bplib.clsWebLib.makeBaseBlank(bplib.clsWebLib.DateData_DBToApp(dsLocal.Tables[0].Rows[0]["EntryDateTime"].ToString().Trim(), bplib.clsWebLib.STD_DATE_FORMAT).ToString("dd-MMM-yyyy"));
-                    this.ddlDocType.SelectedValue = "" + dsLocal.Tables[0].Rows[0]["Documents_Group"].ToString();
+                    this.ddlDocGroup.SelectedValue = "" + dsLocal.Tables[0].Rows[0]["Documents_Group"].ToString();
                     this.txtDocName.Text = "" + dsLocal.Tables[0].Rows[0]["DocumentName"].ToString();
                     this.txtDocDESC.Text = "" + dsLocal.Tables[0].Rows[0]["DocumentDescription"].ToString();
                     this.txtVersion.Text = "" + dsLocal.Tables[0].Rows[0]["VersionNo"].ToString();
@@ -909,11 +909,11 @@ namespace BPWEBAccessControl
 				//Document Group Fixed Entity
 
 				objFix.GetEntityFixedValiablesDesc(out dsLocal, "Documents_Group");
-				this.ddlDocType.DataSource = dsLocal;
-				this.ddlDocType.DataTextField = "CODE";
-				this.ddlDocType.DataValueField = "CODE";
-				this.ddlDocType.DataBind();
-				this.ddlDocType.Items.Insert(0, new ListItem("", ""));
+				this.ddlDocGroup.DataSource = dsLocal;
+				this.ddlDocGroup.DataTextField = "CODE";
+				this.ddlDocGroup.DataValueField = "CODE";
+				this.ddlDocGroup.DataBind();
+				this.ddlDocGroup.Items.Insert(0, new ListItem("", ""));
 			}
 			catch (System.Exception ex)
 			{
@@ -943,7 +943,7 @@ namespace BPWEBAccessControl
             {
                 this.txtEntryId.Text = "";
                 this.txtEntryDT.Text = "";
-                this.ddlDocType.SelectedIndex = -1;
+                this.ddlDocGroup.SelectedIndex = -1;
                 this.txtDocName.Text = "";
                 this.txtDocDESC.Text = "";
                 this.txtVersion.Text = "";
@@ -954,6 +954,7 @@ namespace BPWEBAccessControl
                 this.txtCon1.Text = "";
                 this.txtCon2.Text = "";
                 this.txtFooter.Text = "";
+
             }
             catch (System.Exception ex)
             {

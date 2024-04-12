@@ -303,22 +303,22 @@ namespace BPWEBAccessControl
 		protected global::System.Web.UI.WebControls.TextBox txtEntryDT;
 
 		/// <summary>
-		/// lblDocType control.
+		/// lblDocGroup control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblDocType;
+		protected global::System.Web.UI.WebControls.Label lblDocGroup;
 
 		/// <summary>
-		/// ddlDocType control.
+		/// ddlDocGroup control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.DropDownList ddlDocType;
+		protected global::System.Web.UI.WebControls.DropDownList ddlDocGroup;
 
 		/// <summary>
 		/// lblDocName control.
