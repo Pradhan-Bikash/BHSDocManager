@@ -116,7 +116,7 @@ namespace BPWEBAccessControl
                     foreach (DataRow lbl1Datarow in dsLocal.Tables[0].Rows)
                     {
                         //TreeNode parentTreeNode = new TreeNode();
-                        //parentTreeNode.Text = lbl1Datarow["Header1"].ToString(); // Assuming 'HeaderText' is the column name for node text
+                        //parentTreeNode.Text = lbl1Datarow["Header"].ToString(); // Assuming 'HeaderText' is the column name for node text
                         //parentTreeNode.NavigateUrl = lbl1Datarow["FilePath1"].ToString(); // Assuming 'ID' is the primary key column name
                         //                                                                 // You can add additional properties to the node if needed
                         //DataRow[] childRows = lbl1Datarow.GetChildRows("ChildRows");

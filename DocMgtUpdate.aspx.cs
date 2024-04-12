@@ -408,7 +408,7 @@ namespace BPWEBAccessControl
                 //
             }
         } //eof
-        private DataTable GetTableDefination(ref DataTable dtFind)                                  // Get all The Column Name of tblEmployee
+        private DataTable GetTableDefination(ref DataTable dtFind)                                  // Get all The Column Name of tblDocMgt
         {
 
             DataTable dt = new DataTable("tblSearchKeyList");
@@ -710,10 +710,12 @@ namespace BPWEBAccessControl
                 //var secHtml =this.txtSec1.ToString();
                 //var encodeHtmlSec1 = Server.HtmlEncode(secHtml);
                 if (txtFileP1.HasFile)
-                { 
+                {
                     //File path 1
                     string fileName1 = System.IO.Path.GetFileName(this.txtFileP1.PostedFile.FileName);
-                     filePath1 = Server.MapPath("~/Documents/") + fileName1;
+                    string extension1 = System.IO.Path.GetExtension(fileName1); 
+                    string uniqueFileName1 = this.txtEntryId.Text.ToString() + "A" + extension1; 
+                    filePath1 = Server.MapPath("~/Documents/") + uniqueFileName1;
                     txtFileP1.SaveAs(filePath1);
                 }
                 if (txtFileP2.HasFile)
@@ -721,14 +723,18 @@ namespace BPWEBAccessControl
 					//File Path 2
 
 					string fileName2 = System.IO.Path.GetFileName(this.txtFileP2.PostedFile.FileName);
-					 filePath2 = Server.MapPath("~/Documents/") + fileName2;
-					txtFileP2.SaveAs(filePath2);
+                    string extension2 = System.IO.Path.GetExtension(fileName2); 
+                    string uniqueFileName2 = this.txtEntryId.Text.ToString() + "B" + extension2; 
+                    filePath2 = Server.MapPath("~/Documents/") + uniqueFileName2;
+                    txtFileP2.SaveAs(filePath2);
 				}
                 if (txtFileP3.HasFile)
                 {
                     //File Path 3
                     string fileName3 = System.IO.Path.GetFileName(this.txtFileP3.PostedFile.FileName);
-                     filePath3 = Server.MapPath("~/Documents/") + fileName3;
+                    string extension3 = System.IO.Path.GetExtension(fileName3); 
+                    string uniqueFileName3 = this.txtEntryId.Text.ToString() + "C" + extension3; 
+                    filePath3 = Server.MapPath("~/Documents/") + uniqueFileName3;
                     txtFileP3.SaveAs(filePath3);
                 }
 
@@ -737,20 +743,24 @@ namespace BPWEBAccessControl
                     drLocal["EntryID"] = bplib.clsWebLib.RetValidLen(this.txtEntryId.Text.ToString().Trim().ToUpper(), 20);  
                 }
                 drLocal["EntryDateTime"] = "" + bplib.clsWebLib.DateData_AppToDB(this.txtEntryDT.Text.ToString(), bplib.clsWebLib.DB_DATE_FORMAT);
-                drLocal["DocumentName"] = bplib.clsWebLib.RetValidLen(this.txtDocName.Text.Trim());
-                drLocal["DocumentDescription"] = bplib.clsWebLib.RetValidLen(this.txtDocName.Text.Trim());
-                drLocal["VersionNo"] = bplib.clsWebLib.RetValidLen(this.txtVersion.Text.Trim());
+                drLocal["Documents_Group"] = bplib.clsWebLib.RetValidLen(this.ddlDocType.Text.Trim(),50);
+                drLocal["DocumentName"] = bplib.clsWebLib.RetValidLen(this.txtDocName.Text.Trim(),500);
+                drLocal["DocumentDescription"] = bplib.clsWebLib.RetValidLen(this.txtDocName.Text.Trim(),500);
+                drLocal["VersionNo"] = bplib.clsWebLib.RetValidLen(this.txtVersion.Text.Trim(),50);
                 drLocal["BuildNo"] = bplib.clsWebLib.RetValidLen(this.txtBuild.Text.Trim(),50);
-                drLocal["Header1"] = bplib.clsWebLib.RetValidLen(this.txtHeader.Text.Trim());
+                drLocal["Header"] = bplib.clsWebLib.RetValidLen(this.txtHeader.Text.Trim());
                 drLocal["Section1"] = bplib.clsWebLib.RetValidLen(this.txtSec1.Text.Trim());
-                drLocal["Section2"] = bplib.clsWebLib.RetValidLen(this.txtSec2.Text.Trim());
                 drLocal["Content1"] = bplib.clsWebLib.RetValidLen(this.txtCon1.Text.Trim());
+                drLocal["Section2"] = bplib.clsWebLib.RetValidLen(this.txtSec2.Text.Trim());
                 drLocal["Content2"] = bplib.clsWebLib.RetValidLen(this.txtCon2.Text.Trim());
                 drLocal["Footer"] = bplib.clsWebLib.RetValidLen(this.txtFooter.Text.Trim());
                 drLocal["FilePath1"] = filePath1;
 				drLocal["FilePath2"] = filePath2;
 				drLocal["FilePath3"] = filePath3;
-			}
+                drLocal["CreateDate"] = DateTime.Now.ToString();
+                drLocal["UpdateDate"] = DateTime.Now.ToString();
+                drLocal["UpdateBy"] = Environment.MachineName; 
+            }
             catch (System.Exception ex)
             {
                 throw (ex);
@@ -799,11 +809,12 @@ namespace BPWEBAccessControl
                 {
                     this.txtEntryId.Text = "" + dsLocal.Tables[0].Rows[0]["EntryID"].ToString();
                     this.txtEntryDT.Text = "" + bplib.clsWebLib.makeBaseBlank(bplib.clsWebLib.DateData_DBToApp(dsLocal.Tables[0].Rows[0]["EntryDateTime"].ToString().Trim(), bplib.clsWebLib.STD_DATE_FORMAT).ToString("dd-MMM-yyyy"));
+                    this.ddlDocType.SelectedValue = "" + dsLocal.Tables[0].Rows[0]["Documents_Group"].ToString();
                     this.txtDocName.Text = "" + dsLocal.Tables[0].Rows[0]["DocumentName"].ToString();
                     this.txtDocDESC.Text = "" + dsLocal.Tables[0].Rows[0]["DocumentDescription"].ToString();
                     this.txtVersion.Text = "" + dsLocal.Tables[0].Rows[0]["VersionNo"].ToString();
                     this.txtBuild.Text = "" + dsLocal.Tables[0].Rows[0]["BuildNo"].ToString();
-                    this.txtHeader.Text = "" + dsLocal.Tables[0].Rows[0]["Header1"].ToString();
+                    this.txtHeader.Text = "" + dsLocal.Tables[0].Rows[0]["Header"].ToString();
                     this.txtSec1.Text = "" + dsLocal.Tables[0].Rows[0]["Section1"].ToString();
                     this.txtSec2.Text = "" + dsLocal.Tables[0].Rows[0]["Section2"].ToString();
                     this.txtCon1.Text = "" + dsLocal.Tables[0].Rows[0]["Content1"].ToString();
@@ -884,22 +895,22 @@ namespace BPWEBAccessControl
 
 			string strSiteId = Session["USER_SITE"].ToString().Trim();
 
-			string[] strGroupType = { "MANAGEMENT", "MERCHANDISING" };
-			string[] strHOType = { "Yes", "No" };
+			//string[] strGroupType = { "MANAGEMENT", "MERCHANDISING" };
+			//string[] strHOType = { "Yes", "No" };
 
 			try
 			{
 				objFix = new bplib.clsFixedVariable();
 				objApp = new PWOMS.clsDocApplication();
 
-				//EMPLOYEE_STATUS data - FixedVariables
-				//Department data - FixedVariables
-				//objFix.GetEntityFixedValiablesDesc(out dsLocal, "CUSTOMERTYPE_LIST");
-				//this.ddlCusType.DataSource = dsLocal;
-				//this.ddlCusType.DataTextField = "CODE";
-				//this.ddlCusType.DataValueField = "CODE";
-				//this.ddlCusType.DataBind();
-				//this.ddlCusType.Items.Insert(0, new ListItem("", ""));
+				//Document Group Fixed Entity
+
+				objFix.GetEntityFixedValiablesDesc(out dsLocal, "Documents_Group");
+				this.ddlDocType.DataSource = dsLocal;
+				this.ddlDocType.DataTextField = "CODE";
+				this.ddlDocType.DataValueField = "CODE";
+				this.ddlDocType.DataBind();
+				this.ddlDocType.Items.Insert(0, new ListItem("", ""));
 			}
 			catch (System.Exception ex)
 			{
@@ -929,6 +940,7 @@ namespace BPWEBAccessControl
             {
                 this.txtEntryId.Text = "";
                 this.txtEntryDT.Text = "";
+                this.ddlDocType.SelectedIndex = -1;
                 this.txtDocName.Text = "";
                 this.txtDocDESC.Text = "";
                 this.txtVersion.Text = "";

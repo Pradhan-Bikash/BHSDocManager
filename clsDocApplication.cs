@@ -54,8 +54,8 @@ namespace PWOMS
             string strtodate = "";
             try
             {
-                strSql = @"SELECT X.EntryID,X.EntryDateTime,X.DocumentName,X.DocumentDescription,x.VersionNo,x.BuildNo,x.FilePath1,x.FilePath2,x.FilePath3,x.Header1,x.Section1,x.Section2,x.Content1,x.Content2 FROM (SELECT  EntryID,DocumentName,
-DocumentDescription,VersionNo,BuildNo,FilePath1,FilePath2,FilePath3,Header1,Section1,Section2,Content1,Content2,
+                strSql = @"SELECT X.EntryID,X.EntryDateTime,X.Documents_Group,X.DocumentName,X.DocumentDescription,x.VersionNo,x.BuildNo,x.FilePath1,x.FilePath2,x.FilePath3,x.Header,x.Section1,x.Section2,x.Content1,x.Content2 FROM (SELECT  EntryID,Documents_Group,DocumentName,
+DocumentDescription,VersionNo,BuildNo,FilePath1,FilePath2,FilePath3,Header,Section1,Section2,Content1,Content2,
                          IIF(convert(varchar(20), EntryDateTime, 105)='01-01-1901',NULL,convert(varchar(20), EntryDateTime, 105)) as EntryDateTime
                          FROM  tblDOCMgt) X";
 

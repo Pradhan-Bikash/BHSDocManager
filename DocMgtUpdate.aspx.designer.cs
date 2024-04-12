@@ -303,6 +303,24 @@ namespace BPWEBAccessControl
 		protected global::System.Web.UI.WebControls.TextBox txtEntryDT;
 
 		/// <summary>
+		/// lblDocType control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblDocType;
+
+		/// <summary>
+		/// ddlDocType control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.DropDownList ddlDocType;
+
+		/// <summary>
 		/// lblDocName control.
 		/// </summary>
 		/// <remarks>
@@ -375,13 +393,13 @@ namespace BPWEBAccessControl
 		protected global::System.Web.UI.WebControls.TextBox txtBuild;
 
 		/// <summary>
-		/// lblHeader1 control.
+		/// lblHeader control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblHeader1;
+		protected global::System.Web.UI.WebControls.Label lblHeader;
 
 		/// <summary>
 		/// txtHeader control.

@@ -134,6 +134,10 @@
                                         <asp:TextBox ID="txtEntryDT" runat="server" CssClass="form-control form-group-sm" placeholder="dd-MMM-yyyy"></asp:TextBox>
                                         <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txtEntryDT" Format="dd-MMM-yyyy" CssClass="ajaxcald"></ajaxToolkit:CalendarExtender>
                                    </div>
+                                        <div class="form-group col-sm-3 required">
+                                        <asp:Label ID="lblDocType" CssClass="ctrlStyle_Label" runat="server" Text="Document Group"></asp:Label>
+                                         <asp:DropDownList ID="ddlDocType" CssClass="form-control form-group-sm" runat="server"></asp:DropDownList>
+                                   </div>
                                    <div class="form-group col-sm-3 required">
                                         <asp:Label ID="lblDocName" CssClass="ctrlStyle_Label" runat="server" Text="Document Name"></asp:Label>
                                          <asp:TextBox ID="txtDocName" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
@@ -152,9 +156,9 @@
                                          <asp:TextBox ID="txtBuild" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
                                    </div>
                                         
-                                         <div class="form-group col-sm-5 required">
-                                        <asp:Label ID="lblHeader1" CssClass="ctrlStyle_Label" runat="server" Text="Header"></asp:Label>
-                                         <asp:TextBox ID="txtHeader" CssClass="form-control form-group-sm" TextMode="MultiLine" Rows="3" runat="server"></asp:TextBox>
+                                         <div class="form-group col-sm-3 required">
+                                        <asp:Label ID="lblHeader" CssClass="ctrlStyle_Label" runat="server" Text="Header"></asp:Label>
+                                         <asp:TextBox ID="txtHeader" CssClass="form-control form-group-sm"  runat="server"></asp:TextBox>
                                    </div>
                                        
                                           <div class="form-group col-sm-12 required">
