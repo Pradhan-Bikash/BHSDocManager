@@ -707,6 +707,8 @@ namespace BPWEBAccessControl
                 string filePath1="";
                 string filePath2="";
                 string filePath3="";
+                string section1HTML = Server.HtmlEncode(this.txtSec1.Text.Trim());
+                string section2HTML = this.txtSec2.Text.Trim();
                 //var secHtml =this.txtSec1.ToString();
                 //var encodeHtmlSec1 = Server.HtmlEncode(secHtml);
                 if (txtFileP1.HasFile)
@@ -749,7 +751,7 @@ namespace BPWEBAccessControl
                 drLocal["VersionNo"] = bplib.clsWebLib.RetValidLen(this.txtVersion.Text.Trim(),50);
                 drLocal["BuildNo"] = bplib.clsWebLib.RetValidLen(this.txtBuild.Text.Trim(),50);
                 drLocal["Header"] = bplib.clsWebLib.RetValidLen(this.txtHeader.Text.Trim());
-                drLocal["Section1"] = bplib.clsWebLib.RetValidLen(this.txtSec1.Text.Trim());
+                drLocal["Section1"] = section1HTML;//bplib.clsWebLib.RetValidLen(this.txtSec1.Text.Trim());
                 drLocal["Content1"] = bplib.clsWebLib.RetValidLen(this.txtCon1.Text.Trim());
                 drLocal["Section2"] = bplib.clsWebLib.RetValidLen(this.txtSec2.Text.Trim());
                 drLocal["Content2"] = bplib.clsWebLib.RetValidLen(this.txtCon2.Text.Trim());
@@ -807,6 +809,7 @@ namespace BPWEBAccessControl
                 objApp.GetDataOfDOC(this.txtEntryId.Text.Trim(), /*strSiteId.ToString(),*/ out dsLocal);
                 if (dsLocal.Tables[0].Rows.Count > 0)
                 {
+                    string decodedSection1HTML = Server.HtmlDecode("" + dsLocal.Tables[0].Rows[0]["Section1"].ToString());
                     this.txtEntryId.Text = "" + dsLocal.Tables[0].Rows[0]["EntryID"].ToString();
                     this.txtEntryDT.Text = "" + bplib.clsWebLib.makeBaseBlank(bplib.clsWebLib.DateData_DBToApp(dsLocal.Tables[0].Rows[0]["EntryDateTime"].ToString().Trim(), bplib.clsWebLib.STD_DATE_FORMAT).ToString("dd-MMM-yyyy"));
                     this.ddlDocType.SelectedValue = "" + dsLocal.Tables[0].Rows[0]["Documents_Group"].ToString();
@@ -815,7 +818,7 @@ namespace BPWEBAccessControl
                     this.txtVersion.Text = "" + dsLocal.Tables[0].Rows[0]["VersionNo"].ToString();
                     this.txtBuild.Text = "" + dsLocal.Tables[0].Rows[0]["BuildNo"].ToString();
                     this.txtHeader.Text = "" + dsLocal.Tables[0].Rows[0]["Header"].ToString();
-                    this.txtSec1.Text = "" + dsLocal.Tables[0].Rows[0]["Section1"].ToString();
+                    this.txtSec1.Text = decodedSection1HTML;
                     this.txtSec2.Text = "" + dsLocal.Tables[0].Rows[0]["Section2"].ToString();
                     this.txtCon1.Text = "" + dsLocal.Tables[0].Rows[0]["Content1"].ToString();
                     this.txtCon2.Text = "" + dsLocal.Tables[0].Rows[0]["Content2"].ToString();

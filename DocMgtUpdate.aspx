@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SiteApp.master" CodeBehind="DocMgtUpdate.aspx.cs" Inherits="BPWEBAccessControl.Document_Update" %>
+﻿<%@ Page Language="C#" ValidateRequest="false" AutoEventWireup="true" MasterPageFile="~/SiteApp.master" CodeBehind="DocMgtUpdate.aspx.cs" Inherits="BPWEBAccessControl.Document_Update" %>
 
 <%@ MasterType VirtualPath="~/SiteApp.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
