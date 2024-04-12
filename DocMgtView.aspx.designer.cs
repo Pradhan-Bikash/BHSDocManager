@@ -42,13 +42,13 @@ namespace BPWEBAccessControl
 		protected global::System.Web.UI.WebControls.Label lblfrmName;
 
 		/// <summary>
-		/// sidebarContent control.
+		/// TreeView1 control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.HtmlControls.HtmlGenericControl sidebarContent;
+		protected global::System.Web.UI.WebControls.TreeView TreeView1;
 
 		/// <summary>
 		/// Master property.

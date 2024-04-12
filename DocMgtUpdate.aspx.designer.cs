@@ -393,24 +393,6 @@ namespace BPWEBAccessControl
 		protected global::System.Web.UI.WebControls.TextBox txtHeader;
 
 		/// <summary>
-		/// lblFooter control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblFooter;
-
-		/// <summary>
-		/// txtFooter control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox txtFooter;
-
-		/// <summary>
 		/// lblSec1 control.
 		/// </summary>
 		/// <remarks>
@@ -427,24 +409,6 @@ namespace BPWEBAccessControl
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.TextBox txtSec1;
-
-		/// <summary>
-		/// lblSec2 control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblSec2;
-
-		/// <summary>
-		/// txtSec2 control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox txtSec2;
 
 		/// <summary>
 		/// lblCon1 control.
@@ -465,6 +429,24 @@ namespace BPWEBAccessControl
 		protected global::System.Web.UI.WebControls.TextBox txtCon1;
 
 		/// <summary>
+		/// lblSec2 control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblSec2;
+
+		/// <summary>
+		/// txtSec2 control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtSec2;
+
+		/// <summary>
 		/// lblCon2 control.
 		/// </summary>
 		/// <remarks>
@@ -481,6 +463,24 @@ namespace BPWEBAccessControl
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.TextBox txtCon2;
+
+		/// <summary>
+		/// lblFooter control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblFooter;
+
+		/// <summary>
+		/// txtFooter control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtFooter;
 
 		/// <summary>
 		/// lblFileP1 control.

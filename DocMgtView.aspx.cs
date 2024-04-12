@@ -110,17 +110,19 @@ namespace BPWEBAccessControl
                 objCon = new ConnectionManager.DAL.ConManager("1");
                 DataSet dsLocal;
                 objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1");
-
                 if (dsLocal != null && dsLocal.Tables.Count > 0)
                 {
-                    DataTable dtLocal = dsLocal.Tables[0];
-
-                    foreach (DataRow row in dtLocal.Rows)
+                dsLocal.Relations.Add("ChildRows", dsLocal.Tables[0].Columns["EntryID"], dsLocal.Tables[0].Columns["PrenID"]);
+                    foreach (DataRow lbl1Datarow in dsLocal.Tables[0].Rows)
                     {
-                        string headerText = row["Header1"].ToString();
-                        string section1 = row["Section1"].ToString();
-                        string section2 = row["Section2"].ToString();
-                        RenderSidebarItem(headerText,section1,section2);
+                        //TreeNode parentTreeNode = new TreeNode();
+                        //parentTreeNode.Text = lbl1Datarow["Header1"].ToString(); // Assuming 'HeaderText' is the column name for node text
+                        //parentTreeNode.NavigateUrl = lbl1Datarow["FilePath1"].ToString(); // Assuming 'ID' is the primary key column name
+                        //                                                                 // You can add additional properties to the node if needed
+                        //DataRow[] childRows = lbl1Datarow.GetChildRows("ChildRows");
+                        //foreach(DataRow lbl2DataRow in ch)
+                        //// Add the node to the TreeView
+                        //TreeView1.Nodes.Add(node);
                     }
                 }
             }
@@ -137,16 +139,6 @@ namespace BPWEBAccessControl
             }
         }
 
-        private void RenderSidebarItem(string headerText, string section1,string section2)
-        {
-            string sidebarItemHtml = $@"
-            <li style='background-color: #feeec3 !important; color: #8D6F08 !important;font-weight: bold;' class='experience-section''>{headerText}</li>
-             <li style = 'background-color: var(--leftbar-explore-section-color) !important;' ><a class='share-experience-modal' href='#' style='cursor:pointer;display: block;border-bottom: 1px solid var(--gfg-body-color-alternate);'>{section1}</a></li>
-            <li style = 'background-color: var(--leftbar-explore-section-color) !important;' ><a class='share-experience-modal' href='#' style='cursor:pointer;display: block;border-bottom: 1px solid var(--gfg-body-color-alternate);'>{section2}</a></li>
-        ";
-
-            sidebarContent.Controls.Add(new LiteralControl(sidebarItemHtml));
-        }//eof
 
     }
 

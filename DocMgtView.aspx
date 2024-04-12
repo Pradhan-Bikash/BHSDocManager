@@ -18,27 +18,24 @@
                            <div class="sideBar sticky ">
                                <div class="sideBar--wrap newLeftbar  ">
                                    <ul class="leftBarList" style="list-style-type:none">
-                                       <div id="sidebarContent" runat="server" class="first"></div>
+                                      <asp:TreeView ID="TreeView1" runat="server" ShowLines="True">
+                                       <Nodes>
+                                         <asp:TreeNode Text="Header">
+                                             
+                                         </asp:TreeNode>
+                                        </Nodes>
+                                     </asp:TreeView>
                                    </ul>
                                </div>
                            </div>
                        </div>
                    </div>
                    <div class="col-6 col-md-8" id="sectionDetailsContainer">
-                       <!-- Placeholder for section details -->
+                      aabakfjadjfka
                    </div>
                </div>
            </div>
-            <script type="text/javascript">
-                function toggleSection(contentId) {
-                    var section = document.getElementById(contentId);
-                    if (section.style.display === "none") {
-                        section.style.display = "block";
-                    } else {
-                        section.style.display = "none";
-                    }
-                }
-            </script>
+            
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

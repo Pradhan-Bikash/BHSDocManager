@@ -606,11 +606,11 @@ namespace BPWEBAccessControl
                       
                        throw (ex);
                     } 
-                    if (this.txtBuild.Text.Trim() == "" || this.txtBuild.Text.Trim().Length > 50)
-                    {
-                        System.Exception ex = new Exception("Define the Document Build No...(Max length allowed 50)");
-                        throw (ex);
-                    }
+                    //if (this.txtBuild.Text.Trim() == "" || this.txtBuild.Text.Trim().Length > 50)
+                    //{
+                    //    System.Exception ex = new Exception("Define the Document Build No...(Max length allowed 50)");
+                    //    throw (ex);
+                    //}
                     if (this.txtHeader.Text.Trim() == "")
                     {
                         System.Exception ex = new Exception("Define the Document Header...(Max length allowed 50)");
@@ -646,34 +646,8 @@ namespace BPWEBAccessControl
                             System.Exception ex = new Exception("Define the Document Build No...(Max length allowed 50)");
                             throw (ex);
                         }
-                    
-                    if (txtFileP1.PostedFile==null) 
-					{
-                        System.Exception ex = new Exception("Uplaod File Error ...");
-                        throw (ex);
-                    }
-                   
-                    //if (this.txtDOJ.Text == "" || bplib.clsWebLib.IsDateOK(this.txtDOJ.Text.Trim()) == false)
-                    //{
-                    //    System.Exception ex = new Exception("Define the Date of Join........... (allowed format is  dd-MMM-yyyy ex: '01-jan-20023')");
-                    //    throw (ex);
-                    //}
-                    //if (this.ddlCusType.Text.Trim() == "" || this.ddlCusType.Text.Trim().Length > 100)
-                    //{
-                    //    System.Exception ex = new Exception("Define the Customer Type...");
-                    //    throw (ex);
-                    //}
-                    //if (int.TryParse(this.txtPhone.Text.Trim(), out int phoneNumber))
-                    //{
-                    //    if (this.txtPhone.Text.Trim().Length != 10)
-                    //    {
-                    //        System.Exception ex = new Exception("Please enter a valid 10-digit phone number.");
-                    //        throw ex;
-                    //    }
-                    //}
-                    
 
-                    DATA_OK = true;
+					DATA_OK = true;
                 }
 
                 if (DATA_OK == true)
@@ -730,20 +704,35 @@ namespace BPWEBAccessControl
         {
             try
             {
-                //File path 1
-                string fileName1 = System.IO.Path.GetFileName(this.txtFileP1.PostedFile.FileName);
-                string filePath1 = Server.MapPath("~/Documents/") + fileName1;
-                txtFileP1.SaveAs(filePath1);
-                //File Path 2
-                string fileName2 = System.IO.Path.GetFileName(this.txtFileP2.PostedFile.FileName);
-                string filePath2 = Server.MapPath("~/Documents/") + fileName2;
-                txtFileP2.SaveAs(filePath2);
-                //File Path 3
-                string fileName3 = System.IO.Path.GetFileName(this.txtFileP3.PostedFile.FileName);
-                string filePath3 = Server.MapPath("~/Documents/") + fileName3;
-                txtFileP1.SaveAs(filePath3);
+                string filePath1="";
+                string filePath2="";
+                string filePath3="";
+                //var secHtml =this.txtSec1.ToString();
+                //var encodeHtmlSec1 = Server.HtmlEncode(secHtml);
+                if (txtFileP1.HasFile)
+                { 
+                    //File path 1
+                    string fileName1 = System.IO.Path.GetFileName(this.txtFileP1.PostedFile.FileName);
+                     filePath1 = Server.MapPath("~/Documents/") + fileName1;
+                    txtFileP1.SaveAs(filePath1);
+                }
+                if (txtFileP2.HasFile)
+                {
+					//File Path 2
 
-                if (OPN_FLAG == "ADDNEW")
+					string fileName2 = System.IO.Path.GetFileName(this.txtFileP2.PostedFile.FileName);
+					 filePath2 = Server.MapPath("~/Documents/") + fileName2;
+					txtFileP2.SaveAs(filePath2);
+				}
+                if (txtFileP3.HasFile)
+                {
+                    //File Path 3
+                    string fileName3 = System.IO.Path.GetFileName(this.txtFileP3.PostedFile.FileName);
+                     filePath3 = Server.MapPath("~/Documents/") + fileName3;
+                    txtFileP3.SaveAs(filePath3);
+                }
+
+					if (OPN_FLAG == "ADDNEW")
                 {
                     drLocal["EntryID"] = bplib.clsWebLib.RetValidLen(this.txtEntryId.Text.ToString().Trim().ToUpper(), 20);  
                 }
@@ -751,7 +740,7 @@ namespace BPWEBAccessControl
                 drLocal["DocumentName"] = bplib.clsWebLib.RetValidLen(this.txtDocName.Text.Trim());
                 drLocal["DocumentDescription"] = bplib.clsWebLib.RetValidLen(this.txtDocName.Text.Trim());
                 drLocal["VersionNo"] = bplib.clsWebLib.RetValidLen(this.txtVersion.Text.Trim());
-                drLocal["BuildNo"] = bplib.clsWebLib.RetValidLen(this.txtBuild.Text.Trim());
+                drLocal["BuildNo"] = bplib.clsWebLib.RetValidLen(this.txtBuild.Text.Trim(),50);
                 drLocal["Header1"] = bplib.clsWebLib.RetValidLen(this.txtHeader.Text.Trim());
                 drLocal["Section1"] = bplib.clsWebLib.RetValidLen(this.txtSec1.Text.Trim());
                 drLocal["Section2"] = bplib.clsWebLib.RetValidLen(this.txtSec2.Text.Trim());
@@ -759,9 +748,9 @@ namespace BPWEBAccessControl
                 drLocal["Content2"] = bplib.clsWebLib.RetValidLen(this.txtCon2.Text.Trim());
                 drLocal["Footer"] = bplib.clsWebLib.RetValidLen(this.txtFooter.Text.Trim());
                 drLocal["FilePath1"] = filePath1;
-                drLocal["FilePath2"] = filePath2;
-                drLocal["FilePath3"] = filePath3;
-            }
+				drLocal["FilePath2"] = filePath2;
+				drLocal["FilePath3"] = filePath3;
+			}
             catch (System.Exception ex)
             {
                 throw (ex);

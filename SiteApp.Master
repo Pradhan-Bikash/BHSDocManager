@@ -121,25 +121,12 @@
                             <asp:LinkButton ID="linBusinessRegistration" runat="server" CssClass="sub-btn" CommandName="Business Registration" CommandArgument="Business Registration" Text="Business Registration" OnClick="LinkButton_Click"></asp:LinkButton>
                         </div>
                     </div>
-                   <%-- <div class="item">
-                        <a class="sub-btn"><i class="fas fa-table"></i>Demo<i class="fas fa-angle-right dropdown"></i></a>
-                        <div class="sub-menu">
-                            <asp:LinkButton ID="LinkEmp" runat="server" CssClass="sub-btn" CommandName="Employee" CommandArgument="Employee" Text="Employee" OnClick="LinkButton_Click"></asp:LinkButton>  
-                            <asp:LinkButton ID="LinkEmpReport" runat="server" CssClass="sub-btn" CommandName="EMPREPORT" CommandArgument="EMPREPORT" Text="Report" OnClick="LinkButton_Click"></asp:LinkButton>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <a class="sub-btn"><i class="fas fa-table"></i>DEVDEMO<i class="fas fa-angle-right dropdown"></i></a>
-                        <div class="sub-menu">
-                            <asp:LinkButton ID="LinkCustomer" runat="server" CssClass="sub-btn" CommandName="Customer" CommandArgument="Customer" Text="Customer" OnClick="LinkButton_Click"></asp:LinkButton>  
-                            <asp:LinkButton ID="LinkCusReport" runat="server" CssClass="sub-btn" CommandName="CUSREPORT" CommandArgument="CUSREPORT" Text="Report" OnClick="LinkButton_Click"></asp:LinkButton>
-                        </div>
-                    </div>--%>
+                  
                      <div class="item">
                         <a class="sub-btn"><i class="fas fa-table"></i>DOCUMENT MANAGER<i class="fas fa-angle-right dropdown"></i></a>
                         <div class="sub-menu">
-                            <asp:LinkButton ID="LinkDOCUpdate" runat="server" CssClass="sub-btn" CommandName="DOCUPDATE" CommandArgument="DOCUPDATE" Text="Update" OnClick="LinkButton_Click"></asp:LinkButton>  
-                            <asp:LinkButton ID="LinkDocView" runat="server" CssClass="sub-btn" CommandName="DOCVIEW" CommandArgument="DOCVIEW" Text="View" OnClick="LinkButton_Click"></asp:LinkButton>
+                            <asp:LinkButton ID="LinkDOCUpdate" runat="server" CssClass="sub-btn" CommandName="DOCUPDATE" CommandArgument="DOCUPDATE" Text="Manage Document" OnClick="LinkButton_Click"></asp:LinkButton>  
+                            <asp:LinkButton ID="LinkDocView" runat="server" CssClass="sub-btn" CommandName="DOCVIEW" CommandArgument="DOCVIEW" Text="View Document" OnClick="LinkButton_Click"></asp:LinkButton>
                         </div>
                     </div>
                     <div class="item">

@@ -190,7 +190,6 @@
     <Content Include="Content\w3.css" />
     <Content Include="DocMgtUpdate.aspx" />
     <Content Include="DocMgtView.aspx" />
-    <Content Include="WebCusReport.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -225,10 +224,7 @@
     <Content Include="Scripts\jquery.passwordRequirements.js" />
     <Content Include="webFrmBankInfo.aspx" />
     <Content Include="webFrmBizRegInfo.aspx" />
-    <Content Include="WebFrmCustomer.aspx" />
-    <Content Include="WebFrmEmployee.aspx" />
     <Content Include="webFrmEmployeeInfo.aspx" />
-    <Content Include="webfrmEmpReport.aspx" />
     <Content Include="webFrmFundingInfo.aspx" />
     <Content Include="webFrmLeaseAgreement.aspx" />
     <Content Include="WebFrmLogIn.aspx" />
@@ -298,7 +294,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="clsApplication.cs" />
     <Compile Include="clsAppSeq.cs" />
-    <Compile Include="clsCustomerRepo.cs" />
     <Compile Include="clsFileIO.cs" />
     <Compile Include="clsFixedVariable.cs" />
     <Compile Include="clsGenID.cs" />
@@ -318,7 +313,6 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="cusGenID.cs" />
     <Compile Include="clsDocApplication.cs" />
     <Compile Include="DocMgtUpdate.aspx.cs">
       <DependentUpon>DocMgtUpdate.aspx</DependentUpon>
@@ -335,13 +329,6 @@
       <DependentUpon>DocMgtView.aspx</DependentUpon>
     </Compile>
     <Compile Include="GenDocID.cs" />
-    <Compile Include="WebCusReport.aspx.cs">
-      <DependentUpon>WebCusReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebCusReport.aspx.designer.cs">
-      <DependentUpon>WebCusReport.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -395,33 +382,12 @@
     <Compile Include="webFrmBizRegInfo.aspx.designer.cs">
       <DependentUpon>webFrmBizRegInfo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebFrmCustomer.aspx.cs">
-      <DependentUpon>WebFrmCustomer.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebFrmCustomer.aspx.designer.cs">
-      <DependentUpon>WebFrmCustomer.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebFrmEmployee.aspx.cs">
-      <DependentUpon>WebFrmEmployee.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebFrmEmployee.aspx.designer.cs">
-      <DependentUpon>WebFrmEmployee.aspx</DependentUpon>
-    </Compile>
     <Compile Include="webFrmEmployeeInfo.aspx.cs">
       <DependentUpon>webFrmEmployeeInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="webFrmEmployeeInfo.aspx.designer.cs">
       <DependentUpon>webFrmEmployeeInfo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="webfrmEmpReport.aspx.cs">
-      <DependentUpon>webfrmEmpReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="webfrmEmpReport.aspx.designer.cs">
-      <DependentUpon>webfrmEmpReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="webFrmFundingInfo.aspx.cs">
       <DependentUpon>webFrmFundingInfo.aspx</DependentUpon>
