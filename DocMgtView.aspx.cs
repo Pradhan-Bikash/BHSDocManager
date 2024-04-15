@@ -151,19 +151,67 @@ namespace BPWEBAccessControl
             }
         }
 
-        private void PopulateSubNodes(TreeNode parentNode, DataTable table)
+        protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
         {
-            DataView view = new DataView(table);
-            view.RowFilter = $"PrenID = {parentNode.Value}"; // Filter to find child nodes
-
-            foreach (DataRowView row in view)
+            TreeNode selectedNode = TreeView1.SelectedNode;
+            if (selectedNode != null)
             {
-                TreeNode childNode = new TreeNode(row["Header"].ToString(), row["EntryID"].ToString());
-                childNode.NavigateUrl = row["FilePath1"].ToString();
-                parentNode.ChildNodes.Add(childNode); // Add child node to the parent node
-                PopulateSubNodes(childNode, table); // Recursive call to add further child nodes
+                // Get the details of the selected document and display in labels
+                string docName = selectedNode.Text;
+                DataTable dtDocument = GetDocumentDetails(docName); // Implement this method to get details from DB
+                if (dtDocument != null && dtDocument.Rows.Count > 0)
+                {
+                    DataRow docRow = dtDocument.Rows[0]; // Assuming only one row for simplicity
+
+                    lblDocDESC.Text = docRow["DocumentDescription"].ToString();
+                    lblVNo.Text = docRow["VersionNo"].ToString();
+                    lblBNo.Text = docRow["BuildNo"].ToString();
+                    lblHeader.Text = docRow["Header"].ToString();
+                    lblSec1.Text = docRow["Section1"].ToString();
+                    lblCon1.Text = docRow["Content1"].ToString();
+                    lblSec2.Text = docRow["Section2"].ToString();
+                    lblCon2.Text = docRow["Content2"].ToString();
+                    lblFooter.Text = docRow["Footer"].ToString();
+                }
             }
         }
 
+        private DataTable GetDocumentDetails(string docName)
+        {
+            DataTable dtDocument = new DataTable();
+
+            string strSQl = "SELECT * FROM tblDOCMgt";
+            ConnectionManager.DAL.ConManager objCon = null;
+
+            try
+            {
+                objCon = new ConnectionManager.DAL.ConManager("1"); // Assuming "1" is a connection string identifier
+                DataSet dsLocal;
+                objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1"); // Open dataset
+
+                if (dsLocal != null && dsLocal.Tables.Count > 0)
+                {
+                    dtDocument = dsLocal.Tables[0];
+                    
+                    if (!string.IsNullOrEmpty(docName))
+                    {
+                        dtDocument.DefaultView.RowFilter = "DocumentName = '" + docName.Replace("'", "''") + "'";
+                        dtDocument = dtDocument.DefaultView.ToTable();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                
+                objCon = null;
+            }
+
+            return dtDocument;
+        }
     }
+
 }
