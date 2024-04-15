@@ -132,6 +132,33 @@ namespace BPWEBAccessControl
 		protected global::System.Web.UI.WebControls.Label lblFooter;
 
 		/// <summary>
+		/// btnDownload1 control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button btnDownload1;
+
+		/// <summary>
+		/// btnDownload2 control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button btnDownload2;
+
+		/// <summary>
+		/// btnDownload3 control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button btnDownload3;
+
+		/// <summary>
 		/// Master property.
 		/// </summary>
 		/// <remarks>

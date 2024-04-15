@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace BPWEBAccessControl
 {
+   
     public partial class DocMgtView : System.Web.UI.Page
     {
         #region Form Event
@@ -102,20 +103,20 @@ namespace BPWEBAccessControl
         #endregion
         private void LoadDynamicData()
         {
-            string strSQl = "SELECT * FROM tblDOCMgt"; // Selecting both header text and content
+            string strSQl = "SELECT * FROM tblDOCMgt"; 
             ConnectionManager.DAL.ConManager objCon = null;
 
             try
             {
-                objCon = new ConnectionManager.DAL.ConManager("1"); // Assuming "1" is a connection string identifier
+                objCon = new ConnectionManager.DAL.ConManager("1"); 
                 DataSet dsLocal;
-                objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1"); // Open dataset
+                objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1"); 
 
                 if (dsLocal != null && dsLocal.Tables.Count > 0)
                 {
                     DataTable table = dsLocal.Tables[0];
                     DataView view = new DataView(table);
-                    // HashSet<string> uniqueGroups = new HashSet<string>(); // HashSet to store unique group names
+                    // HashSet<string> uniqueGroups = new HashSet<string>(); 
                     Dictionary<string, TreeNode> groupNodes = new Dictionary<string, TreeNode>();
                     foreach (DataRowView row in view)
                     {
@@ -138,14 +139,13 @@ namespace BPWEBAccessControl
             }
             catch (Exception ex)
             {
-                // Log and/or rethrow or handle the exception as needed
                 throw ex;
             }
             finally
             {
                 if (objCon != null)
                 {
-                    // Make sure to close the connection
+                   
                     objCon = null;
                 }
             }
@@ -156,12 +156,12 @@ namespace BPWEBAccessControl
             TreeNode selectedNode = TreeView1.SelectedNode;
             if (selectedNode != null)
             {
-                // Get the details of the selected document and display in labels
+               
                 string docName = selectedNode.Text;
-                DataTable dtDocument = GetDocumentDetails(docName); // Implement this method to get details from DB
+                DataTable dtDocument = GetDocumentDetails(docName);
                 if (dtDocument != null && dtDocument.Rows.Count > 0)
                 {
-                    DataRow docRow = dtDocument.Rows[0]; // Assuming only one row for simplicity
+                    DataRow docRow = dtDocument.Rows[0]; 
 
                     lblDocDESC.Text = docRow["DocumentDescription"].ToString();
                     lblVNo.Text = docRow["VersionNo"].ToString();
@@ -172,7 +172,11 @@ namespace BPWEBAccessControl
                     lblSec2.Text = docRow["Section2"].ToString();
                     lblCon2.Text = docRow["Content2"].ToString();
                     lblFooter.Text = docRow["Footer"].ToString();
-                }
+					//btnDownload1.Text = docRow["FilePath1"].ToString();
+					//btnDownload2.Text = docRow["FilePath2"].ToString();
+					//btnDownload3.Text = docRow["FilePath3"].ToString();
+
+				}
             }
         }
 
@@ -211,6 +215,73 @@ namespace BPWEBAccessControl
             }
 
             return dtDocument;
+        }
+        //Get File Name and Download
+        private void GetFileName(string btnName)
+		{
+            string filePath = "";
+            TreeNode selectedNode = TreeView1.SelectedNode;
+            if (selectedNode != null)
+            {
+
+                string docName = selectedNode.Text;
+                DataTable dtDocument = GetDocumentDetails(docName);
+                if (dtDocument != null && dtDocument.Rows.Count > 0)
+                {
+                    DataRow docRow = dtDocument.Rows[0];
+                    if (btnName == "btnDownload1")
+                    {
+                        btnDownload1.Text = docRow["FilePath1"].ToString();
+                        filePath = btnDownload1.Text;
+                        btnDownload1.Text = "Download File 1";
+                    }
+                    else if (btnName == "btnDownload2")
+                    {
+                        btnDownload2.Text = docRow["FilePath2"].ToString();
+                        filePath = btnDownload2.Text;
+                        btnDownload2.Text = "Download File 2";
+                    }
+                   else if (btnName == "btnDownload3")
+                    {
+                        btnDownload3.Text = docRow["FilePath3"].ToString();
+                        filePath = btnDownload3.Text;
+                        btnDownload3.Text = "Download File 3";
+                    }
+                }
+            }
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                Response.ContentType = "application/octet-stream";
+                Response.AppendHeader("Content-Disposition", "attachment; filename=" + System.IO.Path.GetFileName(filePath));
+                Response.TransmitFile(filePath); // Use physical path directly
+                Response.End();
+            }
+            else
+            {
+                string script = "alert('File not found!');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "FileNotFoundScript", script, true);
+            }
+        }
+        protected void btnDownload1_Click(object sender, EventArgs e)
+        {
+            GetFileName("btnDownload1");
+
+        }
+
+        protected void btnDownload2_Click(object sender, EventArgs e)
+        {
+            GetFileName("btnDownload2");
+        }
+
+        protected void btnDownload3_Click(object sender, EventArgs e)
+        {
+            GetFileName("btnDownload3");
+        }
+
+        private void DownloadFile(string filePath)
+        {
+            // Assuming file paths are correct and accessible
+            
         }
     }
 

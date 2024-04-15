@@ -20,13 +20,12 @@
         <div class="sideBar sticky">
             <div class="sideBar--wrap newLeftbar">
                 <style>
-                    /* Custom CSS for left sidebar */
+                   
                     .sidebar_wrapper {
-                        height: calc(100vh - 60px); /* Height of the sidebar (adjust as needed) */
-                        overflow-x: auto; /* Enable vertical scrolling */
-                        background-color: #f8f9fa; /* Light background color */
-                        padding: 0px; /* Padding inside the sidebar */
-                    }
+                        height: calc(100vh - 60px); 
+                        overflow-x: auto; 
+                        background-color: #f8f9fa; 
+                       
                 </style>
                 <asp:TreeView ID="TreeView1" runat="server" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged">
                     <Nodes>
@@ -82,6 +81,14 @@
             <div>
                 <asp:Label ID="lblFooter" runat="server" CssClass="doc-details"></asp:Label>
             </div>
+            <div>
+                               <!-- Download Buttons -->
+                               <div class="text-center mt-4">
+                                   <asp:Button ID="btnDownload1" runat="server" Text="Download File 1" OnClick="btnDownload1_Click" CssClass="btn btn-primary" />
+                                   <asp:Button ID="btnDownload2" runat="server" Text="Download File 2" OnClick="btnDownload2_Click" CssClass="btn btn-primary ml-2" />
+                                   <asp:Button ID="btnDownload3" runat="server" Text="Download File 3" OnClick="btnDownload3_Click" CssClass="btn btn-primary ml-2" />
+                               </div>
+                           </div>
             <style>
                .doc-lblDocDESC {
             font-weight: bold;
@@ -105,5 +112,11 @@
            </div>
             
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnDownload1" />
+            <asp:PostBackTrigger ControlID="btnDownload2" />
+            <asp:PostBackTrigger ControlID="btnDownload3" />
+
+        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>
