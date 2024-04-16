@@ -581,7 +581,7 @@ namespace BPWEBAccessControl
             bool DATA_OK = false;
             try
             {
-                //bplib.clsAppSeq.CheckUserAccess((string)Session["USER"], modulename.ToUpper());
+               
                 objApp = new PWOMS.clsDocApplication();
                 if (DATA_OK == false)
                 {
@@ -606,34 +606,35 @@ namespace BPWEBAccessControl
                       
                        throw (ex);
                     } 
-                    //if (this.txtBuild.Text.Trim() == "" || this.txtBuild.Text.Trim().Length > 50)
-                    //{
-                    //    System.Exception ex = new Exception("Define the Document Build No...(Max length allowed 50)");
-                    //    throw (ex);
-                    //}
+                     if (this.txtBuild.Text.Trim() == "" || this.txtBuild.Text.Trim().Length > 50)
+                     {
+                            System.Exception ex = new Exception("Define the Document Build No...(Max length allowed 50)");
+                            throw (ex);
+                     }
+                   
                     if (this.txtHeader.Text.Trim() == "")
                     {
-                        System.Exception ex = new Exception("Define the Document Header...(Max length allowed 50)");
-                        throw (ex);
-                    }
-                    if (this.txtSec2.Text.Trim() == "")
-                    {
-                        System.Exception ex = new Exception("Define the Document Section1...(Max length allowed 50)");
+                        System.Exception ex = new Exception("Define the Document Header...");
                         throw (ex);
                     }
                     if (this.txtSec1.Text.Trim() == "" )
                     {
-                        System.Exception ex = new Exception("Define the Document Section2...(Max length allowed 50)");
-                        throw (ex);
-                    }
-                    if (this.txtCon2.Text.Trim() == "" )
-                    {
-                        System.Exception ex = new Exception("Define the Document Content1...(Max length allowed 50)");
+                        System.Exception ex = new Exception("Define the Document Section2...");
                         throw (ex);
                     }
                     if (this.txtCon1.Text.Trim() == "" )
                     {
-                        System.Exception ex = new Exception("Define the Document Content2...(Max length allowed 50)");
+                        System.Exception ex = new Exception("Define the Document Content2");
+                        throw (ex);
+                    }
+                    if (this.txtSec2.Text.Trim() == "")
+                    {
+                        System.Exception ex = new Exception("Define the Document Section1...");
+                        throw (ex);
+                    }
+                    if (this.txtCon2.Text.Trim() == "" )
+                    {
+                        System.Exception ex = new Exception("Define the Document Content1...");
                         throw (ex);
                     }
                     if (this.txtFooter.Text.Trim() == "")
@@ -641,11 +642,6 @@ namespace BPWEBAccessControl
                         System.Exception ex = new Exception("Define the Document Footer...(Max length allowed 50)");
                         throw (ex);
                     }
-                        if (this.txtBuild.Text.Trim() == "" || this.txtBuild.Text.Trim().Length > 50)
-                        {
-                            System.Exception ex = new Exception("Define the Document Build No...(Max length allowed 50)");
-                            throw (ex);
-                        }
 
 					DATA_OK = true;
                 }
@@ -708,7 +704,9 @@ namespace BPWEBAccessControl
                 string filePath2="";
                 string filePath3="";
                 string section1HTML = Server.HtmlEncode(this.txtSec1.Text.Trim());
-                string section2HTML = this.txtSec2.Text.Trim();
+                string section2HTML = Server.HtmlEncode(this.txtSec2.Text.Trim());
+                string Contetn1HTML = Server.HtmlEncode(this.txtCon1.Text.Trim());
+                string Content2HTML = Server.HtmlEncode(this.txtCon2.Text.Trim());
                 //var secHtml =this.txtSec1.ToString();
                 //var encodeHtmlSec1 = Server.HtmlEncode(secHtml);
                 if (txtFileP1.HasFile)
@@ -752,9 +750,9 @@ namespace BPWEBAccessControl
                 drLocal["BuildNo"] = bplib.clsWebLib.RetValidLen(this.txtBuild.Text.Trim(),50);
                 drLocal["Header"] = bplib.clsWebLib.RetValidLen(this.txtHeader.Text.Trim());
                 drLocal["Section1"] = section1HTML;//bplib.clsWebLib.RetValidLen(this.txtSec1.Text.Trim());
-                drLocal["Content1"] = bplib.clsWebLib.RetValidLen(this.txtCon1.Text.Trim());
-                drLocal["Section2"] = bplib.clsWebLib.RetValidLen(this.txtSec2.Text.Trim());
-                drLocal["Content2"] = bplib.clsWebLib.RetValidLen(this.txtCon2.Text.Trim());
+                drLocal["Content1"] = Contetn1HTML;
+                drLocal["Section2"] = section2HTML;
+                drLocal["Content2"] = Content2HTML;
                 drLocal["Footer"] = bplib.clsWebLib.RetValidLen(this.txtFooter.Text.Trim());
                 drLocal["FilePath1"] = filePath1;
 				drLocal["FilePath2"] = filePath2;
@@ -810,6 +808,9 @@ namespace BPWEBAccessControl
                 if (dsLocal.Tables[0].Rows.Count > 0)
                 {
                     string decodedSection1HTML = Server.HtmlDecode("" + dsLocal.Tables[0].Rows[0]["Section1"].ToString());
+                    string decodedSection2HTML = Server.HtmlDecode("" + dsLocal.Tables[0].Rows[0]["Section2"].ToString());
+                    string decodedContent1HTML = Server.HtmlDecode("" + dsLocal.Tables[0].Rows[0]["Content1"].ToString());
+                    string decodedContent2HTML = Server.HtmlDecode("" + dsLocal.Tables[0].Rows[0]["Content2"].ToString());
                     this.txtEntryId.Text = "" + dsLocal.Tables[0].Rows[0]["EntryID"].ToString();
                     this.txtEntryDT.Text = "" + bplib.clsWebLib.makeBaseBlank(bplib.clsWebLib.DateData_DBToApp(dsLocal.Tables[0].Rows[0]["EntryDateTime"].ToString().Trim(), bplib.clsWebLib.STD_DATE_FORMAT).ToString("dd-MMM-yyyy"));
                     this.ddlDocGroup.SelectedValue = "" + dsLocal.Tables[0].Rows[0]["Documents_Group"].ToString();
@@ -819,9 +820,9 @@ namespace BPWEBAccessControl
                     this.txtBuild.Text = "" + dsLocal.Tables[0].Rows[0]["BuildNo"].ToString();
                     this.txtHeader.Text = "" + dsLocal.Tables[0].Rows[0]["Header"].ToString();
                     this.txtSec1.Text = decodedSection1HTML;
-                    this.txtSec2.Text = "" + dsLocal.Tables[0].Rows[0]["Section2"].ToString();
-                    this.txtCon1.Text = "" + dsLocal.Tables[0].Rows[0]["Content1"].ToString();
-                    this.txtCon2.Text = "" + dsLocal.Tables[0].Rows[0]["Content2"].ToString();
+                    this.txtSec2.Text = decodedSection2HTML;
+                    this.txtCon1.Text = decodedContent1HTML;
+                    this.txtCon2.Text = decodedContent2HTML;
                     this.txtFooter.Text = "" + dsLocal.Tables[0].Rows[0]["Footer"].ToString();
                     if (!string.IsNullOrEmpty(dsLocal.Tables[0].Rows[0]["FilePath1"].ToString()))
                     {

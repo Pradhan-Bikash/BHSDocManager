@@ -228,4 +228,14 @@
         <asp:PostBackTrigger ControlID="btnSave" />
         </Triggers>
         </asp:UpdatePanel>
+  <%--  <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
+        <ProgressTemplate>
+            <div style="position: fixed; z-index: 999; min-height: 100%; width: 100%; top: -1px; left: -1px; background-color: whitesmoke; filter: alpha(opacity=60); opacity: 0.6; -moz-opacity: 0.8;">
+                <div style="position: absolute; z-index: 1200; top: 50%; left: 50%; width: 15%; background-color: whitesmoke; transform: translate(-50%, -50%);">
+                    <p>Please wait.... </p>
+                    <img alt="" src="Picture/loader.gif" />
+                </div>
+            </div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>--%>
     </asp:Content>

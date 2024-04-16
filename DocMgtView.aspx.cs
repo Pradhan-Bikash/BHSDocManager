@@ -100,8 +100,9 @@ namespace BPWEBAccessControl
             }
         }//eof       
 
-        #endregion
-        private void LoadDynamicData()
+		#endregion
+		#region Load TreeView Data
+		private void LoadDynamicData()
         {
             string strSQl = "SELECT * FROM tblDOCMgt"; 
             ConnectionManager.DAL.ConManager objCon = null;
@@ -135,6 +136,7 @@ namespace BPWEBAccessControl
                         groupNodes[groupName].ChildNodes.Add(headerNode);
                     }
                     TreeView1.ExpandAll();
+                    
                 }
             }
             catch (Exception ex)
@@ -150,8 +152,9 @@ namespace BPWEBAccessControl
                 }
             }
         }
-
-        protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
+		#endregion
+		#region Load Document Details
+		protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
         {
             TreeNode selectedNode = TreeView1.SelectedNode;
             if (selectedNode != null)
@@ -161,24 +164,25 @@ namespace BPWEBAccessControl
                 DataTable dtDocument = GetDocumentDetails(docName);
                 if (dtDocument != null && dtDocument.Rows.Count > 0)
                 {
-                    DataRow docRow = dtDocument.Rows[0]; 
-
+                    DataRow docRow = dtDocument.Rows[0];
+                    
+                    
                     lblDocDESC.Text = docRow["DocumentDescription"].ToString();
                     lblVNo.Text = docRow["VersionNo"].ToString();
                     lblBNo.Text = docRow["BuildNo"].ToString();
                     lblHeader.Text = docRow["Header"].ToString();
-                    lblSec1.Text = docRow["Section1"].ToString();
-                    lblCon1.Text = docRow["Content1"].ToString();
-                    lblSec2.Text = docRow["Section2"].ToString();
-                    lblCon2.Text = docRow["Content2"].ToString();
+                    dvSec1.InnerHtml = Server.HtmlDecode("" + docRow["Section1"].ToString()); ;
+                    dvSec2.InnerHtml = Server.HtmlDecode("" + docRow["Section2"].ToString()); ;
+                    dvCon1.InnerHtml = Server.HtmlDecode("" + docRow["Content1"].ToString()); ;
+                    dvCon2.InnerHtml = Server.HtmlDecode("" + docRow["Content2"].ToString()); ;
+                    
+                   
                     lblFooter.Text = docRow["Footer"].ToString();
-					//btnDownload1.Text = docRow["FilePath1"].ToString();
-					//btnDownload2.Text = docRow["FilePath2"].ToString();
-					//btnDownload3.Text = docRow["FilePath3"].ToString();
+					
 
 				}
             }
-        }
+        }//eof
 
         private DataTable GetDocumentDetails(string docName)
         {
@@ -215,9 +219,10 @@ namespace BPWEBAccessControl
             }
 
             return dtDocument;
-        }
-        //Get File Name and Download
-        private void GetFileName(string btnName)
+        }//eof
+		#endregion
+		#region File Download Related
+		private void GetFileName(string btnName)
 		{
             string filePath = "";
             TreeNode selectedNode = TreeView1.SelectedNode;
@@ -261,28 +266,23 @@ namespace BPWEBAccessControl
                 string script = "alert('File not found!');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "FileNotFoundScript", script, true);
             }
-        }
+        }//eof
         protected void btnDownload1_Click(object sender, EventArgs e)
         {
             GetFileName("btnDownload1");
-
-        }
+        }//eof
 
         protected void btnDownload2_Click(object sender, EventArgs e)
         {
             GetFileName("btnDownload2");
-        }
+        }//eof
 
         protected void btnDownload3_Click(object sender, EventArgs e)
         {
             GetFileName("btnDownload3");
-        }
+        }//eof
+		#endregion
 
-        private void DownloadFile(string filePath)
-        {
-            // Assuming file paths are correct and accessible
-            
-        }
-    }
+	}
 
 }

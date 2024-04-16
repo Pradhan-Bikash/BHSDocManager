@@ -878,3 +878,33 @@
         background-color: #63A1F5;
         color: white;
     }
+   
+
+    /*Documets view Custom Css*/
+.sidebar_wrapper {
+    height: calc(100vh - 60px);
+    overflow-x: auto;
+    background-color: #f8f9fa;
+}
+
+.Root-NodeStyle {
+    font-weight: bold;
+}
+
+.doc-lblDocDESC {
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 1.2;
+}
+
+.doc-header {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.Div-Style-Content {
+    border: 2px solid black;
+    background-color: black;
+    color: white;
+}
+                               

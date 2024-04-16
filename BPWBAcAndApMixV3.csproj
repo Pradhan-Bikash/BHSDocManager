@@ -184,6 +184,7 @@
     <Content Include="Content\w3-colors-metro.css" />
     <Content Include="Content\w3-colors-win8.css" />
     <Content Include="Content\w3.css" />
+    <Content Include="Demo.html" />
     <Content Include="DocMgtUpdate.aspx" />
     <Content Include="DocMgtView.aspx" />
     <Content Include="Default.aspx" />

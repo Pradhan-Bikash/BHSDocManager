@@ -87,40 +87,40 @@ namespace BPWEBAccessControl
 		protected global::System.Web.UI.WebControls.Label lblHeader;
 
 		/// <summary>
-		/// lblSec1 control.
+		/// dvSec1 control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblSec1;
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvSec1;
 
 		/// <summary>
-		/// lblCon1 control.
+		/// dvCon1 control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblCon1;
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCon1;
 
 		/// <summary>
-		/// lblSec2 control.
+		/// dvSec2 control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblSec2;
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvSec2;
 
 		/// <summary>
-		/// lblCon2 control.
+		/// dvCon2 control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblCon2;
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCon2;
 
 		/// <summary>
 		/// lblFooter control.
