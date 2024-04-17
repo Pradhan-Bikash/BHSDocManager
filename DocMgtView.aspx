@@ -65,14 +65,16 @@
                             <br />
                                 <br />
                            
-                            <div id="dvCon2" runat="server">
+                            <div id="dvCon2" runat="server" class="Div-Style-Content">
                             </div>
                          <br />
                                 <br />
                            
-                            <div>
+                            <div class="text-center">
                                 <asp:Label ID="lblFooter" runat="server" CssClass="doc-details"></asp:Label>
                             </div>
+                            <br />
+                           
                             <div>
                                 <!-- Download Buttons -->
                                 <div class="text-center mt-4">

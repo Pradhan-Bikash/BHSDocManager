@@ -100,27 +100,27 @@ namespace BPWEBAccessControl
             }
         }//eof       
 
-		#endregion
-		#region Load TreeView Data
-		private void LoadDynamicData()
+        #endregion
+        #region Load TreeView Data
+        private void LoadDynamicData()
         {
-            string strSQl = "SELECT * FROM tblDOCMgt"; 
+            string strSQl = "SELECT * FROM tblDOCMgt";
             ConnectionManager.DAL.ConManager objCon = null;
 
             try
             {
-                objCon = new ConnectionManager.DAL.ConManager("1"); 
+                objCon = new ConnectionManager.DAL.ConManager("1");
                 DataSet dsLocal;
-                objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1"); 
+                objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1");
 
                 if (dsLocal != null && dsLocal.Tables.Count > 0)
                 {
                     DataTable table = dsLocal.Tables[0];
                     DataView view = new DataView(table);
-                    // HashSet<string> uniqueGroups = new HashSet<string>(); 
                     Dictionary<string, TreeNode> groupNodes = new Dictionary<string, TreeNode>();
                     foreach (DataRowView row in view)
                     {
+                        string entryId = row["EntryID"].ToString(); 
                         string groupName = row["Documents_Group"].ToString();
                         string docName = row["DocumentName"].ToString();
 
@@ -132,11 +132,12 @@ namespace BPWEBAccessControl
                         }
 
                         // Add the header as a child node under the corresponding group node
-                        TreeNode headerNode = new TreeNode(docName);
+                        TreeNode headerNode = new TreeNode(docName); // Setting Value to NodeID
+                        headerNode.Value = entryId;
                         groupNodes[groupName].ChildNodes.Add(headerNode);
                     }
                     TreeView1.ExpandAll();
-                    
+
                 }
             }
             catch (Exception ex)
@@ -147,44 +148,38 @@ namespace BPWEBAccessControl
             {
                 if (objCon != null)
                 {
-                   
                     objCon = null;
                 }
             }
         }
-		#endregion
-		#region Load Document Details
-		protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
+        #endregion
+        #region Load Document Details
+        protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
         {
             TreeNode selectedNode = TreeView1.SelectedNode;
             if (selectedNode != null)
             {
-               
-                string docName = selectedNode.Text;
-                DataTable dtDocument = GetDocumentDetails(docName);
+                string nodeId = selectedNode.Value; // This will now contain the NodeID
+                DataTable dtDocument = GetDocumentDetails(nodeId);
                 if (dtDocument != null && dtDocument.Rows.Count > 0)
                 {
                     DataRow docRow = dtDocument.Rows[0];
-                    
-                    
+
                     lblDocDESC.Text = docRow["DocumentDescription"].ToString();
                     lblVNo.Text = docRow["VersionNo"].ToString();
                     lblBNo.Text = docRow["BuildNo"].ToString();
                     lblHeader.Text = docRow["Header"].ToString();
-                    dvSec1.InnerHtml = Server.HtmlDecode("" + docRow["Section1"].ToString()); ;
-                    dvSec2.InnerHtml = Server.HtmlDecode("" + docRow["Section2"].ToString()); ;
-                    dvCon1.InnerHtml = Server.HtmlDecode("" + docRow["Content1"].ToString()); ;
-                    dvCon2.InnerHtml = Server.HtmlDecode("" + docRow["Content2"].ToString()); ;
-                    
-                   
+                    dvSec1.InnerHtml = Server.HtmlDecode("" + docRow["Section1"].ToString());
+                    dvSec2.InnerHtml = Server.HtmlDecode("" + docRow["Section2"].ToString());
+                    dvCon1.InnerHtml = Server.HtmlDecode("" + docRow["Content1"].ToString());
+                    dvCon2.InnerHtml = Server.HtmlDecode("" + docRow["Content2"].ToString());
+
                     lblFooter.Text = docRow["Footer"].ToString();
-					
-
-				}
+                }
             }
-        }//eof
+        }
 
-        private DataTable GetDocumentDetails(string docName)
+        private DataTable GetDocumentDetails(string nodeId)
         {
             DataTable dtDocument = new DataTable();
 
@@ -201,9 +196,9 @@ namespace BPWEBAccessControl
                 {
                     dtDocument = dsLocal.Tables[0];
                     
-                    if (!string.IsNullOrEmpty(docName))
+                    if (!string.IsNullOrEmpty(nodeId))
                     {
-                        dtDocument.DefaultView.RowFilter = "DocumentName = '" + docName.Replace("'", "''") + "'";
+                        dtDocument.DefaultView.RowFilter = "EntryID = '" + nodeId.Replace("'", "''") + "'";
                         dtDocument = dtDocument.DefaultView.ToTable();
                     }
                 }
