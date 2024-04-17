@@ -137,6 +137,7 @@ namespace BPWEBAccessControl
                         groupNodes[groupName].ChildNodes.Add(headerNode);
                     }
                     TreeView1.ExpandAll();
+                    
 
                 }
             }
@@ -253,7 +254,7 @@ namespace BPWEBAccessControl
             {
                 Response.ContentType = "application/octet-stream";
                 Response.AppendHeader("Content-Disposition", "attachment; filename=" + System.IO.Path.GetFileName(filePath));
-                Response.TransmitFile(filePath); // Use physical path directly
+                Response.TransmitFile(filePath); 
                 Response.End();
             }
             else
@@ -261,10 +262,13 @@ namespace BPWEBAccessControl
                 string script = "alert('File not found!');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "FileNotFoundScript", script, true);
             }
+           
         }//eof
         protected void btnDownload1_Click(object sender, EventArgs e)
         {
             GetFileName("btnDownload1");
+            
+           
         }//eof
 
         protected void btnDownload2_Click(object sender, EventArgs e)

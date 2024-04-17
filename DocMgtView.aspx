@@ -11,24 +11,19 @@
                     </div>
                 </div>
 
-
-                <!-- Side Navbar -->
-                <%--<div class="container-fluid">--%>
-                    <div class="row g-0">
                         <!-- Left Sidebar -->
                         <div class="col-sm-6 col-md-3">
                             <div class="sidebar_wrapper">
                                 <div class="sideBar sticky">
                                     <div class="sideBar--wrap newLeftbar">
                                         <asp:TreeView ID="TreeView1" runat="server" RootNodeStyle-CssClass="Root-NodeStyle" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged" >
-                                            <Nodes>
-                                            </Nodes>
+                                            
                                         </asp:TreeView>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+ 
                         <!-- Right Side Content -->
                         <div class="col-6 col-md-9" id="sectionDetailsContainer";>
 
@@ -52,19 +47,13 @@
                             </div>
                             <div id="dvSec1" runat="server">
                              </div>
-                            
                                 <br />
-             
                             <div id="dvCon1" runat="server" class="Div-Style-Content">
                             </div>
-                        
                                 <br />
-                            <br />
                             <div id="dvSec2" runat="server">
                             </div>
                             <br />
-                                <br />
-                           
                             <div id="dvCon2" runat="server" class="Div-Style-Content">
                             </div>
                          <br />
@@ -84,11 +73,7 @@
                                 </div>
                             </div>
                            
-                        </div>
-                 
-                <%--</div>--%>
-            </div>
-                        
+                        </div>  
             </div>
             
         </ContentTemplate>
