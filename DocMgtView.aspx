@@ -10,9 +10,40 @@
                         <asp:Label ID="lblfrmName" runat="server">frmName</asp:Label>
                     </div>
                 </div>
-                <asp:MultiView ID="mvwDataVw" ActiveViewIndex="0" runat="server">
-                    <%--Content Load--%>
-                    <asp:View ID="vw00" runat="server">
+                <asp:MultiView ID="mvwDataVw" ActiveViewIndex="1" runat="server">
+                   
+                    <%--Show Message Dialog--%>
+                     <asp:View ID="vw00" runat="server">
+                        <div class="container-fluid myMsgBoxStyleContainer">
+                            <div class="myMsgBoxStyle">
+                                <div class="myMsgBoxStyle-header">
+                                    <table style="border: none;">
+                                        <tr>
+                                            <td style="width: 30%;">
+                                                <asp:Image ID="dlgImage" runat="server" CssClass="img-responsive" AlternateText="" ImageAlign="AbsMiddle" ImageUrl="Picture/info.png" />
+                                            </td>
+                                            <td style="width: 70%; padding-left: 10px;">
+                                                <asp:Label ID="lblMessageBoard" runat="server" CssClass="ctrlStyle_Label grey-forecolor font-size-xxl">Message</asp:Label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="myMsgBoxStyle-body">
+                                    <br />
+                                    <asp:Label ID="dlgMsg" CssClass="card-text" runat="server" Style="word-wrap: break-word;"></asp:Label>
+                                    <br />
+                                    <br />
+                                    <asp:Button ID="dlgOk" CssClass="btn btn-default" runat="server" Text="OK" OnClick="dlgOk_Click" />
+                                   
+                                    <br />
+                                    <asp:Label ID="lblDlgState" runat="server" Visible="false"></asp:Label>
+                                </div>
+                            </div>
+                        </div>
+                    </asp:View>
+
+                     <%--Content Load--%>
+                    <asp:View ID="vw01" runat="server">
                         <!-- Left Sidebar -->
                         <div class="col-sm-6 col-md-3">
                             <div class="sidebar_wrapper">
@@ -77,36 +108,6 @@
                            
                         </div>
                         </asp:View>
-
-                    <%--Show Message Dialog--%>
-                     <asp:View ID="vw01" runat="server">
-                        <div class="container-fluid myMsgBoxStyleContainer">
-                            <div class="myMsgBoxStyle">
-                                <div class="myMsgBoxStyle-header">
-                                    <table style="border: none;">
-                                        <tr>
-                                            <td style="width: 30%;">
-                                                <asp:Image ID="dlgImage" runat="server" CssClass="img-responsive" AlternateText="" ImageAlign="AbsMiddle" ImageUrl="Picture/info.png" />
-                                            </td>
-                                            <td style="width: 70%; padding-left: 10px;">
-                                                <asp:Label ID="lblMessageBoard" runat="server" CssClass="ctrlStyle_Label grey-forecolor font-size-xxl">Message</asp:Label>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="myMsgBoxStyle-body">
-                                    <br />
-                                    <asp:Label ID="dlgMsg" CssClass="card-text" runat="server" Style="word-wrap: break-word;"></asp:Label>
-                                    <br />
-                                    <br />
-                                    <asp:Button ID="dlgOk" CssClass="btn btn-default" runat="server" Text="OK" OnClick="dlgOk_Click" />
-                                   
-                                    <br />
-                                    <asp:Label ID="lblDlgState" runat="server" Visible="false"></asp:Label>
-                                </div>
-                            </div>
-                        </div>
-                    </asp:View>
 
                     </asp:MultiView>
             </div>

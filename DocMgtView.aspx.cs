@@ -59,6 +59,97 @@ namespace BPWEBAccessControl
         }
         #endregion
 
+        #region Dialog Function
+        private void displayMsgs(string textMsg, string type, string FLAG)
+        {
+            try
+            {
+                this.dlgMsg.Text = textMsg;
+                
+                if (type.Trim().ToUpper() == "OK")
+                {
+                    this.dlgImage.ImageUrl = "Picture/not_found.png";
+                    this.dlgOk.Visible = true;
+                   
+                    this.dlgMsg.ForeColor = System.Drawing.Color.Green;
+                }
+                
+                
+                
+                this.mvwDataVw.SetActiveView(this.vw00);
+
+            }
+            catch (Exception ex)
+            {
+                ShowLog("Error: \n" + ex.Message.ToString());
+            }
+            finally
+            {
+            }
+        }//eof
+        protected void dlgOk_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.lblDlgState.Text = "TRUE";
+                dialogFunction();
+               // Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+                ShowLog("Error: \n" + ex.Message.ToString());
+            }
+            finally
+            {
+            }
+        }//eof
+        private void dialogFunction()
+        {
+            
+            string vwName = "vw01";
+            
+            try
+            {
+				this.lblDlgState.Text = "";
+                this.mvwDataVw.ActiveViewIndex = returnView(vwName);
+            }
+            catch (Exception ex)
+            {
+                ShowLog("Error: \n" + ex.Message.ToString());
+            }
+            finally
+            {
+            }
+        }//eof
+        private int returnView(string vwId)
+        {
+            string vwIds = "";
+            int vwNo = 0;
+            try
+            {
+                foreach (View vw in mvwDataVw.Views)
+                {
+                    vwIds = vw.ID.ToString().ToUpper().Trim();
+                    if (string.Compare(vwId.ToUpper().Trim(), vwIds.Trim(), false) == 0)
+                    {
+                        break;
+                    }
+                    vwNo++;
+                }
+            }
+            catch (Exception ez)
+            {
+                ShowLog("Error: \n" + ez.Message.ToString());
+            }
+            finally
+            {
+            }
+
+            return vwNo;
+        }//eof
+
+        #endregion
+
         #region commom Function
         public void ShowLog(string strMessage)
         {
@@ -231,48 +322,53 @@ namespace BPWEBAccessControl
         {
             string filePath = "";
             TreeNode selectedNode = TreeView1.SelectedNode;
-            if (selectedNode != null)
-            {
-                string docID = selectedNode.Value;
-                DataTable dtDocument = GetDocumentDetails(docID);
-                if (dtDocument != null && dtDocument.Rows.Count > 0)
+			
+                if (selectedNode != null)
                 {
-                    DataRow docRow = dtDocument.Rows[0];
-                    if (btnName == "btnDownload1")
+                    string docID = selectedNode.Value;
+                    DataTable dtDocument = GetDocumentDetails(docID);
+                    if (dtDocument != null && dtDocument.Rows.Count > 0)
                     {
-                        btnDownload1.Text = docRow["FilePath1"].ToString();
-                        filePath = btnDownload1.Text;
-                        btnDownload1.Text = "Download File 1";
-                    }
-                    else if (btnName == "btnDownload2")
-                    {
-                        btnDownload2.Text = docRow["FilePath2"].ToString();
-                        filePath = btnDownload2.Text;
-                        btnDownload2.Text = "Download File 2";
-                    }
-                    else if (btnName == "btnDownload3")
-                    {
-                        btnDownload3.Text = docRow["FilePath3"].ToString();
-                        filePath = btnDownload3.Text;
-                        btnDownload3.Text = "Download File 3";
+                        DataRow docRow = dtDocument.Rows[0];
+                        if (btnName == "btnDownload1")
+                        {
+                            btnDownload1.Text = docRow["FilePath1"].ToString();
+                            filePath = btnDownload1.Text;
+                            btnDownload1.Text = "Download File 1";
+                        }
+                        else if (btnName == "btnDownload2")
+                        {
+                            btnDownload2.Text = docRow["FilePath2"].ToString();
+                            filePath = btnDownload2.Text;
+                            btnDownload2.Text = "Download File 2";
+                        }
+                        else if (btnName == "btnDownload3")
+                        {
+                            btnDownload3.Text = docRow["FilePath3"].ToString();
+                            filePath = btnDownload3.Text;
+                            btnDownload3.Text = "Download File 3";
+                        }
                     }
                 }
-            }
 
-            if (!string.IsNullOrEmpty(filePath))
-            {
+                if (!string.IsNullOrEmpty(filePath))
+                {
+
+                    Response.ContentType = "application/octet-stream";
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=" + System.IO.Path.GetFileName(filePath));
+                    Response.TransmitFile(filePath);
+                    Response.End();
+                    
+                }
+                else
+                {
+                   displayMsgs("File Not Found!", "Ok", "Save");
+                  
+                }
+           
+			
+			
             
-                Response.ContentType = "application/octet-stream";
-                Response.AppendHeader("Content-Disposition", "attachment; filename=" + System.IO.Path.GetFileName(filePath));
-                Response.TransmitFile(filePath);
-                Response.End();
-            }
-            else
-            {
-                string script = "alert('File not found!');";
-                ScriptManager.RegisterStartupScript(this, GetType(), "FileNotFoundScript", script, true);
-
-            }
         }
 
        
@@ -294,12 +390,7 @@ namespace BPWEBAccessControl
         }//eof
 		#endregion
 
-		#region
-        public void dlgOk_Click(object sender, EventArgs e)
-		{
-
-		}
-		#endregion
+		
 
 	}
 
