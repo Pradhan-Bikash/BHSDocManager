@@ -154,6 +154,7 @@ namespace BPWEBAccessControl
             }
         }
         #endregion
+
         #region Load Document Details
         protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
         {
@@ -176,9 +177,11 @@ namespace BPWEBAccessControl
                     dvCon2.InnerHtml = Server.HtmlDecode("" + docRow["Content2"].ToString());
 
                     lblFooter.Text = docRow["Footer"].ToString();
+                    Show_Content();//Show View After Click any node 
                 }
             }
         }
+
 
         private DataTable GetDocumentDetails(string nodeId)
         {
@@ -189,18 +192,19 @@ namespace BPWEBAccessControl
 
             try
             {
-                objCon = new ConnectionManager.DAL.ConManager("1"); // Assuming "1" is a connection string identifier
+                objCon = new ConnectionManager.DAL.ConManager("1"); 
                 DataSet dsLocal;
-                objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1"); // Open dataset
+                objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1"); 
 
                 if (dsLocal != null && dsLocal.Tables.Count > 0)
                 {
                     dtDocument = dsLocal.Tables[0];
-                    
+
                     if (!string.IsNullOrEmpty(nodeId))
                     {
-                        dtDocument.DefaultView.RowFilter = "EntryID = '" + nodeId.Replace("'", "''") + "'";
-                        dtDocument = dtDocument.DefaultView.ToTable();
+                        DataView dvLocal = new DataView(dtDocument); // Create a DataView to filter the DataTable
+                        dvLocal.RowFilter = "EntryID = '" + nodeId.Replace("'", "''") + "'"; // Apply the filter
+                        dtDocument = dvLocal.ToTable(); // Convert the filtered DataView back to a DataTable
                     }
                 }
             }
@@ -210,23 +214,27 @@ namespace BPWEBAccessControl
             }
             finally
             {
-                
                 objCon = null;
             }
 
             return dtDocument;
         }//eof
-		#endregion
-		#region File Download Related
-		private void GetFileName(string btnName)
+
+        public void Show_Content()
 		{
+            sectionDetailsContainer.Style["display"] = "block";
+        }//eof
+        #endregion
+
+        #region File Download Related
+        private void GetFileName(string btnName)
+        {
             string filePath = "";
             TreeNode selectedNode = TreeView1.SelectedNode;
             if (selectedNode != null)
             {
-
-                string docName = selectedNode.Text;
-                DataTable dtDocument = GetDocumentDetails(docName);
+                string docID = selectedNode.Value;
+                DataTable dtDocument = GetDocumentDetails(docID);
                 if (dtDocument != null && dtDocument.Rows.Count > 0)
                 {
                     DataRow docRow = dtDocument.Rows[0];
@@ -242,7 +250,7 @@ namespace BPWEBAccessControl
                         filePath = btnDownload2.Text;
                         btnDownload2.Text = "Download File 2";
                     }
-                   else if (btnName == "btnDownload3")
+                    else if (btnName == "btnDownload3")
                     {
                         btnDownload3.Text = docRow["FilePath3"].ToString();
                         filePath = btnDownload3.Text;
@@ -250,20 +258,24 @@ namespace BPWEBAccessControl
                     }
                 }
             }
+
             if (!string.IsNullOrEmpty(filePath))
             {
+            
                 Response.ContentType = "application/octet-stream";
                 Response.AppendHeader("Content-Disposition", "attachment; filename=" + System.IO.Path.GetFileName(filePath));
-                Response.TransmitFile(filePath); 
+                Response.TransmitFile(filePath);
                 Response.End();
             }
             else
             {
                 string script = "alert('File not found!');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "FileNotFoundScript", script, true);
+
             }
-           
-        }//eof
+        }
+
+       
         protected void btnDownload1_Click(object sender, EventArgs e)
         {
             GetFileName("btnDownload1");
@@ -280,6 +292,13 @@ namespace BPWEBAccessControl
         {
             GetFileName("btnDownload3");
         }//eof
+		#endregion
+
+		#region
+        public void dlgOk_Click(object sender, EventArgs e)
+		{
+
+		}
 		#endregion
 
 	}

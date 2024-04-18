@@ -42,6 +42,24 @@ namespace BPWEBAccessControl
 		protected global::System.Web.UI.WebControls.Label lblfrmName;
 
 		/// <summary>
+		/// mvwDataVw control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.MultiView mvwDataVw;
+
+		/// <summary>
+		/// vw00 control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.View vw00;
+
+		/// <summary>
 		/// TreeView1 control.
 		/// </summary>
 		/// <remarks>
@@ -49,6 +67,15 @@ namespace BPWEBAccessControl
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.TreeView TreeView1;
+
+		/// <summary>
+		/// sectionDetailsContainer control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionDetailsContainer;
 
 		/// <summary>
 		/// lblDocDESC control.
@@ -157,6 +184,60 @@ namespace BPWEBAccessControl
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.Button btnDownload3;
+
+		/// <summary>
+		/// vw01 control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.View vw01;
+
+		/// <summary>
+		/// dlgImage control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Image dlgImage;
+
+		/// <summary>
+		/// lblMessageBoard control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblMessageBoard;
+
+		/// <summary>
+		/// dlgMsg control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label dlgMsg;
+
+		/// <summary>
+		/// dlgOk control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button dlgOk;
+
+		/// <summary>
+		/// lblDlgState control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblDlgState;
 
 		/// <summary>
 		/// Master property.
