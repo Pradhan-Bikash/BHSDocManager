@@ -112,5 +112,43 @@ DocumentDescription,VersionNo,BuildNo,
         }   //eof
 
         #endregion
-    }
+
+        #region tel Data
+        public void SearchTeleData(string fromDate, string todate, string strKey, string strSiteId, out System.Data.DataSet dsRef)
+        {
+            ConnectionManager.DAL.ConManager objCon;
+            string strSql = "";
+            string strfromdate = "";
+            string strtodate = "";
+            try
+            {
+                strSql = "Select entryId,department,staffLocation,deptGroup,extNo,mobileNo,convert(varchar(20),UpdateOn,105) as UpdateOn from tblTeleData";
+                strSql = strSql + " where SiteId='" + strSiteId.Trim() + "'";
+                if (strKey == "")
+                {
+                    //strfromdate = bplib.clsWebLib.AppDateConvert(fromDate, bplib.clsWebLib.getUserDateFormat(), "MM/dd/yyyy").ToString("MM/dd/yyyy");
+                    //strtodate = bplib.clsWebLib.AppDateConvert(todate, bplib.clsWebLib.getUserDateFormat(), "MM/dd/yyyy").ToString("MM/dd/yyyy");
+
+                    //strSql = strSql + " and UpdateOn between '" + strfromdate + "' and '" + strtodate + "' order by UpdateOn desc,entryId asc";
+                    strSql = strSql + " and entryId='NONEEDTOLOAD'";
+                }
+                else
+                {
+                    strSql = strSql + " and " + strKey + " order by UpdateOn desc";
+                }
+                objCon = new ConnectionManager.DAL.ConManager("1");
+                objCon.OpenDataSetThroughAdapter(strSql, out dsRef, false, "1");
+            }
+            catch (System.Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                objCon = null;
+            }
+        }//eof
+
+		#endregion
+	}
 }

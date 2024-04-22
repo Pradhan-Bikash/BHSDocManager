@@ -163,40 +163,23 @@ namespace BPWEBAccessControl
                 bplib.clsAppSeq.CheckUserAccess((string)Session["USER"], strModuleId.ToUpper());
                 switch (strID)
                 {
-                    case "EMPLOYEE INFO":
-                        Response.Redirect("webFrmEmployeeInfo.aspx");
-                        break;
-                    case "DOCUPDATE":
+                    case "DOCMANAGER":
                         Response.Redirect("DocMgtUpdate.aspx");
                         break;
                     case "DOCVIEW":
                         Response.Redirect("DocMgtView.aspx");
                         break;
-                    case "BANK INFO":
-                        Response.Redirect("webFrmBankInfo.aspx");
-                        break;
+                    
                     case "LEASE AGREEMENT":
                         Response.Redirect("webFrmLeaseAgreement.aspx");
                         break;
-                    case "FUNDING INFO":
-                        Response.Redirect("webFrmFundingInfo.aspx");
-                        break;
+                    
                     case "BUSINESS REGISTRATION":
                         Response.Redirect("webFrmBizRegInfo.aspx");
                         break;
-
-
                     case "ENTITYFIXEDVARIABLES":
                         Response.Redirect("AppFixedEntityVarManage.aspx");
                         break;
-
-                    case "REPORTS":
-                        Response.Redirect("webfrmPWOMSReport.aspx");
-                        break;
-                    case "EMPREPORT":
-                        Response.Redirect("webfrmEmpReport.aspx");
-                        break;
-
                     default:
                         break;
                 }

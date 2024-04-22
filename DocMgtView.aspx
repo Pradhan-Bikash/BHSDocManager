@@ -81,13 +81,13 @@
                             <div id="dvSec1" runat="server">
                              </div>
                                 <br />
-                            <div id="dvCon1" runat="server" class="Div-Style-Content">
+                            <div id="dvCon1" runat="server">
                             </div>
                                 <br />
                             <div id="dvSec2" runat="server">
                             </div>
                             <br />
-                            <div id="dvCon2" runat="server" class="Div-Style-Content">
+                            <div id="dvCon2" runat="server">
                             </div>
                          <br />
                                 <br />

@@ -332,7 +332,7 @@ namespace PWOMS
         {
 
             string SB = "";
-            PWOMS.clsApplication objApp = null;
+            PWOMS.clsDocApplication objApp = null;
             System.Data.DataSet dsLocal = null;
             System.Data.DataTable dtLocal = null;
             System.Data.DataView dvLocal = null;
@@ -347,7 +347,7 @@ namespace PWOMS
             string toDate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             try
             {
-                objApp = new PWOMS.clsApplication();
+                objApp = new PWOMS.clsDocApplication();
                 if (FLAG == "") //this is default search function
                 {
                     objApp.SearchTeleData(fromDate, toDate, strKey, strSiteId, out dsLocal);

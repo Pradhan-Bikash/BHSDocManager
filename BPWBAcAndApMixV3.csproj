@@ -219,14 +219,8 @@
     <Content Include="Picture\userAcc.png" />
     <Content Include="Picture\usersScrn.png" />
     <Content Include="Scripts\jquery.passwordRequirements.js" />
-    <Content Include="webFrmBankInfo.aspx" />
-    <Content Include="webFrmBizRegInfo.aspx" />
-    <Content Include="webFrmEmployeeInfo.aspx" />
-    <Content Include="webFrmFundingInfo.aspx" />
-    <Content Include="webFrmLeaseAgreement.aspx" />
     <Content Include="WebFrmLogIn.aspx" />
     <Content Include="WebFrmPasswordReinstate.aspx" />
-    <Content Include="webfrmPWOMSReport.aspx" />
     <Content Include="WebFrmSecurityControl.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Picture\BKBLOCK.PNG" />
@@ -289,16 +283,12 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="clsApplication.cs" />
     <Compile Include="clsAppSeq.cs" />
     <Compile Include="clsFileIO.cs" />
     <Compile Include="clsFixedVariable.cs" />
     <Compile Include="clsGenID.cs" />
-    <Compile Include="clsHK.cs" />
-    <Compile Include="clsPWOMSRepo.cs" />
     <Compile Include="clsSecurityControl.cs" />
     <Compile Include="clsSysLanguage.cs" />
-    <Compile Include="clsUnitConversion.cs" />
     <Compile Include="clsWebeMail.cs" />
     <Compile Include="clsWebLib.cs" />
     <Compile Include="clsWebProcDataBuilder.cs" />
@@ -365,41 +355,6 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
-    <Compile Include="webFrmBankInfo.aspx.cs">
-      <DependentUpon>webFrmBankInfo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="webFrmBankInfo.aspx.designer.cs">
-      <DependentUpon>webFrmBankInfo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="webFrmBizRegInfo.aspx.cs">
-      <DependentUpon>webFrmBizRegInfo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="webFrmBizRegInfo.aspx.designer.cs">
-      <DependentUpon>webFrmBizRegInfo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="webFrmEmployeeInfo.aspx.cs">
-      <DependentUpon>webFrmEmployeeInfo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="webFrmEmployeeInfo.aspx.designer.cs">
-      <DependentUpon>webFrmEmployeeInfo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="webFrmFundingInfo.aspx.cs">
-      <DependentUpon>webFrmFundingInfo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="webFrmFundingInfo.aspx.designer.cs">
-      <DependentUpon>webFrmFundingInfo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="webFrmLeaseAgreement.aspx.cs">
-      <DependentUpon>webFrmLeaseAgreement.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="webFrmLeaseAgreement.aspx.designer.cs">
-      <DependentUpon>webFrmLeaseAgreement.aspx</DependentUpon>
-    </Compile>
     <Compile Include="WebFrmLogIn.aspx.cs">
       <DependentUpon>WebFrmLogIn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -413,13 +368,6 @@
     </Compile>
     <Compile Include="WebFrmPasswordReinstate.aspx.designer.cs">
       <DependentUpon>WebFrmPasswordReinstate.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="webfrmPWOMSReport.aspx.cs">
-      <DependentUpon>webfrmPWOMSReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="webfrmPWOMSReport.aspx.designer.cs">
-      <DependentUpon>webfrmPWOMSReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebFrmSecurityControl.aspx.cs">
       <DependentUpon>WebFrmSecurityControl.aspx</DependentUpon>

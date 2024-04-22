@@ -120,11 +120,9 @@
                                         <asp:Button ID="Button_LogOff" runat="server" CssClass="btn btn-default" SkinID="btnRed" TabIndex="0" OnClick="Button_LogOff_Click" Text="Close"></asp:Button>
                                     </div>
                                 </div>
-                            </div>
-
+                            </div> 
                                 <div class="form-row">
                                     <div class="container-fluid myFrame">
-
                                    <div class="form-group col-sm-3 required">
                                         <asp:Label ID="lblEntryId" CssClass="ctrlStyle_Label" runat="server" Text="Entry ID"></asp:Label>
                                          <asp:TextBox ID="txtEntryId" CssClass="form-control form-group-sm" runat="server" Enabled="false"></asp:TextBox>
@@ -142,43 +140,43 @@
                                         <asp:Label ID="lblDocName" CssClass="ctrlStyle_Label" runat="server" Text="Document Name"></asp:Label>
                                          <asp:TextBox ID="txtDocName" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
                                    </div>
-                                        <div class="form-group col-sm-3 required">
+                                        <div class="form-group col-sm-3">
                                         <asp:Label ID="lblDocDESC" CssClass="ctrlStyle_Label" runat="server" Text="Document DESC"></asp:Label>
                                          <asp:TextBox ID="txtDocDESC" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
                                    </div>
-                                        <div class="form-group col-sm-3 required">
+                                        <div class="form-group col-sm-3">
                                         <asp:Label ID="lblVersion" CssClass="ctrlStyle_Label" runat="server" Text="Version No"></asp:Label>
                                          <asp:TextBox ID="txtVersion" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
                                      </div>
                                          
-                                        <div class="form-group col-sm-3 required">
+                                        <div class="form-group col-sm-3">
                                         <asp:Label ID="lblBuild" CssClass="ctrlStyle_Label" runat="server" Text="Build No"></asp:Label>
                                          <asp:TextBox ID="txtBuild" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
                                    </div>
                                         
-                                         <div class="form-group col-sm-3 required">
+                                         <div class="form-group col-sm-3">
                                         <asp:Label ID="lblHeader" CssClass="ctrlStyle_Label" runat="server" Text="Header"></asp:Label>
                                          <asp:TextBox ID="txtHeader" CssClass="form-control form-group-sm"  runat="server"></asp:TextBox>
                                    </div>
                                        
-                                          <div class="form-group col-sm-12 required">
+                                          <div class="form-group col-sm-12">
                                         <asp:Label ID="lblSec1" CssClass="ctrlStyle_Label" runat="server" Text="Section1"></asp:Label>
                                          <asp:TextBox ID="txtSec1" CssClass="form-control form-group-sm " TextMode="MultiLine" Rows="5"  runat="server"></asp:TextBox>
                                    </div> 
-                                         <div class="form-group col-sm-12 required">
+                                         <div class="form-group col-sm-12">
                                         <asp:Label ID="lblCon1" CssClass="ctrlStyle_Label" runat="server" Text="Content1"></asp:Label>
                                          <asp:TextBox ID="txtCon1" CssClass="form-control form-group-sm" TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
                                    </div>
-                                         <div class="form-group col-sm-12 required">
+                                         <div class="form-group col-sm-12">
                                         <asp:Label ID="lblSec2" CssClass="ctrlStyle_Label" runat="server" Text="Section2"></asp:Label>
                                          <asp:TextBox ID="txtSec2" CssClass="form-control form-group-sm " TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
                                    </div>
                                         
-                                         <div class="form-group col-sm-12 required">
+                                         <div class="form-group col-sm-12 ">
                                         <asp:Label ID="lblCon2" CssClass="ctrlStyle_Label" runat="server" Text="Content2"></asp:Label>
                                          <asp:TextBox ID="txtCon2" CssClass="form-control form-group-sm" TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
                                    </div> 
-                                          <div class="form-group col-sm-6 required">
+                                          <div class="form-group col-sm-6">
                                         <asp:Label ID="lblFooter" CssClass="ctrlStyle_Label" runat="server" Text="Footer"></asp:Label>
                                          <asp:TextBox ID="txtFooter" CssClass="form-control form-group-sm" TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
                                    </div>
@@ -190,7 +188,7 @@
                                         <asp:Label ID="lblFileP2" CssClass="ctrlStyle_Label" runat="server" Text="Upload File2"></asp:Label>
                                          <asp:FileUpload ID="txtFileP2" CssClass=" form-group-sm" runat="server"></asp:FileUpload>
                                    </div>
-                                        <div class="form-group col-sm-3 ">
+                                        <div class="form-group col-sm-3">
                                         <asp:Label ID="lblFileP3" CssClass="ctrlStyle_Label" runat="server" Text="Upload File3"></asp:Label>
                                          <asp:FileUpload ID="txtFileP3" CssClass="form-group-sm" runat="server"></asp:FileUpload>
                                    </div>

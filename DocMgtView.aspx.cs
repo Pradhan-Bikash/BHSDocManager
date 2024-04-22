@@ -93,7 +93,9 @@ namespace BPWEBAccessControl
             {
                 this.lblDlgState.Text = "TRUE";
                 dialogFunction();
-               // Response.Redirect(Request.RawUrl);
+                System.Web.HttpContext.Current.Response.Clear();
+                System.Web.HttpContext.Current.Response.ClearContent();
+                System.Web.HttpContext.Current.Response.ClearHeaders();
             }
             catch (Exception ex)
             {
@@ -192,6 +194,7 @@ namespace BPWEBAccessControl
         }//eof       
 
         #endregion
+
         #region Load TreeView Data
         private void LoadDynamicData()
         {
@@ -363,7 +366,7 @@ namespace BPWEBAccessControl
                 else
                 {
                    displayMsgs("File Not Found!", "Ok", "Save");
-                  
+                   
                 }
            
 			
@@ -390,7 +393,6 @@ namespace BPWEBAccessControl
         }//eof
 		#endregion
 
-		
 
 	}
 

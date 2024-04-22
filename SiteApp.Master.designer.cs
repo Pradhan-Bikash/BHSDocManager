@@ -105,58 +105,13 @@ namespace BPWEBAccessControl
 		protected global::System.Web.UI.WebControls.LinkButton LinkButton6;
 
 		/// <summary>
-		/// linEmployeeInfo control.
+		/// LinkDocMgt control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linEmployeeInfo;
-
-		/// <summary>
-		/// linBankInfo control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linBankInfo;
-
-		/// <summary>
-		/// linLeaseAgreement control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linLeaseAgreement;
-
-		/// <summary>
-		/// linFundingInfo control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linFundingInfo;
-
-		/// <summary>
-		/// linBusinessRegistration control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linBusinessRegistration;
-
-		/// <summary>
-		/// LinkDOCUpdate control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton LinkDOCUpdate;
+		protected global::System.Web.UI.WebControls.LinkButton LinkDocMgt;
 
 		/// <summary>
 		/// LinkDocView control.
@@ -166,24 +121,6 @@ namespace BPWEBAccessControl
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.LinkButton LinkDocView;
-
-		/// <summary>
-		/// linReport control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linReport;
-
-		/// <summary>
-		/// linView control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.LinkButton linView;
 
 		/// <summary>
 		/// linSettings control.

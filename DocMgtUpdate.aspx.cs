@@ -184,8 +184,6 @@ namespace BPWEBAccessControl
         }
         #endregion
 
-        #region Customized Event
-
         #region Search
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -238,7 +236,7 @@ namespace BPWEBAccessControl
 					this.txtEntryId.Text = DOCID;
 					LoadDetails();
 				}
-                if (this.lblViewState.Text.Trim() == "DOCUPDATE")
+                if (this.lblViewState.Text.Trim() == "DOCMANAGER")
                 {
                     Cancel();
                     this.txtEntryId.Text = DOCID;
@@ -311,8 +309,6 @@ namespace BPWEBAccessControl
 
         #endregion
 
-        #endregion
-
         #region Customized Functions
 
         #region SEARCH RELATED FUNCTIONS
@@ -340,7 +336,7 @@ namespace BPWEBAccessControl
                 {
                     //objApp.SearchTeleData(fromDate, toDate, strKey,strSiteId, out dsLocal);
                 }
-                if (FLAG == "DOCUPDATE")
+                if (FLAG == "DOCMANAGER")
                 {
                     objApp.SearchDocument(fromDate, toDate, strKey, strSiteId, out dsLocal);
                 }
@@ -550,7 +546,7 @@ namespace BPWEBAccessControl
                 if ((int)Session["VERIFICATION_STATE"] == 2)
                 {
                     objGenID = new bplib.GenDocID();
-                    objGenID.GenDOCIdTest(System.DateTime.Now.ToShortDateString().ToString(), "DOCUPDATE", out strResCode);
+                    objGenID.GenDOCIdTest(System.DateTime.Now.ToShortDateString().ToString(), "DOCMANAGER", out strResCode);
                     strResCode = "DOC" + strResCode;
                     this.txtEntryId.Text = strResCode;
 
@@ -574,7 +570,7 @@ namespace BPWEBAccessControl
             System.Data.DataTable dtLocal = null;
             System.Data.DataRow drLocal = null;
             System.Data.DataView dvLocal = null;
-            string modulename = "DOCUPDATE.EDIT";
+            string modulename = "DOCMANAGER.EDIT";
 
             PWOMS.clsDocApplication objApp = null;
 
@@ -595,53 +591,53 @@ namespace BPWEBAccessControl
                         System.Exception ex = new Exception("Define the Document Name...(Max length allowed 500)");
                         throw (ex);
                     }
-                    if (this.txtDocDESC.Text.Trim() == "" || this.txtDocDESC.Text.Trim().Length > 500)
-                    {
-                        System.Exception ex = new Exception("Define the Document Description...(Max length allowed 500)");
-                        throw (ex);
-                    }
-                    if (this.txtVersion.Text.Trim() == "" || this.txtVersion.Text.Trim().Length > 50)
-                    {
-                        System.Exception ex = new Exception("Define the Version NO...(Max length allowed 50)");
+                    //if (this.txtDocDESC.Text.Trim() == "" || this.txtDocDESC.Text.Trim().Length > 500)
+                    //{
+                    //    System.Exception ex = new Exception("Define the Document Description...(Max length allowed 500)");
+                    //    throw (ex);
+                    //}
+                    //if (this.txtVersion.Text.Trim() == "" || this.txtVersion.Text.Trim().Length > 50)
+                    //{
+                    //    System.Exception ex = new Exception("Define the Version NO...(Max length allowed 50)");
                       
-                       throw (ex);
-                    } 
-                     if (this.txtBuild.Text.Trim() == "" || this.txtBuild.Text.Trim().Length > 50)
-                     {
-                            System.Exception ex = new Exception("Define the Document Build No...(Max length allowed 50)");
-                            throw (ex);
-                     }
+                    //   throw (ex);
+                    //} 
+                    // if (this.txtBuild.Text.Trim() == "" || this.txtBuild.Text.Trim().Length > 50)
+                    // {
+                    //        System.Exception ex = new Exception("Define the Document Build No...(Max length allowed 50)");
+                    //        throw (ex);
+                    // }
                    
-                    if (this.txtHeader.Text.Trim() == "")
-                    {
-                        System.Exception ex = new Exception("Define the Document Header...");
-                        throw (ex);
-                    }
-                    if (this.txtSec1.Text.Trim() == "" )
-                    {
-                        System.Exception ex = new Exception("Define the Document Section2...");
-                        throw (ex);
-                    }
-                    if (this.txtCon1.Text.Trim() == "" )
-                    {
-                        System.Exception ex = new Exception("Define the Document Content2");
-                        throw (ex);
-                    }
-                    if (this.txtSec2.Text.Trim() == "")
-                    {
-                        System.Exception ex = new Exception("Define the Document Section1...");
-                        throw (ex);
-                    }
-                    if (this.txtCon2.Text.Trim() == "" )
-                    {
-                        System.Exception ex = new Exception("Define the Document Content1...");
-                        throw (ex);
-                    }
-                    if (this.txtFooter.Text.Trim() == "")
-                    {
-                        System.Exception ex = new Exception("Define the Document Footer...(Max length allowed 50)");
-                        throw (ex);
-                    }
+                    //if (this.txtHeader.Text.Trim() == "")
+                    //{
+                    //    System.Exception ex = new Exception("Define the Document Header...");
+                    //    throw (ex);
+                    //}
+                    //if (this.txtSec1.Text.Trim() == "" )
+                    //{
+                    //    System.Exception ex = new Exception("Define the Document Section2...");
+                    //    throw (ex);
+                    //}
+                    //if (this.txtCon1.Text.Trim() == "" )
+                    //{
+                    //    System.Exception ex = new Exception("Define the Document Content2");
+                    //    throw (ex);
+                    //}
+                    //if (this.txtSec2.Text.Trim() == "")
+                    //{
+                    //    System.Exception ex = new Exception("Define the Document Section1...");
+                    //    throw (ex);
+                    //}
+                    //if (this.txtCon2.Text.Trim() == "" )
+                    //{
+                    //    System.Exception ex = new Exception("Define the Document Content1...");
+                    //    throw (ex);
+                    //}
+                    //if (this.txtFooter.Text.Trim() == "")
+                    //{
+                    //    System.Exception ex = new Exception("Define the Document Footer...(Max length allowed 50)");
+                    //    throw (ex);
+                    //}
 
 					DATA_OK = true;
                 }
@@ -776,9 +772,9 @@ namespace BPWEBAccessControl
             try
             {
                 this.lblViewName.Text = this.mvwDataVw.GetActiveView().ID.ToString();
-                LoadData(true, "", "DOCUPDATE");
+                LoadData(true, "", "DOCMANAGER");
                 this.tbValue.Text = "";
-                this.lblSearchTitle.Text = "Search : DOCUPDATE";
+                this.lblSearchTitle.Text = "Search : DOCMANAGER";
                 this.btnCancelSearch.Visible = true; //set as false in Cancel() function; if the search screen is the first screen
                 this.mvwDataVw.SetActiveView(this.vw00);
             }
@@ -857,7 +853,7 @@ namespace BPWEBAccessControl
             PWOMS.clsDocApplication objApp = null;
             bool DATA_OK = false;
             string strSiteId = Session["USER_SITE"].ToString().Trim();
-            string modulename = "DOCUPDATE.DELETE";
+            string modulename = "DOCMANAGER.DELETE";
             try
             {
                 bplib.clsAppSeq.CheckUserAccess((string)Session["USER"], modulename.ToUpper());
