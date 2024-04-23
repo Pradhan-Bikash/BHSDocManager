@@ -278,6 +278,7 @@ namespace BPWEBAccessControl
         protected void btnMenuListUpdate_Click(object sender, EventArgs e)
         {
             loadMenuLists();
+            
             this.tbSearchValue.Text = "";
         }//eof
         protected void btnRefresh_Click(object sender, EventArgs e)
@@ -826,7 +827,9 @@ namespace BPWEBAccessControl
                 }
                 else
                 {
+
                     MyDataGrid.DataSource = UserAccManagerInfo(userCode.Trim());
+                    objApp.GetUserAccManagerInfo(out dsLocal);
                     MyDataGrid.DataBind();
                     this.panGrid.Visible = true;
                     this.btnSave.Enabled = true;
