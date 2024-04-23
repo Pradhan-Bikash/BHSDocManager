@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="Content/w3-colors-metro.css" />
     <link rel="stylesheet" href="Content/w3-colors-win8.css" />
     <link href="Content/CustomStyle.css" rel="stylesheet" />
+
     <!-- Google fonts CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
