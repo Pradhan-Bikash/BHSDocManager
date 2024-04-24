@@ -49,6 +49,16 @@
                             <div class="sidebar_wrapper">
                                 <div class="sideBar sticky">
                                     <div class="sideBar--wrap newLeftbar">
+                                       <div class="field-body control has-icons-left">
+                            <asp:TextBox ID="txtSearch" runat="server" OnTextChanged="txtSearch_TextChanged" AutoPostBack="true"></asp:TextBox>
+                                           
+                                <br />
+                                    <asp:Label ID="lblResult" runat="server" Text="" ></asp:Label>
+                                </div>
+
+                                  
+
+
                                         <asp:TreeView ID="TreeView1" runat="server" RootNodeStyle-CssClass="Root-NodeStyle" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged" >
                                             
                                         </asp:TreeView>
