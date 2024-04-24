@@ -45,7 +45,7 @@
                      <%--Content Load--%>
                     <asp:View ID="vw01" runat="server">
                         <!-- Left Sidebar -->
-                        <div class="col-sm-6 col-md-3">
+                        <div class="col-sm-6 col-md-2">
                             <div class="sidebar_wrapper">
                                 <div class="sideBar sticky">
                                     <div class="sideBar--wrap newLeftbar">
@@ -58,7 +58,7 @@
                         </div>
  
                         <!-- Right Side Content -->
-                        <div class="col-6 col-md-9" runat="server" id="sectionDetailsContainer" style="display: none">
+                        <div class="col-6 col-md-10" runat="server" id="sectionDetailsContainer" style="display: none">
 
                             <div>
                                 <asp:Label ID="lblDocDESC" runat="server" CssClass="doc-details doc-lblDocDESC"></asp:Label>

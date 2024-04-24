@@ -379,7 +379,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Documents\" />
+    <Folder Include="Document_Images\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

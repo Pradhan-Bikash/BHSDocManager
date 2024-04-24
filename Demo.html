@@ -6,102 +6,474 @@
     <title></title>
 </head>
 <body>
-    <div>
-        <p>this is Document Desc</p>
 
-        <p>Header</p>
+    <!-- Start For API Documtent Style-->
+    <!--Table without head-->
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <!--This is for row value-->
+                <td>Type Here....</td>
+                <td>Type Here....</td>
+            </tr>
+            <tr>
+                <td>Type Here....</td>
+                <td>Type Here....</td>
+            </tr>
+        </tbody>
+    </table>
 
-    </div>
-    <div>
+    <!--Header Text Style-->
+    <h5 class="text-primary">Type Here....</h5>
 
-        <!--For Table-->
-        <table class="table table-bordered">
-            <thead class="bg-primary">
-                <!--This is for Column Header with color -->
-                <tr class="table-primary">
-                    <td>Field Name</td>
-                    <td>Data Type</td>
-                    <td>Remarks</td>
-                </tr>
+    <!--Table colspan with color header table-->
+    <table class="table table-bordered">
+        <thead>
+            <!--Colsapn row-->
+            <tr><td colspan="3">Type Here....</td></tr>
+            <!--This is for Column Header with color -->
+            <tr class="table-primary bg-primary">
+                <td>Type Here....</td>
+                <td class="text-nowrap">Type Here....</td>
+                <td>Type Here....</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!--This is for row value-->
+                <td>Type Here....</td>
+                <td class="text-nowrap">Type Here....</td>
+                <td>
+                    Type Here....
+                </td>
+            </tr>
+            <tr>
+                <td>Type Here....</td>
+                <td>Type Here....</td>
+                <td>Type Here....</td>
+            </tr>
+        </tbody>
+    </table>
 
-
-            </thead>
-            <tbody>
-                <tr>
-                    <!--This is for row value-->
-                    <td>Please Type Here.....</td>
-                    <td>/MC/Getcardstatus</td>
-                </tr>
-                <tr>
-                    <td>Input Type:</td>
-                    <td>POST</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!--For ParaGraph-->
-        <p> This endpoint is used to retrieve the card request status and will return the masked Card number of the card if it is created </p>
-
-        <!--For Color Content Heading-->
-        <h5 class="text-primary h3">Input Payload Structure and Return Result</h5>
-
-    </div>
-
-
-    <div>
-        <p class="text-primary">Get Card Status Query Post</p>
-        <table class="table table-bordered">
-
-            <thead>
-                <tr table-bordered>
-                    Payload
-                </tr>
-                <tr>
-                    Payload
-                </tr>
-                <!--This is for Column Header with color -->
-                <tr class="table-primary">
-                    <th>Field Name</th>
-                    <th>Data Type</th>
-                    <th>Remarks</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <!--This is for row value-->
-                    <td>OEM_Partner_Id:</td>
-                    <td>String (50)</td>
-                    <td>
-                        This Id will be provided by Paywiser; Same Id should be used in each record.(This field information specific for each end point user/application. Every record should be with this given id.)
-                    </td>
-                </tr>
-                <tr>
-                    <td>PWOBUserRefNo</td>
-                    <td>String (20)</td>
-                    <td>OB service generated user ref number (PWOBUserRefNo) what you have received by posting OBCustomRegistration.</td>
-                </tr>
-                <tr>
-                    <td>Customer_Reg_Id</td>
-                    <td>String (20)</td>
-                    <td>
-                        Alpha numeric unique code should be given for each customer registration in data capture interface.(Each OB registration data should have unique as end point user/application is using.)
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <!--For api result table-->
+    <table class="table table-bordered">
+        <thead class="bg-primary">
+            <!--This is for Column Header with color -->
+            <tr class="table-primary">
+                <td>Type Here....</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!--This is for row value-->
+                <td>
+                    <pre><code>{
+                            <!--With Color Code using Span-->
+                             <span style="color:red">Type Here....</span> "202109280000",
+                             <span style="color:red">"Type Here....":</span> "xxxxxx"
+            }
+                        </code></pre>
+                </td>>/tr>
 
 
-    <!--For Image Path-->
-    <img src="Picture/not_found.png" alt="HTML tutorial" style="width:42px;height:42px;">
+        </tbody>
+    </table>
 
-    <div><p>Content1</p></div>
-    <div>
-        <p>section2</p>
-    </div>
-    <div>
-        <p>Content2</p>
-    </div>
-    <footer>Footer</footer>
+    <table class="table table-bordered">
+        <thead class="bg-primary">
+            <!--This is for Column Header with color -->
+            <tr class="table-primary">
+
+                <td>Type Here....</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <pre><code>{
+                             <span style="color:red">"Type Here....":</span> "1002",
+                             <span style="color:red">"Type Here....":</span> "Welcome... you are verified. A JWTtoken has issued.  You need to use same other end point access.",
+                             <span style="color:red">"Type Here....":</span> "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMjEwOTI4OTk5OSIsIm5iZiI6MTY1MTY2MzgxOCwiZXhwIjoxNjUxNjY1MDE4LCJpYXQiOjE2NTE2NjM4MTh9.C68Ch0kBEgSaMMJFAa6sjkgw_WEAePHMC7BEVnhfK54"
+}
+                        </code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Type Here....
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--End API Document Style-->
+
+
+    <!--Start Document Style For Text Documetn with Image-->
+    <!--Paragrap With bullet List-->
+    <p>
+        Type Here....<br />
+        <ul style="padding-left:30px">
+            <li>Type Here....</li>
+            <li>Type Here....</li>
+        </ul>
+    </p>
+
+    <!--Color Heading-->
+    <h5 class="text-primary"> Type Here....</h5>
+    <!--Table With Out Head-->
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <!--This is for row value-->
+                <td>Type Here....</td>
+                <td>Type Here....</td>
+            </tr>
+            <tr>
+                <td>Type Here....</td>
+                <td>
+                    Type Here....
+                </td>
+            </tr>
+            <tr>
+                <td>Type Here.... </td>
+                <td>
+                    <!--Under Span Tag Color Text-->
+                    Type Here....
+                    Example: request.AddHeader(<span style="color:blue">"Authorization"</span>, <span style="color:blue">"Bearer eyJciOi... "</span>);
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--Color Text Header-->
+    <h5 class="text-primary">Type Here.... </h5>
+    <!--Paragraph-->
+    <p>Type Here....</p>
+    <!--For Image Full Width-->
+    <img src="Document_Images/Security_Setup.png" alt="HTML tutorial" style="width:100%;height:300px;">
+
+    <!-- With Bold Point Text-->
+    <p>
+        <!--Paragraph with Bold Text-->
+        <b>Type Bold Text...</b> Type Here....<br /><br />
+
+        <b>Type Bold Text</b> Type Here....
+        <br /><br />
+        <b>Type Bold Text</b> Type Here....
+
+    </p>
+    <!--End Document Style For Text Documetn with Image-->
+
+
+
+
+
+
+
+
+    <!--Filled Documetn Here --> 
+
+
+    <!-- Start For API Documtent Style-->
+    <!--Table without head-->
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <!--This is for row value-->
+                <td>API Method:</td>
+                <td>/Token/VerifyMe</td>
+            </tr>
+            <tr>
+                <td>Input Type:</td>
+                <td>POST</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!--Header Text Style-->
+    <h5 class="text-primary">Change Card Pin Query Post</h5>
+
+    <!--Table colspan with color header table-->
+    <table class="table table-bordered">
+        <thead>
+            <!--Colsapn row-->
+            <tr><td colspan="3">Payload</td></tr>
+            <!--This is for Column Header with color -->
+            <tr class="table-primary bg-primary">
+                <td>Field Name</td>
+                <td class="text-nowrap">Data Type</td>
+                <td>Remarks</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!--This is for row value-->
+                <td>OEM_Partner_Id</td>
+                <td class="text-nowrap">String (50)</td>
+                <td>
+                    This Id will be provided by Paywiser; Same Id should be used in each record.
+                    (This field information specific for each end point user/application. Every record should be with this given id.)
+                </td>
+            </tr>
+            <tr>
+                <td>SecretKey</td>
+                <td>String (20)</td>
+                <td>OEM_Partner_ID and SecretKey collect from PW technical team.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!--For api result table-->
+    <table class="table table-bordered">
+        <thead class="bg-primary">
+            <!--This is for Column Header with color -->
+            <tr class="table-primary">
+                <td>Input Payload Structure</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!--This is for row value-->
+                <td>
+                    <pre><code>{
+                            <!--With Color Code using Span-->
+                    <span style="color:red">"OEM_Partner_Id":</span> "202109280000",
+                    <span style="color:red">"SecretKey":</span> "xxxxxx"
+            }
+                        </code></pre>
+                </td>>/tr>
+
+
+        </tbody>
+    </table>
+
+    <table class="table table-bordered">
+        <thead class="bg-primary">
+            <!--This is for Column Header with color -->
+            <tr class="table-primary">
+
+                <td>API Execution</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <pre><code>{
+                    <span style="color:red">"MessageCode":</span> "1002",
+                    <span style="color:red">"MessageText":</span> "Welcome... you are verified. A JWTtoken has issued.  You need to use same other end point access.",
+                    <span style="color:red">"JWTToken":</span> "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMjEwOTI4OTk5OSIsIm5iZiI6MTY1MTY2MzgxOCwiZXhwIjoxNjUxNjY1MDE4LCJpYXQiOjE2NTE2NjM4MTh9.C68Ch0kBEgSaMMJFAa6sjkgw_WEAePHMC7BEVnhfK54"
+}
+                        </code></pre>
+                </td>
+            </tr>
+            <tr><td>If data validation check is ok end point will return message code 1002 with return record of updated status </td></tr>
+        </tbody>
+    </table>
+    <!--End API Document Style-->
+    <!--Start Document Style For Text Documetn with Image-->
+    <!--Paragrap With bullet List-->
+    <p>
+        These endpoints to the development are shown below. The URL to the production server will be provided on request.<br />
+        <ul style="padding-left:30px">
+            <li>To access the functional Endpoint, you need to use the bearer token-based authentication.</li>
+            <li>To get the token, The OEM partner number / ID and associated secret key is required to obtain  the JWT token, this token will be used for calling various Mastercard Endpoints.</li>
+        </ul>
+    </p>
+
+    <!--Color Heading-->
+    <h5 class="text-primary"> Required parameters for Paywiser Mastercard API Endpoint access</h5>
+    <!--Table With Out Head-->
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <!--This is for row value-->
+                <td>Host (Dev) [suggested to keep in configuration as production level host will be different.]</td>
+                <td>https://dev1onboarding.paywiser.com/BHSKYCAPIV2/BHSKycV2</td>
+            </tr>
+            <tr>
+                <td>OEM_Partner_Id / SecretKey</td>
+                <td>
+                    Partner ID to be provided Secretkey to be provided
+                </td>
+            </tr>
+            <tr>
+                <td>Authorization token type: </td>
+                <td>
+                    JWT Receive token to be set at header of the request under authorization.
+                    Example: request.AddHeader(<span style="color:blue">"Authorization"</span>, <span style="color:blue">"Bearer eyJciOi... "</span>);
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--Color Text Header-->
+    <h5 class="text-primary">General notes: </h5>
+    <!--Paragraph-->
+    <p>A brief overview of the security setup are provided below:</p>
+    <!--For Image-->
+    <img src="Document_Images/Security_Setup.png" alt="HTML tutorial" style="width:100%;height:300px;">
+
+    <!-- With Bold Point Text-->
+    <p>
+        <b>OEM_Partner_Id</b> this field data will be provided by Paywiser. This is an unique number assigned to each partner.<br /><br />
+
+        <b>PWOBUserRefNo</b> this field data will be auto generated by Paywiser. This is an unique number assigned to each applicant. This is the ID that should be used when communicating with Paywiser. It provides Paywiser’s customer service consultant a method to identify the individual in Paywiser’s system.
+        <br /><br />
+        <b>Customer_Reg_Id</b> this field data should be provided / generated by the partner. This number should be the unique identifier in partner’s internal system. This number should be unique and when Paywiser returns the application status, it would help OEM partner to quickly identify the applicant in their own system.<br />
+        In case Customer_Reg_Id is not provided, the PWOBUserRefNo will be Customer_Reg_Id.
+
+    </p>
+    <!--End Document Style For Text Documetn with Image-->
+    <!-- Start For API Documtent Style-->
+    <!--Table without head-->
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <!--This is for row value-->
+                <td>API Method:</td>
+                <td>/Token/VerifyMe</td>
+            </tr>
+            <tr>
+                <td>Input Type:</td>
+                <td>POST</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!--Header Text Style-->
+    <h5 class="text-primary">Change Card Pin Query Post</h5>
+
+    <!--Table colspan with color header table-->
+    <table class="table table-bordered">
+        <thead>
+            <!--Colsapn row-->
+            <tr><td colspan="3">Payload</td></tr>
+            <!--This is for Column Header with color -->
+            <tr class="table-primary bg-primary">
+                <td>Field Name</td>
+                <td class="text-nowrap">Data Type</td>
+                <td>Remarks</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!--This is for row value-->
+                <td>OEM_Partner_Id</td>
+                <td class="text-nowrap">String (50)</td>
+                <td>
+                    This Id will be provided by Paywiser; Same Id should be used in each record.
+                    (This field information specific for each end point user/application. Every record should be with this given id.)
+                </td>
+            </tr>
+            <tr>
+                <td>SecretKey</td>
+                <td>String (20)</td>
+                <td>OEM_Partner_ID and SecretKey collect from PW technical team.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!--For api result table-->
+    <table class="table table-bordered">
+        <thead class="bg-primary">
+            <!--This is for Column Header with color -->
+            <tr class="table-primary">
+                <td>Input Payload Structure</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!--This is for row value-->
+                <td>
+                    <pre><code>{
+                            <!--With Color Code using Span-->
+                    <span style="color:red">"OEM_Partner_Id":</span> "202109280000",
+                    <span style="color:red">"SecretKey":</span> "xxxxxx"
+            }
+                        </code></pre>
+                </td>>/tr>
+
+
+        </tbody>
+    </table>
+
+    <table class="table table-bordered">
+        <thead class="bg-primary">
+            <!--This is for Column Header with color -->
+            <tr class="table-primary">
+
+                <td>API Execution</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <pre><code>{
+                    <span style="color:red">"MessageCode":</span> "1002",
+                    <span style="color:red">"MessageText":</span> "Welcome... you are verified. A JWTtoken has issued.  You need to use same other end point access.",
+                    <span style="color:red">"JWTToken":</span> "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMjEwOTI4OTk5OSIsIm5iZiI6MTY1MTY2MzgxOCwiZXhwIjoxNjUxNjY1MDE4LCJpYXQiOjE2NTE2NjM4MTh9.C68Ch0kBEgSaMMJFAa6sjkgw_WEAePHMC7BEVnhfK54"
+}
+                        </code></pre>
+                </td>
+            </tr>
+            <tr><td>If data validation check is ok end point will return message code 1002 with return record of updated status </td></tr>
+        </tbody>
+    </table>
+    <!--End API Document Style-->
+    <!--Start Document Style For Text Documetn with Image-->
+    <!--Paragrap With bullet List-->
+    <p>
+        These endpoints to the development are shown below. The URL to the production server will be provided on request.<br />
+        <ul style="padding-left:30px">
+            <li>To access the functional Endpoint, you need to use the bearer token-based authentication.</li>
+            <li>To get the token, The OEM partner number / ID and associated secret key is required to obtain  the JWT token, this token will be used for calling various Mastercard Endpoints.</li>
+        </ul>
+    </p>
+
+    <!--Color Heading-->
+    <h5 class="text-primary"> Required parameters for Paywiser Mastercard API Endpoint access</h5>
+    <!--Table With Out Head-->
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <!--This is for row value-->
+                <td>Host (Dev) [suggested to keep in configuration as production level host will be different.]</td>
+                <td>https://dev1onboarding.paywiser.com/BHSKYCAPIV2/BHSKycV2</td>
+            </tr>
+            <tr>
+                <td>OEM_Partner_Id / SecretKey</td>
+                <td>
+                    Partner ID to be provided Secretkey to be provided
+                </td>
+            </tr>
+            <tr>
+                <td>Authorization token type: </td>
+                <td>
+                    JWT Receive token to be set at header of the request under authorization.
+                    Example: request.AddHeader(<span style="color:blue">"Authorization"</span>, <span style="color:blue">"Bearer eyJciOi... "</span>);
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--Color Text Header-->
+    <h5 class="text-primary">General notes: </h5>
+    <!--Paragraph-->
+    <p>A brief overview of the security setup are provided below:</p>
+    <!--For Image-->
+    <img src="Document_Images/Security_Setup.png" alt="HTML tutorial" style="width:100%;height:300px;">
+
+    <!-- With Bold Point Text-->
+    <p>
+        <b>OEM_Partner_Id</b> this field data will be provided by Paywiser. This is an unique number assigned to each partner.<br /><br />
+
+        <b>PWOBUserRefNo</b> this field data will be auto generated by Paywiser. This is an unique number assigned to each applicant. This is the ID that should be used when communicating with Paywiser. It provides Paywiser’s customer service consultant a method to identify the individual in Paywiser’s system.
+        <br /><br />
+        <b>Customer_Reg_Id</b> this field data should be provided / generated by the partner. This number should be the unique identifier in partner’s internal system. This number should be unique and when Paywiser returns the application status, it would help OEM partner to quickly identify the applicant in their own system.<br />
+        In case Customer_Reg_Id is not provided, the PWOBUserRefNo will be Customer_Reg_Id.
+
+    </p>
+    <!--End Document Style For Text Documetn with Image-->
+
 </body>
 </html>
