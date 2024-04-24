@@ -5,11 +5,11 @@
     <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="container-fluid frmbaseContainer02" id="dataUpdatePanel" runat="server">
-               <div class="row frmbaseContainer02-header">
-                   <div class="col-sm-12 text-right">
-                       <asp:Label ID="lblfrmName" runat="server">frmName</asp:Label>
-                   </div>
-               </div>
+                <div class="row frmbaseContainer02-header">
+                    <div class="col-sm-12 text-right">
+                        <asp:Label ID="lblfrmName" runat="server">frmName</asp:Label>
+                    </div>
+                </div>
 
                 <asp:MultiView ID="mvwDataVw" ActiveViewIndex="2" runat="server">
                     <%--Search Start--%>
@@ -69,9 +69,9 @@
                             </div>
                         </div>
                     </asp:View>
-                 <%--Search End--%>
+                    <%--Search End--%>
 
-                 <%--Msg Board--%>
+                    <%--Msg Board--%>
                     <asp:View ID="vw01" runat="server">
                         <div class="container-fluid myMsgBoxStyleContainer">
                             <div class="myMsgBoxStyle">
@@ -100,10 +100,10 @@
                             </div>
                         </div>
                     </asp:View>
-                 <%--Msg Board End--%>
+                    <%--Msg Board End--%>
 
-                 <%--Data Entry--%>
-                   <asp:View ID="vw02" runat="server">
+                    <%--Data Entry--%>
+                    <asp:View ID="vw02" runat="server">
                         <div class="container-fluid" style="margin-top: 10px;">
 
                             <div class="form-row">
@@ -120,112 +120,114 @@
                                         <asp:Button ID="Button_LogOff" runat="server" CssClass="btn btn-default" SkinID="btnRed" TabIndex="0" OnClick="Button_LogOff_Click" Text="Close"></asp:Button>
                                     </div>
                                 </div>
-                            </div> 
-                                <div class="form-row">
-                                    <div class="container-fluid myFrame">
-                                   <div class="form-group col-sm-3 required">
+                            </div>
+                            <div class="form-row">
+                                <div class="container-fluid myFrame">
+                                    <div class="form-group col-sm-3 required">
                                         <asp:Label ID="lblEntryId" CssClass="ctrlStyle_Label" runat="server" Text="Entry ID"></asp:Label>
-                                         <asp:TextBox ID="txtEntryId" CssClass="form-control form-group-sm" runat="server" Enabled="false"></asp:TextBox>
-                                   </div>
-                                        <div class="form-group col-sm-3 required">
+                                        <asp:TextBox ID="txtEntryId" CssClass="form-control form-group-sm" runat="server" Enabled="false"></asp:TextBox>
+                                    </div>
+                                    <div class="form-group col-sm-3 required">
                                         <asp:Label ID="lblEntryDT" CssClass="ctrlStyle_Label" runat="server" Text="Entry Date"></asp:Label>
                                         <asp:TextBox ID="txtEntryDT" runat="server" CssClass="form-control form-group-sm" placeholder="dd-MMM-yyyy"></asp:TextBox>
                                         <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txtEntryDT" Format="dd-MMM-yyyy" CssClass="ajaxcald"></ajaxToolkit:CalendarExtender>
-                                   </div>
-                                        <div class="form-group col-sm-3 required">
+                                    </div>
+                                    <div class="form-group col-sm-3 required">
                                         <asp:Label ID="lblDocGroup" CssClass="ctrlStyle_Label" runat="server" Text="Document Group"></asp:Label>
-                                         <asp:DropDownList ID="ddlDocGroup" CssClass="form-control form-group-sm" runat="server"></asp:DropDownList>
-                                   </div>
-                                   <div class="form-group col-sm-3 required">
+                                        <asp:DropDownList ID="ddlDocGroup" CssClass="form-control form-group-sm" runat="server"></asp:DropDownList>
+                                    </div>
+                                    <div class="form-group col-sm-3 required">
                                         <asp:Label ID="lblDocName" CssClass="ctrlStyle_Label" runat="server" Text="Document Name"></asp:Label>
-                                         <asp:TextBox ID="txtDocName" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
-                                   </div>
-                                        <div class="form-group col-sm-3">
+                                        <asp:TextBox ID="txtDocName" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="form-group col-sm-3">
                                         <asp:Label ID="lblDocDESC" CssClass="ctrlStyle_Label" runat="server" Text="Document DESC"></asp:Label>
-                                         <asp:TextBox ID="txtDocDESC" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
-                                   </div>
-                                        <div class="form-group col-sm-3">
+                                        <asp:TextBox ID="txtDocDESC" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="form-group col-sm-3">
                                         <asp:Label ID="lblVersion" CssClass="ctrlStyle_Label" runat="server" Text="Version No"></asp:Label>
-                                         <asp:TextBox ID="txtVersion" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
-                                     </div>
-                                         
-                                        <div class="form-group col-sm-3">
-                                        <asp:Label ID="lblBuild" CssClass="ctrlStyle_Label" runat="server" Text="Build No"></asp:Label>
-                                         <asp:TextBox ID="txtBuild" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
-                                   </div>
-                                        
-                                         <div class="form-group col-sm-3">
-                                        <asp:Label ID="lblHeader" CssClass="ctrlStyle_Label" runat="server" Text="Header"></asp:Label>
-                                         <asp:TextBox ID="txtHeader" CssClass="form-control form-group-sm"  runat="server"></asp:TextBox>
-                                   </div>
-                                       
-                                          <div class="form-group col-sm-12">
-                                        <asp:Label ID="lblSec1" CssClass="ctrlStyle_Label" runat="server" Text="Section1"></asp:Label>
-                                         <asp:TextBox ID="txtSec1" CssClass="form-control form-group-sm " TextMode="MultiLine" Rows="5"  runat="server"></asp:TextBox>
-                                   </div> 
-                                         <div class="form-group col-sm-12">
-                                        <asp:Label ID="lblCon1" CssClass="ctrlStyle_Label" runat="server" Text="Content1"></asp:Label>
-                                         <asp:TextBox ID="txtCon1" CssClass="form-control form-group-sm" TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
-                                   </div>
-                                         <div class="form-group col-sm-12">
-                                        <asp:Label ID="lblSec2" CssClass="ctrlStyle_Label" runat="server" Text="Section2"></asp:Label>
-                                         <asp:TextBox ID="txtSec2" CssClass="form-control form-group-sm " TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
-                                   </div>
-                                        
-                                         <div class="form-group col-sm-12 ">
-                                        <asp:Label ID="lblCon2" CssClass="ctrlStyle_Label" runat="server" Text="Content2"></asp:Label>
-                                         <asp:TextBox ID="txtCon2" CssClass="form-control form-group-sm" TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
-                                   </div> 
-                                          <div class="form-group col-sm-6">
-                                        <asp:Label ID="lblFooter" CssClass="ctrlStyle_Label" runat="server" Text="Footer"></asp:Label>
-                                         <asp:TextBox ID="txtFooter" CssClass="form-control form-group-sm" TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
-                                   </div>
-                                        <div class="form-group col-sm-3">
-                                        <asp:Label ID="lblFileP1" CssClass="ctrlStyle_Label" runat="server" Text="Upload File1"></asp:Label>
-                                         <asp:FileUpload ID="txtFileP1" CssClass="form-group-sm" runat="server" EnableViewState="true"></asp:FileUpload>
-                                   </div>
-                                        <div class="form-group col-sm-3">
-                                        <asp:Label ID="lblFileP2" CssClass="ctrlStyle_Label" runat="server" Text="Upload File2"></asp:Label>
-                                         <asp:FileUpload ID="txtFileP2" CssClass=" form-group-sm" runat="server"></asp:FileUpload>
-                                   </div>
-                                        <div class="form-group col-sm-3">
-                                        <asp:Label ID="lblFileP3" CssClass="ctrlStyle_Label" runat="server" Text="Upload File3"></asp:Label>
-                                         <asp:FileUpload ID="txtFileP3" CssClass="form-group-sm" runat="server"></asp:FileUpload>
-                                   </div>
-                                         </div>
+                                        <asp:TextBox ID="txtVersion" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
                                     </div>
-                                   
-                               </div>
 
-                            <div class="form-row">
-                                <div class="container-fluid myFrame">
-                                    <div class="col-sm-6 red-forecolor text-left">
-                                        All the red (*) marked fields are mandatory
+                                    <div class="form-group col-sm-3">
+                                        <asp:Label ID="lblBuild" CssClass="ctrlStyle_Label" runat="server" Text="Build No"></asp:Label>
+                                        <asp:TextBox ID="txtBuild" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
                                     </div>
-                                    <div class="col-sm-6" style="text-align: right;">
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-default" OnClick="Button_save_Click"></asp:Button>
-                                            <asp:Button ID="Button_Delete" runat="server" Text="Delete" CssClass="btn btn-default" OnClick="Button_Delete_Click"></asp:Button>
-                                            <asp:Button ID="Button_Cancel" runat="server" Text="Cancel" CssClass="btn btn-default" OnClick="Button_Cancel_Click"></asp:Button>
+
+                                    <div class="form-group col-sm-3">
+                                        <asp:Label ID="lblHeader" CssClass="ctrlStyle_Label" runat="server" Text="Header"></asp:Label>
+                                        <asp:TextBox ID="txtHeader" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
+                                    </div>
+                                  
+                                    
+                                        <div class="form-group col-sm-12">
+                                            <asp:Label ID="lblSec1" CssClass="ctrlStyle_Label"  runat="server" Text="Section1"></asp:Label>
+                                            <asp:TextBox ID="txtSec1" CssClass="form-control form-group-sm TextStyle" TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
                                         </div>
+                                        <div class="form-group col-sm-12">
+                                            <asp:Label ID="lblCon1" CssClass="ctrlStyle_Label" runat="server" Text="Content1"></asp:Label>
+                                            <asp:TextBox ID="txtCon1" CssClass="form-control form-group-sm TextStyle" TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div class="form-group col-sm-12">
+                                            <asp:Label ID="lblSec2" CssClass="ctrlStyle_Label" runat="server" Text="Section2"></asp:Label>
+                                            <asp:TextBox ID="txtSec2" CssClass="form-control form-group-sm TextStyle" TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
+                                        </div>
+
+                                        <div class="form-group col-sm-12 ">
+                                            <asp:Label ID="lblCon2" CssClass="ctrlStyle_Label" runat="server" Text="Content2"></asp:Label>
+                                            <asp:TextBox ID="txtCon2" CssClass="form-control form-group-sm TextStyle" TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <asp:Label ID="lblFooter" CssClass="ctrlStyle_Label" runat="server" Text="Footer"></asp:Label>
+                                            <asp:TextBox ID="txtFooter" CssClass="form-control form-group-sm TextStyle" TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
+                                        </div>
+                                    
+                                    <div class="form-group col-sm-3">
+                                        <asp:Label ID="lblFileP1" CssClass="ctrlStyle_Label" runat="server" Text="Upload File1"></asp:Label>
+                                        <asp:FileUpload ID="txtFileP1" CssClass="form-group-sm" runat="server" EnableViewState="true"></asp:FileUpload>
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <asp:Label ID="lblFileP2" CssClass="ctrlStyle_Label" runat="server" Text="Upload File2"></asp:Label>
+                                        <asp:FileUpload ID="txtFileP2" CssClass=" form-group-sm" runat="server"></asp:FileUpload>
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <asp:Label ID="lblFileP3" CssClass="ctrlStyle_Label" runat="server" Text="Upload File3"></asp:Label>
+                                        <asp:FileUpload ID="txtFileP3" CssClass="form-group-sm" runat="server"></asp:FileUpload>
                                     </div>
                                 </div>
-                            </div> 
-                            </asp:View>
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+                            <div class="container-fluid myFrame">
+                                <div class="col-sm-6 red-forecolor text-left">
+                                    All the red (*) marked fields are mandatory
+                                </div>
+                                <div class="col-sm-6" style="text-align: right;">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-default" OnClick="Button_save_Click"></asp:Button>
+                                        <asp:Button ID="Button_Delete" runat="server" Text="Delete" CssClass="btn btn-default" OnClick="Button_Delete_Click"></asp:Button>
+                                        <asp:Button ID="Button_Cancel" runat="server" Text="Cancel" CssClass="btn btn-default" OnClick="Button_Cancel_Click"></asp:Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </asp:View>
                     <%--Data Entry End--%>
-            </asp:MultiView>
+                </asp:MultiView>
                 <div class="row" style="margin-top: 5px;">
                     <div class="form-group col-sm-12">
                         <asp:TextBox ID="TxtMsgBox" CssClass="form-control form-group-sm ctrlStyle_FullLength red-forecolor" runat="server" TextMode="MultiLine">Common Test</asp:TextBox>
                     </div>
                 </div>
-            
-                </div>
-                </ContentTemplate>
-         <Triggers>
-        <asp:PostBackTrigger ControlID="btnSave" />
+
+            </div>
+        </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnSave" />
         </Triggers>
-        </asp:UpdatePanel>
+    </asp:UpdatePanel>
     <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel">
         <ProgressTemplate>
             <div style="position: fixed; z-index: 999; min-height: 100%; width: 100%; top: -1px; left: -1px; background-color: whitesmoke; filter: alpha(opacity=60); opacity: 0.6; -moz-opacity: 0.8;">
@@ -236,4 +238,4 @@
             </div>
         </ProgressTemplate>
     </asp:UpdateProgress>
-    </asp:Content>
+</asp:Content>
