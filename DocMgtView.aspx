@@ -13,6 +13,7 @@
         });
         function SearchText() {
             $("#<%= txtSearch.ClientID %>").autocomplete({
+                delay: 1,
             source: function (request, response) {
                 var searchTerm = $("#<%= txtSearch.ClientID %>").val();
                 $.ajax({
