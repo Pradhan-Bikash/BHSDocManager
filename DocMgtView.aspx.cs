@@ -4,6 +4,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -319,6 +321,7 @@ namespace BPWEBAccessControl
 		{
             sectionDetailsContainer.Style["display"] = "block";
         }//eof
+     
         #endregion
 
         #region File Download Related
@@ -392,106 +395,133 @@ namespace BPWEBAccessControl
         {
             GetFileName("btnDownload3");
         }//eof
-		#endregion
-		#region Search Related
-		protected void txtSearch_TextChanged(object sender, EventArgs e)
-		{
-			string searchTerm = txtSearch.Text.Trim();
-			SearchData(searchTerm);
-		//	//Assuming you have a connection string in your web.config
-
-		//string connectionString = ConfigurationManager.ConnectionStrings["YourConnectionString"].ConnectionString;
-
-		//	//Query to count the number of items containing the search term
-
-		//string query = "SELECT COUNT(*) FROM YourTable WHERE YourColumn LIKE @SearchTerm";
-
-		//	using (SqlConnection connection = new SqlConnection(connectionString))
-		//	{
-		//		using (SqlCommand command = new SqlCommand(query, connection))
-		//		{
-		//			// Add parameters to prevent SQL injection
-		//			command.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
-
-		//			connection.Open();
-		//			int resultCount = (int)command.ExecuteScalar();
-
-		//			// Display the result
-		//			lblResult.Text = $"Number of items containing '{searchTerm}': {resultCount}";
-		//		}
-		//	}
-		}
-		private void SearchData(string term)
-		{
-
-			string strSQl = "SELECT * FROM tblDOCMgt WHERE DocumentName LIKE '%" + term.Trim() + "%'";
+        #endregion
 
 
-			ConnectionManager.DAL.ConManager objCon = null;
-			StringBuilder resultBuilder = new StringBuilder();
-			try
-			{
-				objCon = new ConnectionManager.DAL.ConManager("1");
-				DataSet dsLocal;
-				objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1");
+        #region Search Related
+        //protected void txtSearch_TextChanged(object sender, EventArgs e)
+        //{
+        //    string searchTerm = txtSearch.Text.Trim();
+        //    //SearchData(searchTerm); 
+        //    GetSearchResults(searchTerm);
+        //    //	//Assuming you have a connection string in your web.config
 
-				if (dsLocal != null && dsLocal.Tables.Count > 0)
-				{
-					DataTable dtDocument = dsLocal.Tables[0];
+        //    //string connectionString = ConfigurationManager.ConnectionStrings["YourConnectionString"].ConnectionString;
 
-					foreach (DataRow row in dtDocument.Rows)
-					{
-						// Append each document name to the result string
-						resultBuilder.Append(row["DocumentName"].ToString() + "<br/>");
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				throw ex;
-			}
-			finally
-			{
-				objCon = null;
-			}
+        //    //	//Query to count the number of items containing the search term
 
-			// Display the result
-			lblResult.Text = resultBuilder.ToString();
-		}
+        //    //string query = "SELECT COUNT(*) FROM YourTable WHERE YourColumn LIKE @SearchTerm";
 
-		//      private List<string> GetSearchResults(string searchTerm)
-		//{
-		//          List<string> results = new List<string>();
-		//          string strSQl = "SELECT * FROM tblDOCMgt WHERE DocumentName LIKE '%" + searchTerm.Trim() + "%'";
-		//           ConnectionManager.DAL.ConManager objCon = null;
-		//          try
-		//	{
-		//		objCon = new ConnectionManager.DAL.ConManager("1");
-		//		DataSet dsLocal;
-		//		objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1");
+        //    //	using (SqlConnection connection = new SqlConnection(connectionString))
+        //    //	{
+        //    //		using (SqlCommand command = new SqlCommand(query, connection))
+        //    //		{
+        //    //			// Add parameters to prevent SQL injection
+        //    //			command.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
 
-		//		if (dsLocal != null && dsLocal.Tables.Count > 0)
-		//		{
-		//			DataTable dtDocument = dsLocal.Tables[0];
+        //    //			connection.Open();
+        //    //			int resultCount = (int)command.ExecuteScalar();
 
-		//			foreach (DataRow row in dtDocument.Rows)
-		//			{
-		//                      results.Add(row["DocumentName"].ToString());
-		//                  }
-		//		}
-		//	}
-		//	catch (Exception ex)
-		//	{
-		//		throw ex;
-		//	}
-		//	finally
-		//	{
-		//		objCon = null;
-		//	}
-		//          return results;
-		//}
-		#endregion
+        //    //			// Display the result
+        //    //			lblResult.Text = $"Number of items containing '{searchTerm}': {resultCount}";
+        //    //		}
+        //    //	}
+        //}
+        //private void SearchData(string term)
+        //{
 
-	}
+        //	string strSQl = "SELECT * FROM tblDOCMgt WHERE DocumentName LIKE '%" + term.Trim() + "%'";
+
+
+        //	ConnectionManager.DAL.ConManager objCon = null;
+        //	StringBuilder resultBuilder = new StringBuilder();
+        //	try
+        //	{
+        //		objCon = new ConnectionManager.DAL.ConManager("1");
+        //		DataSet dsLocal;
+        //		objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1");
+
+        //		if (dsLocal != null && dsLocal.Tables.Count > 0)
+        //		{
+        //			DataTable dtDocument = dsLocal.Tables[0];
+
+        //			foreach (DataRow row in dtDocument.Rows)
+        //			{
+        //				// Append each document name to the result string
+        //				resultBuilder.Append(row["DocumentName"].ToString() + "<br/>");
+        //			}
+        //		}
+        //	}
+        //	catch (Exception ex)
+        //	{
+        //		throw ex;
+        //	}
+        //	finally
+        //	{
+        //		objCon = null;
+        //	}
+
+        //	// Display the result
+        //	lblResult.Text = resultBuilder.ToString();
+
+        //}
+
+
+        [WebMethod]
+        public static List<string> GetSearchResults(string searchTerm)
+        {
+            List<string> results = new List<string>();
+            string strSQl = "SELECT * FROM tblDOCMgt WHERE DocumentName LIKE '%" + searchTerm.Trim() + "%'";
+            ConnectionManager.DAL.ConManager objCon = null;
+            try
+            {
+                objCon = new ConnectionManager.DAL.ConManager("1");
+                DataSet dsLocal;
+                objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1");
+
+                if (dsLocal != null && dsLocal.Tables.Count > 0)
+                {
+                    DataTable dtDocument = dsLocal.Tables[0];
+
+                    foreach (DataRow row in dtDocument.Rows)
+                    {
+                        results.Add(row["DocumentName"].ToString());
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                objCon = null;
+            }
+
+            return results;
+        }
+
+        //protected void lbSearchResults_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    // Get the selected item from the ListBox
+        //    string selectedDocumentName = lbSearchResults.SelectedItem.Text;
+
+        //    // Update the details based on the selected item
+        //    UpdateDocumentContent(selectedDocumentName);
+        //}
+        //private void UpdateDocumentContent(string selectedDocumentName)
+        //{
+        //}
+
+
+
+
+
+
+
+        #endregion
+
+    }
 
 }
