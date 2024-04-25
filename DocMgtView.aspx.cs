@@ -258,8 +258,8 @@ namespace BPWEBAccessControl
             TreeNode selectedNode = TreeView1.SelectedNode;
             if (selectedNode != null)
             {
-                string nodeId = selectedNode.Value; // This will now contain the NodeID
-                DataTable dtDocument = GetDocumentDetails(nodeId);
+                string nodeName = selectedNode.Text; // This will now contain the NodeID
+                DataTable dtDocument = GetDocumentDetails(nodeName);
                 if (dtDocument != null && dtDocument.Rows.Count > 0)
                 {
                     DataRow docRow = dtDocument.Rows[0];
@@ -280,7 +280,7 @@ namespace BPWEBAccessControl
         }
 
 
-        private DataTable GetDocumentDetails(string nodeId)
+        private DataTable GetDocumentDetails(string nodeName)
         {
             DataTable dtDocument = new DataTable();
 
@@ -297,10 +297,10 @@ namespace BPWEBAccessControl
                 {
                     dtDocument = dsLocal.Tables[0];
 
-                    if (!string.IsNullOrEmpty(nodeId))
+                    if (!string.IsNullOrEmpty(nodeName))
                     {
                         DataView dvLocal = new DataView(dtDocument); // Create a DataView to filter the DataTable
-                        dvLocal.RowFilter = "EntryID = '" + nodeId.Replace("'", "''") + "'"; // Apply the filter
+                        dvLocal.RowFilter = "DocumentName = '" + nodeName.Replace("'", "''") + "'"; // Apply the filter
                         dtDocument = dvLocal.ToTable(); // Convert the filtered DataView back to a DataTable
                     }
                 }
@@ -398,74 +398,7 @@ namespace BPWEBAccessControl
         #endregion
 
 
-        #region Search Related
-        //protected void txtSearch_TextChanged(object sender, EventArgs e)
-        //{
-        //    string searchTerm = txtSearch.Text.Trim();
-        //    //SearchData(searchTerm); 
-        //    GetSearchResults(searchTerm);
-        //    //	//Assuming you have a connection string in your web.config
-
-        //    //string connectionString = ConfigurationManager.ConnectionStrings["YourConnectionString"].ConnectionString;
-
-        //    //	//Query to count the number of items containing the search term
-
-        //    //string query = "SELECT COUNT(*) FROM YourTable WHERE YourColumn LIKE @SearchTerm";
-
-        //    //	using (SqlConnection connection = new SqlConnection(connectionString))
-        //    //	{
-        //    //		using (SqlCommand command = new SqlCommand(query, connection))
-        //    //		{
-        //    //			// Add parameters to prevent SQL injection
-        //    //			command.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
-
-        //    //			connection.Open();
-        //    //			int resultCount = (int)command.ExecuteScalar();
-
-        //    //			// Display the result
-        //    //			lblResult.Text = $"Number of items containing '{searchTerm}': {resultCount}";
-        //    //		}
-        //    //	}
-        //}
-        //private void SearchData(string term)
-        //{
-
-        //	string strSQl = "SELECT * FROM tblDOCMgt WHERE DocumentName LIKE '%" + term.Trim() + "%'";
-
-
-        //	ConnectionManager.DAL.ConManager objCon = null;
-        //	StringBuilder resultBuilder = new StringBuilder();
-        //	try
-        //	{
-        //		objCon = new ConnectionManager.DAL.ConManager("1");
-        //		DataSet dsLocal;
-        //		objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1");
-
-        //		if (dsLocal != null && dsLocal.Tables.Count > 0)
-        //		{
-        //			DataTable dtDocument = dsLocal.Tables[0];
-
-        //			foreach (DataRow row in dtDocument.Rows)
-        //			{
-        //				// Append each document name to the result string
-        //				resultBuilder.Append(row["DocumentName"].ToString() + "<br/>");
-        //			}
-        //		}
-        //	}
-        //	catch (Exception ex)
-        //	{
-        //		throw ex;
-        //	}
-        //	finally
-        //	{
-        //		objCon = null;
-        //	}
-
-        //	// Display the result
-        //	lblResult.Text = resultBuilder.ToString();
-
-        //}
-
+        #region Search and View Related
 
         [WebMethod]
         public static List<string> GetSearchResults(string searchTerm)
@@ -502,23 +435,42 @@ namespace BPWEBAccessControl
             return results;
         }
 
-        //protected void lbSearchResults_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    // Get the selected item from the ListBox
-        //    string selectedDocumentName = lbSearchResults.SelectedItem.Text;
+        protected void btnSearch_Click(object sender,EventArgs e)
+		{
+            try
+            {
 
-        //    // Update the details based on the selected item
-        //    UpdateDocumentContent(selectedDocumentName);
-        //}
-        //private void UpdateDocumentContent(string selectedDocumentName)
-        //{
-        //}
+                if (this.txtSearch.Text.Trim() != "")
+                {
+                    string nodeName = txtSearch.Text; // This will now contain the NodeID
+                    DataTable dtDocument = GetDocumentDetails(nodeName);
+                    if (dtDocument != null && dtDocument.Rows.Count > 0)
+                    {
+                        DataRow docRow = dtDocument.Rows[0];
 
+                        lblDocDESC.Text = docRow["DocumentDescription"].ToString();
+                        lblVNo.Text = docRow["VersionNo"].ToString();
+                        lblBNo.Text = docRow["BuildNo"].ToString();
+                        lblHeader.Text = docRow["Header"].ToString();
+                        dvSec1.InnerHtml = Server.HtmlDecode("" + docRow["Section1"].ToString());
+                        dvSec2.InnerHtml = Server.HtmlDecode("" + docRow["Section2"].ToString());
+                        dvCon1.InnerHtml = Server.HtmlDecode("" + docRow["Content1"].ToString());
+                        dvCon2.InnerHtml = Server.HtmlDecode("" + docRow["Content2"].ToString());
 
+                        lblFooter.Text = docRow["Footer"].ToString();
+                        Show_Content();//Show View After Click any node 
+                    }
+                }
 
-
-
-
+            }
+            catch (Exception ex)
+            {
+                ShowLog("Error: \n" + ex.Message.ToString());
+            }
+            finally
+            {
+            }
+        }
 
         #endregion
 

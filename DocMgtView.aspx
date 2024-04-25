@@ -4,35 +4,88 @@
 <asp:Content ID="Content1" ValidateRequest="false" ContentPlaceHolderID="MainContent" runat="server">
 
 
- <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
-<script type="text/javascript">  
-    $(document).ready(function() {  
-        SearchText();  
-    });  
-
-    function SearchText() {  
-        $("#<%= txtSearch.ClientID %>").autocomplete({  
-            source: function(request, response) {  
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+    <script type="text/javascript">  
+        $(document).ready(function () {
+            SearchText();
+        });
+        function SearchText() {
+            $("#<%= txtSearch.ClientID %>").autocomplete({
+            source: function (request, response) {
                 var searchTerm = $("#<%= txtSearch.ClientID %>").val();
-                $.ajax({  
+                $.ajax({
                     type: "POST",
                     url: "DocMgtView.aspx/GetSearchResults",
-                    data: JSON.stringify({ searchTerm: searchTerm }), 
+                    data: JSON.stringify({ searchTerm: searchTerm }),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    success: function(data) {  
-                        response(data.d);  
-                    },  
-                    error: function(result) {  
-                        alert("No Match");  
-                    }   
-                });  
-            }  
-        });  
-    }  
-</script> 
+                    success: function (data) {
+                        response(data.d);
+                    },
+                    error: function (result) {
+                        alert("No Match");
+                    }
+                });
+            }
+        });
+        }
+    </script>
+
+     <%--<script type="text/javascript">  
+         $(document).ready(function () {
+             // Bind autocomplete functionality to the textbox
+             bindAutocomplete();
+
+             // Handle click event of the search button
+             $("#btnSearch").click(function () {
+                 searchDocuments();
+             });
+         });
+
+         // Function to bind autocomplete to the search textbox
+         function bindAutocomplete() {
+             $("<%= txtSearch.ClientID %>").autocomplete({
+                 source: function (request, response) {
+                     var searchTerm = $("<%= txtSearch.ClientID %>").val();
+                     $.ajax({
+                         type: "POST",
+                         url: "DocMgtView.aspx/GetSearchResults",
+                         data: JSON.stringify({ searchTerm: searchTerm }),
+                         contentType: "application/json; charset=utf-8",
+                         dataType: "json",
+                         success: function (data) {
+                             response(data.d);
+                         },
+                         error: function (result) {
+                             alert("Error fetching search results.");
+                         }
+                     });
+                 }
+             });
+         }
+
+         // Function to perform search and display results
+         function searchDocuments() {
+             var searchTerm = $("<%= txtSearch.ClientID %>").val();
+             $.ajax({
+                 type: "POST",
+                 url: "DocMgtView.aspx/GetSearchResults",
+                 data: JSON.stringify({ searchTerm: searchTerm }),
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 success: function (data) {
+                     // Display search results here
+                     // You may update UI elements with the search results
+                 },
+                 error: function (result) {
+                     alert("Error fetching search results.");
+                 }
+             });
+         }
+     </script>--%>
+    
 
 
 
@@ -88,7 +141,14 @@
                             <div class="sidebar_wrapper">
                                 <div class="sideBar sticky">
                                     <div class="sideBar--wrap newLeftbar">
-                                        <asp:TextBox ID="txtSearch" runat="server" placeholder="Search Something..." CssClass="form-control form-group-sm"></asp:TextBox>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search Something....."></asp:TextBox>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-default btn-block " Text="Search" OnClick="btnSearch_Click" />
+                                            </div>
+                                        </div>
 
                                         <asp:TreeView ID="TreeView1" runat="server" RootNodeStyle-CssClass="Root-NodeStyle" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged">
                                         </asp:TreeView>
