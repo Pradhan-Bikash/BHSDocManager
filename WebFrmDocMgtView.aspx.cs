@@ -51,7 +51,7 @@ namespace BPWEBAccessControl
                     //Cancel();
 
                 }
-                ScriptManager.RegisterStartupScript(this, GetType(), "InitializeAutocomplete", "initializeAutocomplete();", true);
+               
             }
             catch (System.Exception ex)
             {
@@ -80,7 +80,7 @@ namespace BPWEBAccessControl
                 
                 
                 
-                this.mvwDataVw.SetActiveView(this.vw00);
+                this.mvwDataVw.SetActiveView(this.vw02);
 
             }
             catch (Exception ex)
@@ -112,7 +112,7 @@ namespace BPWEBAccessControl
         private void dialogFunction()
         {
             
-            string vwName = "vw01";
+            string vwName = "vw02";
             
             try
             {
@@ -130,7 +130,7 @@ namespace BPWEBAccessControl
         private int returnView(string vwId)
         {
             string vwIds = "";
-            int vwNo = 0;
+            int vwNo = 2;
             try
             {
                 foreach (View vw in mvwDataVw.Views)
@@ -401,56 +401,182 @@ namespace BPWEBAccessControl
 
         #region Search Document view Related
 
-        [WebMethod]
-        [ScriptMethod]
+        //[WebMethod]
+        //[ScriptMethod]
         
-        public static List<string> GetSearchResults(string searchTerm)
-        {
-            System.Data.DataSet dsLocal = null;
-            PWOMS.clsDocApplication objApp = null;
+        //public static List<string> GetSearchResults(string searchTerm)
+        //{
+        //    System.Data.DataSet dsLocal = null;
+        //    PWOMS.clsDocApplication objApp = null;
 
-            List<string> results = new List<string>();
+        //    List<string> results = new List<string>();
            
+        //    try
+        //    {
+        //        objApp = new PWOMS.clsDocApplication();
+        //        objApp.SearchDocName(searchTerm,out dsLocal);
+                
+        //        if (dsLocal != null && dsLocal.Tables.Count > 0)
+        //        {
+        //            DataTable dtDocument = dsLocal.Tables[0];
+
+        //            foreach (DataRow row in dtDocument.Rows)
+        //            {
+        //                results.Add(row["DocumentName"].ToString());
+        //            }
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        objApp = null;
+        //    }
+
+        //    return results;
+        //}
+
+        protected void btnSearchView_Click(object sender,EventArgs e)
+		{
+            this.mvwDataVw.SetActiveView(this.vw00);
+        }
+
+        #endregion
+
+       
+        #region SEARCH RELATED FUNCTIONS
+        private void LoadData(bool IsLoad, string strKey, string FLAG)
+        {
+
+            string SB = "";
+            PWOMS.clsDocApplication objApp = null;
+            System.Data.DataSet dsLocal = null;
+            System.Data.DataTable dtLocal = null;
+            System.Data.DataView dvLocal = null;
+            this.panSearch.Visible = false;
+            this.dgSearch.DataSource = null;
+            this.dgSearch.Visible = false;
+            this.lblInfoDox.Text = "";
+            int rowNo = 0;
+            string strSiteId = Session["USER_SITE"].ToString().Trim();
+
+            string fromDate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            string toDate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             try
             {
                 objApp = new PWOMS.clsDocApplication();
-                objApp.SearchDocName(searchTerm,out dsLocal);
-                
-                if (dsLocal != null && dsLocal.Tables.Count > 0)
+                if (FLAG == "") //this is default search function
                 {
-                    DataTable dtDocument = dsLocal.Tables[0];
+                    //objApp.SearchTeleData(fromDate, toDate, strKey,strSiteId, out dsLocal);
+                }
+                if (FLAG == "DOCMANAGER")
+                {
+                    objApp.SearchDocument(fromDate, toDate, strKey, strSiteId, out dsLocal);
+                }
+                this.lblViewState.Text = FLAG;
+                //Make the 1/1/1901 blank
 
-                    foreach (DataRow row in dtDocument.Rows)
-                    {
-                        results.Add(row["DocumentName"].ToString());
-                    }
+                dtLocal = dsLocal.Tables[0];
+
+                LoadViewScreenInformation(ref dtLocal, "", IsLoad, FLAG);                       // Show all the column name of tbl employee in SearchBy Drop down menu
+
+                dvLocal = new DataView();
+                dvLocal.Table = dtLocal;
+                this.dgSearch.DataSource = dvLocal;
+
+                if (dvLocal.Count > 0)
+                {
+                    this.dgSearch.Visible = true;
+                    this.dgSearch.DataBind();
+                    this.panSearch.Visible = true;
+                    rowNo = dvLocal.Count;
+                    SB = SB + rowNo + " Record(s) found";
+                    this.lblInfoDox.Text = SB;
+                }
+                else
+                {
+                    SB = "No record found....................";
+                    this.lblInfoDox.Text = SB;
                 }
 
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
-                throw ex;
+                ShowLog("Error: \n" + ex.Message.ToString());
             }
             finally
             {
-                objApp = null;
+
             }
-
-            return results;
-        }
-
-        protected void btnSearch_Click(object sender,EventArgs e)
-		{
+        }//eof
+        private void LoadViewScreenInformation(ref DataTable dtFind, string strExcludeColums, bool IsLoad, string FLAG)
+        {
             try
             {
-
-                if (this.txtSearch.Text.Trim() != "")
+                if (IsLoad == true)
                 {
-                    string nodeName = txtSearch.Text; // This will now contain the NodeID
-                    DataTable dtDocument = GetDocumentDetails(nodeName);
-                    SetDoucmentDetails(dtDocument);
-                }
+                    this.ddlSearchBy.DataSource = GetTableDefination(ref dtFind);
+                    this.ddlSearchBy.DataTextField = "EntryID";
+                    this.ddlSearchBy.DataValueField = "EntryID";
+                    this.ddlSearchBy.DataBind();
+                    this.ddlSearchBy.SelectedIndex = 1;
 
+                    //if (FLAG=="PAY")
+                    //{
+                    //    this.ddlSearchBy.SelectedValue = "Supplier";
+                    //}
+
+                }
+            }
+            catch (System.Exception ex)
+            {
+                ShowLog("Error: \n" + ex.Message.ToString());
+            }
+            finally
+            {
+                //
+            }
+        } //eof
+        private DataTable GetTableDefination(ref DataTable dtFind)                                  // Get all The Column Name of tblDocMgt
+        {
+
+            DataTable dt = new DataTable("tblSearchKeyList");
+            dt.Columns.Add("EntryID", typeof(String));
+
+            for (Int32 i = 0; i < dtFind.Columns.Count /*= 4*/; i++)
+            {
+                if (dtFind.Columns[i].DataType == typeof(System.String) ||
+                    dtFind.Columns[i].DataType == typeof(System.Char))
+                {
+                    //if (dtFind.Columns[i].ColumnName.ToString().Length >= 4)
+                    //{
+                    //    if (dtFind.Columns[i].ColumnName.ToString().Substring(dtFind.Columns[i].ColumnName.ToString().Length - 4, 4).ToUpper() == "DATE")
+                    //    {//do nothing
+                    //    }
+                    //    else
+                    //    {
+                    //        dt.Rows.Add(new Object[] { dtFind.Columns[i].ColumnName.ToString() });
+                    //    }
+                    //}
+                    //else
+                    //{
+                    dt.Rows.Add(new Object[] { dtFind.Columns[i].ColumnName.ToString() });
+                    //}
+                }
+            }
+            dt.AcceptChanges();
+            return dt;
+        } //eof
+        private void CancelSearch()
+        {
+            string vwIndex = this.lblViewName.Text;
+            try
+            {
+   
+                    this.mvwDataVw.SetActiveView(this.vw02);
             }
             catch (Exception ex)
             {
@@ -459,7 +585,42 @@ namespace BPWEBAccessControl
             finally
             {
             }
-        }
+        }//eof
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string stringKey = "";
+            string FLAG = "";
+            try
+            {
+
+                if (this.tbValue.Text.Trim() != "")
+                {
+                    if (this.ddlSearchBy.SelectedValue.Trim() != "")
+                    {
+                        FLAG = this.lblViewState.Text.Trim();
+                        stringKey = this.ddlSearchBy.SelectedValue.Trim() + " like '%" + this.tbValue.Text.Trim() + "%'";                                                   //*********//
+                    }
+                    LoadData(false, stringKey, FLAG);
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowLog("Error: \n" + ex.Message.ToString());
+            }
+            finally
+            {
+            }
+        }//eof
+        protected void btnCancelSearch_Click(object sender, EventArgs e)
+        {
+            CancelSearch();
+        }//eof
+        public void Grid_Command(object sender, DataGridCommandEventArgs e)
+        {
+            string vwIndex = this.lblViewName.Text;
+           
+        }//eof 
 
         #endregion
 

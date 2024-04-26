@@ -185,8 +185,8 @@
     <Content Include="Content\w3-colors-win8.css" />
     <Content Include="Content\w3.css" />
     <Content Include="Demo.html" />
-    <Content Include="DocMgtUpdate.aspx" />
-    <Content Include="DocMgtView.aspx" />
+    <Content Include="WebFrmDocMgtUpdate.aspx" />
+    <Content Include="WebFrmDocMgtView.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -286,6 +286,7 @@
     <Compile Include="clsAppSeq.cs" />
     <Compile Include="clsFileIO.cs" />
     <Compile Include="clsFixedVariable.cs" />
+    <Compile Include="clsGenDocID.cs" />
     <Compile Include="clsGenID.cs" />
     <Compile Include="clsSecurityControl.cs" />
     <Compile Include="clsSysLanguage.cs" />
@@ -301,21 +302,20 @@
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="clsDocApplication.cs" />
-    <Compile Include="DocMgtUpdate.aspx.cs">
-      <DependentUpon>DocMgtUpdate.aspx</DependentUpon>
+    <Compile Include="WebFrmDocMgtUpdate.aspx.cs">
+      <DependentUpon>WebFrmDocMgtUpdate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="DocMgtUpdate.aspx.designer.cs">
-      <DependentUpon>DocMgtUpdate.aspx</DependentUpon>
+    <Compile Include="WebFrmDocMgtUpdate.aspx.designer.cs">
+      <DependentUpon>WebFrmDocMgtUpdate.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DocMgtView.aspx.cs">
-      <DependentUpon>DocMgtView.aspx</DependentUpon>
+    <Compile Include="WebFrmDocMgtView.aspx.cs">
+      <DependentUpon>WebFrmDocMgtView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="DocMgtView.aspx.designer.cs">
-      <DependentUpon>DocMgtView.aspx</DependentUpon>
+    <Compile Include="WebFrmDocMgtView.aspx.designer.cs">
+      <DependentUpon>WebFrmDocMgtView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GenDocID.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

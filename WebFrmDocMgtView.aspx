@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" EnableEventValidation="false" ValidateRequest="false" AutoEventWireup="true" MasterPageFile="~/SiteApp.master" CodeBehind="DocMgtView.aspx.cs" Inherits="BPWEBAccessControl.DocMgtView" %>
+﻿<%@ Page Language="C#" EnableEventValidation="false" ValidateRequest="false" AutoEventWireup="true" MasterPageFile="~/SiteApp.master" CodeBehind="WebFrmDocMgtView.aspx.cs" Inherits="BPWEBAccessControl.DocMgtView" %>
 
 <%@ MasterType VirtualPath="~/SiteApp.master" %>
 <asp:Content ID="Content1" ValidateRequest="false" ContentPlaceHolderID="MainContent" runat="server">
@@ -10,10 +10,67 @@
                         <asp:Label ID="lblfrmName" runat="server">frmName</asp:Label>
                     </div>
                 </div>
-                <asp:MultiView ID="mvwDataVw" ActiveViewIndex="1" runat="server">
-
-                    <%--Show Message Dialog--%>
+                <asp:MultiView ID="mvwDataVw" ActiveViewIndex="2" runat="server">
+                    <%--Search Start--%>
                     <asp:View ID="vw00" runat="server">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-12 text-left">
+                                    <asp:Label ID="lblSearchTitle" CssClass="ctrlStyle_Label font-size-xxl ashblue-forecolor" runat="server">Search</asp:Label>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-sm-3">
+                                    <asp:Label ID="lblSearchBy" CssClass="ctrlStyle_Label" runat="server" Text="Search By"></asp:Label>
+                                    <asp:DropDownList ID="ddlSearchBy" runat="server" CssClass="form-control form-group-sm"></asp:DropDownList>
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <asp:Label ID="lblValue" CssClass="ctrlStyle_Label" runat="server" Text="Value"></asp:Label>
+                                    <asp:TextBox ID="tbValue" runat="server" CssClass="form-control form-group-sm"></asp:TextBox>
+                                </div>
+                                <div class="form-group col-sm-3" style="margin-top: 20px">
+
+                                    <asp:Button ID="Button1" CssClass="btn btn-default" runat="server" Text="Serach" OnClick="btnSearch_Click" />
+                                    <asp:Button ID="btnCancelSearch" CssClass="btn btn-default" runat="server" Text="Cancel" OnClick="btnCancelSearch_Click" />
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <asp:Label ID="lblViewState" runat="server" Visible="false"></asp:Label>
+                                    <asp:Label ID="lblViewName" runat="server" Visible="false"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <asp:Label ID="lblInfoDox" CssClass="ctrlStyle_Label normal bold" runat="server"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <asp:Panel ID="panSearch" runat="server" Height="400px" CssClass="table-responsive" ScrollBars="Auto">
+                                        <asp:DataGrid ID="dgSearch" runat="server" CssClass="datagrid table table-striped table-bordered table-condensed" Font-Size="10pt" Font-Names="Calibri,Tahoma,Verdana,Arial" OnItemCommand="Grid_Command"
+                                            CellPadding="4" GridLines="None" ForeColor="#333333">
+                                            <AlternatingItemStyle BorderWidth="1px" BorderStyle="Groove" BorderColor="White"
+                                                BackColor="White" ForeColor="#284775"></AlternatingItemStyle>
+                                            <EditItemStyle BackColor="#999999" />
+                                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                            <HeaderStyle BorderStyle="None" BackColor="#5D7B9D" Font-Bold="True" ForeColor="White"></HeaderStyle>
+                                            <ItemStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                            <Columns>
+                                                <asp:ButtonColumn Text="[Select]" CommandName="EditFile" ItemStyle-Font-Underline="False"
+                                                    ItemStyle-ForeColor="blue" ButtonType="LinkButton">
+                                                    <ItemStyle Font-Underline="False" ForeColor="Blue" />
+                                                </asp:ButtonColumn>
+                                            </Columns>
+                                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                            <SelectedItemStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                        </asp:DataGrid>
+                                    </asp:Panel>
+                                </div>
+                            </div>
+                        </div>
+                    </asp:View>
+                    <%--Search End--%>
+                    <%--Show Message Dialog--%>
+                    <asp:View ID="vw01" runat="server">
                         <div class="container-fluid myMsgBoxStyleContainer">
                             <div class="myMsgBoxStyle">
                                 <div class="myMsgBoxStyle-header">
@@ -43,7 +100,7 @@
                     </asp:View>
 
                     <%--Content Load--%>
-                    <asp:View ID="vw01" runat="server">
+                    <asp:View ID="vw02" runat="server">
                         <!-- Left Sidebar -->
                         <!-- Left Sidebar -->
                         <div class="col-sm-6 col-md-3">
@@ -51,11 +108,8 @@
                                 <div class="sideBar sticky">
                                     <div class="sideBar--wrap newLeftbar">
                                         <div class="row" style="margin:5px">
-                                            <div class="col-md-8">
-                                                <asp:TextBox ID="txtSearch" ClientIDMode="Static" runat="server" CssClass="form-control" placeholder="Search Something....."></asp:TextBox>
-                                            </div>
                                             <div class="col-md-4">
-                                                <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-default btn-block btnSearch" Text="Search" OnClick="btnSearch_Click" />
+                                                <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-default btn-block btnSearch" Text="Search" OnClick="btnSearchView_Click" />
                                             </div>
                                         </div>
 
@@ -131,77 +185,4 @@
 
         </Triggers>
     </asp:UpdatePanel>
-
-
-    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
-    <%--<script type="text/javascript">  
-        $(document).ready(function () {
-            SearchText();
-        });
-        function SearchText() {
-            $("#<%= txtSearch.ClientID %>").autocomplete({
-                delay: 1,
-            source: function (request, response) {
-                var searchTerm = $("#<%= txtSearch.ClientID %>").val();
-                $.ajax({
-                    type: "POST",
-                    url: "DocMgtView.aspx/GetSearchResults",
-                    data: JSON.stringify({ searchTerm: searchTerm }),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (data) {
-                        response(data.d);
-                    },
-                    error: function (result) {
-                        alert("No Match");
-                    }
-                });
-            }
-        });
-        }
-    </script>--%>
-
-
-   <script type="text/javascript">  
-       $(document).ready(function () {
-           initializeAutocomplete();
-       });
-
-       function initializeAutocomplete() {
-           var searchTextBoxClientId = '<%= txtSearch.ClientID %>';
-           $("#" + searchTextBoxClientId).autocomplete({
-               delay: 1,
-               source: function (request, response) {
-                   var searchTerm = $("#" + searchTextBoxClientId).val();
-                   $.ajax({
-                       type: "POST",
-                       url: "DocMgtView.aspx/GetSearchResults",
-                       data: JSON.stringify({ searchTerm: searchTerm }),
-                       contentType: "application/json; charset=utf-8",
-                       dataType: "json",
-                       success: function (data) {
-                           if (data.d.length === 0) {
-                               response([{ label: "No matching Document...", value: "", disabled: true }]);
-                           } else {
-                               response(data.d);
-                           }
-                       },
-                       error: function (result) {
-                           alert("Error fetching search results.");
-                       }
-                   });
-               },
-               select: function (event, ui) {
-
-                   if (ui.item.disabled) {
-                       event.preventDefault();
-                       return false;
-                   }
-               }
-           });
-       }
-   </script>
-
 </asp:Content>

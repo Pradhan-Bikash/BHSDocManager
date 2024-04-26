@@ -11,8 +11,8 @@ namespace BPWEBAccessControl
         public static void RegisterRoutes(RouteCollection routes)
         {
             var settings = new FriendlyUrlSettings();
-            //settings.AutoRedirectMode = RedirectMode.Permanent;
-            settings.AutoRedirectMode = RedirectMode.Off;
+            settings.AutoRedirectMode = RedirectMode.Permanent;
+            
             // This is stabdard one - 
             //routes.EnableFriendlyUrls(settings);
 

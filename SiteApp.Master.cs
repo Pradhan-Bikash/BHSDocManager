@@ -164,10 +164,10 @@ namespace BPWEBAccessControl
                 switch (strID)
                 {
                     case "DOCMANAGER":
-                        Response.Redirect("DocMgtUpdate.aspx");
+                        Response.Redirect("WebFrmDocMgtUpdate.aspx");
                         break;
                     case "DOCVIEW":
-                        Response.Redirect("DocMgtView.aspx");
+                        Response.Redirect("WebFrmDocMgtView.aspx");
                         break;
                     
                     case "LEASE AGREEMENT":
