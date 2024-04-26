@@ -905,5 +905,10 @@
     font-family:Consolas;
     font-size:18px;
 }
+.btnSearch {
+    background-color: #1089ff;
+    margin-right:5px;
+    color:white;
+}
 
                          

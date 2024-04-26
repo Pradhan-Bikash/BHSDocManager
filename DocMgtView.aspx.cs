@@ -51,6 +51,7 @@ namespace BPWEBAccessControl
                     //Cancel();
 
                 }
+                ScriptManager.RegisterStartupScript(this, GetType(), "InitializeAutocomplete", "initializeAutocomplete();", true);
             }
             catch (System.Exception ex)
             {
@@ -201,14 +202,13 @@ namespace BPWEBAccessControl
         #region Load TreeView Data
         private void LoadDynamicData()
         {
-            string strSQl = "SELECT * FROM tblDOCMgt";
-            ConnectionManager.DAL.ConManager objCon = null;
-
+            System.Data.DataSet dsLocal = null;
+            PWOMS.clsDocApplication objApp = null;
+            //string strSiteId = Session["USER_SITE"].ToString().Trim();
             try
             {
-                objCon = new ConnectionManager.DAL.ConManager("1");
-                DataSet dsLocal;
-                objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1");
+                objApp = new PWOMS.clsDocApplication();
+                objApp.GetAllData( out dsLocal);
 
                 if (dsLocal != null && dsLocal.Tables.Count > 0)
                 {
@@ -217,7 +217,7 @@ namespace BPWEBAccessControl
                     Dictionary<string, TreeNode> groupNodes = new Dictionary<string, TreeNode>();
                     foreach (DataRowView row in view)
                     {
-                        string entryId = row["EntryID"].ToString(); 
+                        string entryId = row["EntryID"].ToString();
                         string groupName = row["Documents_Group"].ToString();
                         string docName = row["DocumentName"].ToString();
 
@@ -234,65 +234,64 @@ namespace BPWEBAccessControl
                         groupNodes[groupName].ChildNodes.Add(headerNode);
                     }
                     TreeView1.ExpandAll();
-                    
-
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
-                throw ex;
+                ShowLog("Error: \n" + ex.Message.ToString());
             }
             finally
             {
-                if (objCon != null)
-                {
-                    objCon = null;
-                }
+                objApp = null;
+                dsLocal = null;
             }
         }
-        #endregion
 
-        #region Load Document Details
-        protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
-        {
+            #endregion
+
+            #region Load Document Details
+            protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
+            {
             TreeNode selectedNode = TreeView1.SelectedNode;
             if (selectedNode != null)
             {
                 string nodeName = selectedNode.Text; // This will now contain the NodeID
                 DataTable dtDocument = GetDocumentDetails(nodeName);
-                if (dtDocument != null && dtDocument.Rows.Count > 0)
-                {
-                    DataRow docRow = dtDocument.Rows[0];
+                SetDoucmentDetails(dtDocument);
+            }
+            }
 
-                    lblDocDESC.Text = docRow["DocumentDescription"].ToString();
-                    lblVNo.Text = docRow["VersionNo"].ToString();
-                    lblBNo.Text = docRow["BuildNo"].ToString();
-                    lblHeader.Text = docRow["Header"].ToString();
-                    dvSec1.InnerHtml = Server.HtmlDecode("" + docRow["Section1"].ToString());
-                    dvSec2.InnerHtml = Server.HtmlDecode("" + docRow["Section2"].ToString());
-                    dvCon1.InnerHtml = Server.HtmlDecode("" + docRow["Content1"].ToString());
-                    dvCon2.InnerHtml = Server.HtmlDecode("" + docRow["Content2"].ToString());
+        protected void SetDoucmentDetails(DataTable dtDocument)
+        {
+            if (dtDocument != null && dtDocument.Rows.Count > 0)
+            {
+                DataRow docRow = dtDocument.Rows[0];
 
-                    lblFooter.Text = docRow["Footer"].ToString();
-                    Show_Content();//Show View After Click any node 
-                }
+                lblDocDESC.Text = docRow["DocumentDescription"].ToString();
+                lblVNo.Text = docRow["VersionNo"].ToString();
+                lblBNo.Text = docRow["BuildNo"].ToString();
+                lblHeader.Text = docRow["Header"].ToString();
+                dvSec1.InnerHtml = Server.HtmlDecode("" + docRow["Section1"].ToString());
+                dvSec2.InnerHtml = Server.HtmlDecode("" + docRow["Section2"].ToString());
+                dvCon1.InnerHtml = Server.HtmlDecode("" + docRow["Content1"].ToString());
+                dvCon2.InnerHtml = Server.HtmlDecode("" + docRow["Content2"].ToString());
+
+                lblFooter.Text = docRow["Footer"].ToString();
+                Show_Content();//Show View After Click any node 
             }
         }
 
 
         private DataTable GetDocumentDetails(string nodeName)
         {
+            System.Data.DataSet dsLocal = null;
+            PWOMS.clsDocApplication objApp = null;
             DataTable dtDocument = new DataTable();
-
-            string strSQl = "SELECT * FROM tblDOCMgt";
-            ConnectionManager.DAL.ConManager objCon = null;
-
             try
             {
-                objCon = new ConnectionManager.DAL.ConManager("1"); 
-                DataSet dsLocal;
-                objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1"); 
-
+                objApp = new PWOMS.clsDocApplication();
+                objApp.GetAllData(out dsLocal);
+ 
                 if (dsLocal != null && dsLocal.Tables.Count > 0)
                 {
                     dtDocument = dsLocal.Tables[0];
@@ -311,7 +310,7 @@ namespace BPWEBAccessControl
             }
             finally
             {
-                objCon = null;
+                objApp = null;
             }
 
             return dtDocument;
@@ -395,23 +394,28 @@ namespace BPWEBAccessControl
         {
             GetFileName("btnDownload3");
         }//eof
+
+
         #endregion
 
 
-        #region Search and View Related
+        #region Search Document view Related
 
         [WebMethod]
+        [ScriptMethod]
+        
         public static List<string> GetSearchResults(string searchTerm)
         {
+            System.Data.DataSet dsLocal = null;
+            PWOMS.clsDocApplication objApp = null;
+
             List<string> results = new List<string>();
-            string strSQl = "SELECT * FROM tblDOCMgt WHERE DocumentName LIKE '%" + searchTerm.Trim() + "%'";
-            ConnectionManager.DAL.ConManager objCon = null;
+           
             try
             {
-                objCon = new ConnectionManager.DAL.ConManager("1");
-                DataSet dsLocal;
-                objCon.OpenDataSetThroughAdapter(strSQl, out dsLocal, false, "1");
-
+                objApp = new PWOMS.clsDocApplication();
+                objApp.SearchDocName(searchTerm,out dsLocal);
+                
                 if (dsLocal != null && dsLocal.Tables.Count > 0)
                 {
                     DataTable dtDocument = dsLocal.Tables[0];
@@ -429,7 +433,7 @@ namespace BPWEBAccessControl
             }
             finally
             {
-                objCon = null;
+                objApp = null;
             }
 
             return results;
@@ -444,22 +448,7 @@ namespace BPWEBAccessControl
                 {
                     string nodeName = txtSearch.Text; // This will now contain the NodeID
                     DataTable dtDocument = GetDocumentDetails(nodeName);
-                    if (dtDocument != null && dtDocument.Rows.Count > 0)
-                    {
-                        DataRow docRow = dtDocument.Rows[0];
-
-                        lblDocDESC.Text = docRow["DocumentDescription"].ToString();
-                        lblVNo.Text = docRow["VersionNo"].ToString();
-                        lblBNo.Text = docRow["BuildNo"].ToString();
-                        lblHeader.Text = docRow["Header"].ToString();
-                        dvSec1.InnerHtml = Server.HtmlDecode("" + docRow["Section1"].ToString());
-                        dvSec2.InnerHtml = Server.HtmlDecode("" + docRow["Section2"].ToString());
-                        dvCon1.InnerHtml = Server.HtmlDecode("" + docRow["Content1"].ToString());
-                        dvCon2.InnerHtml = Server.HtmlDecode("" + docRow["Content2"].ToString());
-
-                        lblFooter.Text = docRow["Footer"].ToString();
-                        Show_Content();//Show View After Click any node 
-                    }
+                    SetDoucmentDetails(dtDocument);
                 }
 
             }

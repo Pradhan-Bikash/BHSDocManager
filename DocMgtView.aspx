@@ -2,98 +2,6 @@
 
 <%@ MasterType VirtualPath="~/SiteApp.master" %>
 <asp:Content ID="Content1" ValidateRequest="false" ContentPlaceHolderID="MainContent" runat="server">
-
-
-    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
-    <script type="text/javascript">  
-        $(document).ready(function () {
-            SearchText();
-        });
-        function SearchText() {
-            $("#<%= txtSearch.ClientID %>").autocomplete({
-                delay: 1,
-            source: function (request, response) {
-                var searchTerm = $("#<%= txtSearch.ClientID %>").val();
-                $.ajax({
-                    type: "POST",
-                    url: "DocMgtView.aspx/GetSearchResults",
-                    data: JSON.stringify({ searchTerm: searchTerm }),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (data) {
-                        response(data.d);
-                    },
-                    error: function (result) {
-                        alert("No Match");
-                    }
-                });
-            }
-        });
-        }
-    </script>
-
-     <%--<script type="text/javascript">  
-         $(document).ready(function () {
-             // Bind autocomplete functionality to the textbox
-             bindAutocomplete();
-
-             // Handle click event of the search button
-             $("#btnSearch").click(function () {
-                 searchDocuments();
-             });
-         });
-
-         // Function to bind autocomplete to the search textbox
-         function bindAutocomplete() {
-             $("<%= txtSearch.ClientID %>").autocomplete({
-                 source: function (request, response) {
-                     var searchTerm = $("<%= txtSearch.ClientID %>").val();
-                     $.ajax({
-                         type: "POST",
-                         url: "DocMgtView.aspx/GetSearchResults",
-                         data: JSON.stringify({ searchTerm: searchTerm }),
-                         contentType: "application/json; charset=utf-8",
-                         dataType: "json",
-                         success: function (data) {
-                             response(data.d);
-                         },
-                         error: function (result) {
-                             alert("Error fetching search results.");
-                         }
-                     });
-                 }
-             });
-         }
-
-         // Function to perform search and display results
-         function searchDocuments() {
-             var searchTerm = $("<%= txtSearch.ClientID %>").val();
-             $.ajax({
-                 type: "POST",
-                 url: "DocMgtView.aspx/GetSearchResults",
-                 data: JSON.stringify({ searchTerm: searchTerm }),
-                 contentType: "application/json; charset=utf-8",
-                 dataType: "json",
-                 success: function (data) {
-                     // Display search results here
-                     // You may update UI elements with the search results
-                 },
-                 error: function (result) {
-                     alert("Error fetching search results.");
-                 }
-             });
-         }
-     </script>--%>
-    
-
-
-
-
-
-
-
     <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="container-fluid frmbaseContainer02" id="dataUpdatePanel" runat="server">
@@ -142,12 +50,12 @@
                             <div class="sidebar_wrapper">
                                 <div class="sideBar sticky">
                                     <div class="sideBar--wrap newLeftbar">
-                                        <div class="row">
+                                        <div class="row" style="margin:5px">
                                             <div class="col-md-8">
-                                                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search Something....."></asp:TextBox>
+                                                <asp:TextBox ID="txtSearch" ClientIDMode="Static" runat="server" CssClass="form-control" placeholder="Search Something....."></asp:TextBox>
                                             </div>
                                             <div class="col-md-4">
-                                                <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-default btn-block " Text="Search" OnClick="btnSearch_Click" />
+                                                <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-default btn-block btnSearch" Text="Search" OnClick="btnSearch_Click" />
                                             </div>
                                         </div>
 
@@ -223,5 +131,77 @@
 
         </Triggers>
     </asp:UpdatePanel>
+
+
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+    <%--<script type="text/javascript">  
+        $(document).ready(function () {
+            SearchText();
+        });
+        function SearchText() {
+            $("#<%= txtSearch.ClientID %>").autocomplete({
+                delay: 1,
+            source: function (request, response) {
+                var searchTerm = $("#<%= txtSearch.ClientID %>").val();
+                $.ajax({
+                    type: "POST",
+                    url: "DocMgtView.aspx/GetSearchResults",
+                    data: JSON.stringify({ searchTerm: searchTerm }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        response(data.d);
+                    },
+                    error: function (result) {
+                        alert("No Match");
+                    }
+                });
+            }
+        });
+        }
+    </script>--%>
+
+
+   <script type="text/javascript">  
+       $(document).ready(function () {
+           initializeAutocomplete();
+       });
+
+       function initializeAutocomplete() {
+           var searchTextBoxClientId = '<%= txtSearch.ClientID %>';
+           $("#" + searchTextBoxClientId).autocomplete({
+               delay: 1,
+               source: function (request, response) {
+                   var searchTerm = $("#" + searchTextBoxClientId).val();
+                   $.ajax({
+                       type: "POST",
+                       url: "DocMgtView.aspx/GetSearchResults",
+                       data: JSON.stringify({ searchTerm: searchTerm }),
+                       contentType: "application/json; charset=utf-8",
+                       dataType: "json",
+                       success: function (data) {
+                           if (data.d.length === 0) {
+                               response([{ label: "No matching Document...", value: "", disabled: true }]);
+                           } else {
+                               response(data.d);
+                           }
+                       },
+                       error: function (result) {
+                           alert("Error fetching search results.");
+                       }
+                   });
+               },
+               select: function (event, ui) {
+
+                   if (ui.item.disabled) {
+                       event.preventDefault();
+                       return false;
+                   }
+               }
+           });
+       }
+   </script>
 
 </asp:Content>

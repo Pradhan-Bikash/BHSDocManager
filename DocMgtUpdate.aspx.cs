@@ -532,7 +532,7 @@ namespace BPWEBAccessControl
 
         private void AddNew()
         {
-            bplib.GenDocID objGenID = null;
+            bplib.clsGenDocID objGenID = null;
             string strResCode = null;
             try
             {
@@ -545,7 +545,7 @@ namespace BPWEBAccessControl
                 // for add new a new auto Company Id will be added
                 if ((int)Session["VERIFICATION_STATE"] == 2)
                 {
-                    objGenID = new bplib.GenDocID();
+                    objGenID = new bplib.clsGenDocID();
                     objGenID.GenDOCIdTest(System.DateTime.Now.ToShortDateString().ToString(), "DOCMANAGER", out strResCode);
                     strResCode = "DOC" + strResCode;
                     this.txtEntryId.Text = strResCode;

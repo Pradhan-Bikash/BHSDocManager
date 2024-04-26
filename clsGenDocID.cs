@@ -6,7 +6,7 @@ using System.Web;
 namespace bplib
 
 {
-	public class GenDocID
+	public class clsGenDocID
 	{
         #region Gen Document ID
         public void GenDOCIdTest(string strEntryDate, string strFieldName, out string strID)
@@ -75,5 +75,7 @@ namespace bplib
         }//eof
 
         #endregion
+
+
     }
 }

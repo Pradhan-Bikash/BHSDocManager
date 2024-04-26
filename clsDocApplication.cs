@@ -10,6 +10,7 @@ namespace PWOMS
         public clsDocApplication()
 		{
 		}
+        #region Save Data
         public void SaveData(ref System.Data.DataSet dsRef)
         {
             ConnectionManager.DAL.ConManager objCon;
@@ -28,6 +29,8 @@ namespace PWOMS
             }
 
         } //eof
+        #endregion
+
         #region Update Customer
         public void GetDataOfDOC(string strUserId, out System.Data.DataSet dsRef)
         {
@@ -149,8 +152,47 @@ DocumentDescription,VersionNo,BuildNo,
             }
         }//eof
 
-		#endregion
+        #endregion
 
-		
-	}
+        #region Load TreeView Data
+        public void GetAllData( out System.Data.DataSet dsRef)
+        {
+            string strSQl;
+            ConnectionManager.DAL.ConManager objCon;
+            try
+            {
+                strSQl = "select * from tblDOCMgt ";
+                objCon = new ConnectionManager.DAL.ConManager("1");
+                objCon.OpenDataSetThroughAdapter(strSQl, out dsRef, false, "1");
+            }
+            catch (System.Exception ex)
+            { throw (ex); }
+            finally
+            {
+                objCon = null;
+            }
+        }//eof
+        #endregion
+
+        #region Search Document
+        public void SearchDocName(string searchTerm, out System.Data.DataSet dsRef)
+        {
+            string strSQl;
+            ConnectionManager.DAL.ConManager objCon;
+            try
+            {
+                strSQl = "SELECT* FROM tblDOCMgt WHERE DocumentName LIKE '%" + searchTerm.Trim() + "%'";
+                objCon = new ConnectionManager.DAL.ConManager("1");
+                objCon.OpenDataSetThroughAdapter(strSQl, out dsRef, false, "1");
+            }
+            catch (System.Exception ex)
+            { throw (ex); }
+            finally
+            {
+                objCon = null;
+            }
+        }
+        #endregion
+
+    }
 }

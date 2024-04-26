@@ -49,6 +49,9 @@
                 <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+
+                <%--<asp:ScriptReference Name="Demo.js" Assembly="System.Web" Path="~/Scripts/WebForms/Demo.js" />--%>
+
                 <%--<asp:ScriptReference Name="jquery.passwordRequirements.js" Assembly="System.Web" Path="~/Scripts/jquery.passwordRequirements.js" />
                 <asp:ScriptReference Name="jquery.passwordRequirements.min.js" Assembly="System.Web" Path="~/Scripts/jquery.passwordRequirements.min.js" />--%>
                 <asp:ScriptReference Name="WebFormsBundle" />
