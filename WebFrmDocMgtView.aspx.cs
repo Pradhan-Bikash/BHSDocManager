@@ -255,8 +255,8 @@ namespace BPWEBAccessControl
             TreeNode selectedNode = TreeView1.SelectedNode;
             if (selectedNode != null)
             {
-                string nodeName = selectedNode.Text; // This will now contain the NodeID
-                DataTable dtDocument = GetDocumentDetails(nodeName);
+                string nodeId = selectedNode.Value; // This will now contain the NodeID
+                DataTable dtDocument = GetDocumentDetails(nodeId);
                 SetDoucmentDetails(dtDocument);
             }
             }
@@ -282,7 +282,7 @@ namespace BPWEBAccessControl
         }
 
 
-        private DataTable GetDocumentDetails(string nodeName)
+        private DataTable GetDocumentDetails(string nodeId)
         {
             System.Data.DataSet dsLocal = null;
             PWOMS.clsDocApplication objApp = null;
@@ -296,10 +296,10 @@ namespace BPWEBAccessControl
                 {
                     dtDocument = dsLocal.Tables[0];
 
-                    if (!string.IsNullOrEmpty(nodeName))
+                    if (!string.IsNullOrEmpty(nodeId))
                     {
                         DataView dvLocal = new DataView(dtDocument); // Create a DataView to filter the DataTable
-                        dvLocal.RowFilter = "DocumentName = '" + nodeName.Replace("'", "''") + "'"; // Apply the filter
+                        dvLocal.RowFilter = "DocumentName = '" + nodeId.Replace("'", "''") + "'"; // Apply the filter
                         dtDocument = dvLocal.ToTable(); // Convert the filtered DataView back to a DataTable
                     }
                 }
@@ -441,7 +441,23 @@ namespace BPWEBAccessControl
 
         protected void btnSearchView_Click(object sender,EventArgs e)
 		{
-            this.mvwDataVw.SetActiveView(this.vw00);
+            try
+            {
+                this.lblViewName.Text = this.mvwDataVw.GetActiveView().ID.ToString();
+                LoadData(true, "", "DOCVIEW");
+                this.tbValue.Text = "";
+                this.lblSearchTitle.Text = "Search : DOCVIEW";
+                this.btnCancelSearch.Visible = true; //set as false in Cancel() function; if the search screen is the first screen
+                this.mvwDataVw.SetActiveView(this.vw00);
+            }
+            catch (Exception ex)
+            {
+                ShowLog("Error: \n" + ex.Message.ToString());
+            }
+            finally
+            {
+            }
+            
         }
 
         #endregion
@@ -472,7 +488,7 @@ namespace BPWEBAccessControl
                 {
                     //objApp.SearchTeleData(fromDate, toDate, strKey,strSiteId, out dsLocal);
                 }
-                if (FLAG == "DOCMANAGER")
+                if (FLAG == "DOCVIEW")
                 {
                     objApp.SearchDocument(fromDate, toDate, strKey, strSiteId, out dsLocal);
                 }
@@ -619,7 +635,34 @@ namespace BPWEBAccessControl
         public void Grid_Command(object sender, DataGridCommandEventArgs e)
         {
             string vwIndex = this.lblViewName.Text;
-           
+            string DOCID = "";
+            string CollectionID = "";
+            if (((LinkButton)e.CommandSource).CommandName != "Page")
+            {
+
+                TableCell DOCIDCell = e.Item.Cells[1];
+                TableCell CollectionIDCell = e.Item.Cells[2];
+                DOCID = DOCIDCell.Text;
+                CollectionID = CollectionIDCell.Text;
+            }
+            if (((LinkButton)e.CommandSource).CommandName == "ViewDoc")
+            {
+                //Edit
+                if (this.lblViewState.Text.Trim() == "")
+                {
+                    //Cancel();
+                   // this.txtEntryId.Text = DOCID;
+                    //LoadDetails();
+                }
+                //if (this.lblViewState.Text.Trim() == "DOCMANAGER")
+                //{
+                //    Cancel();
+                //    this.txtEntryId.Text = DOCID;
+                //    LoadDetails();
+                //}
+                this.mvwDataVw.ActiveViewIndex = returnView(vwIndex.Trim());
+            }
+
         }//eof 
 
         #endregion

@@ -55,7 +55,7 @@
                                             <HeaderStyle BorderStyle="None" BackColor="#5D7B9D" Font-Bold="True" ForeColor="White"></HeaderStyle>
                                             <ItemStyle BackColor="#F7F6F3" ForeColor="#333333" />
                                             <Columns>
-                                                <asp:ButtonColumn Text="[Select]" CommandName="EditFile" ItemStyle-Font-Underline="False"
+                                                <asp:ButtonColumn Text="[View]" CommandName="ViewDoc" ItemStyle-Font-Underline="False"
                                                     ItemStyle-ForeColor="blue" ButtonType="LinkButton">
                                                     <ItemStyle Font-Underline="False" ForeColor="Blue" />
                                                 </asp:ButtonColumn>
