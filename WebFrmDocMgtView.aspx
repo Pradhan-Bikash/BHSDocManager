@@ -130,13 +130,13 @@
                             </div>
                             <div>
                                 <span><b>Version No: </b></span>
-                                <asp:Label ID="lblVNo" runat="server" CssClass="doc-details"></asp:Label>
+                                <asp:Label ID="lblVNo"  runat="server" CssClass="doc-details"></asp:Label>
                             </div>
                             <div></div>
 
                             <div>
                                 <span><b>Build No: </b></span>
-                                <asp:Label ID="lblBNo" runat="server" CssClass="doc-details"></asp:Label>
+                                <asp:Label ID="lblBNo"  runat="server" CssClass="doc-details"></asp:Label>
                             </div>
                             <br />
                             <br />
@@ -165,9 +165,9 @@
                             <div>
                                 <!-- Download Buttons -->
                                 <div class="text-center mt-4">
-                                    <asp:Button ID="btnDownload1" runat="server" Text="Download File 1" OnClick="btnDownload1_Click" CssClass="btn btn-primary" />
-                                    <asp:Button ID="btnDownload2" runat="server" Text="Download File 2" OnClick="btnDownload2_Click" CssClass="btn btn-primary ml-2" />
-                                    <asp:Button ID="btnDownload3" runat="server" Text="Download File 3" OnClick="btnDownload3_Click" CssClass="btn btn-primary ml-2" />
+                                    <asp:Button ID="btnDownload1" Visible="false" runat="server" Text="Download File 1" OnClick="btnDownload1_Click" CssClass="btn btn-primary" />
+                                    <asp:Button ID="btnDownload2" Visible="false" runat="server" Text="Download File 2" OnClick="btnDownload2_Click" CssClass="btn btn-primary ml-2" />
+                                    <asp:Button ID="btnDownload3" Visible="false" runat="server" Text="Download File 3" OnClick="btnDownload3_Click" CssClass="btn btn-primary ml-2" />
                                 </div>
                             </div>
 

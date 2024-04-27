@@ -144,12 +144,12 @@
                                         <asp:Label ID="lblDocDESC" CssClass="ctrlStyle_Label" runat="server" Text="Document DESC"></asp:Label>
                                         <asp:TextBox ID="txtDocDESC" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
                                     </div>
-                                    <div class="form-group col-sm-3">
+                                    <div class="form-group col-sm-3 required">
                                         <asp:Label ID="lblVersion" CssClass="ctrlStyle_Label" runat="server" Text="Version No"></asp:Label>
                                         <asp:TextBox ID="txtVersion" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
                                     </div>
 
-                                    <div class="form-group col-sm-3">
+                                    <div class="form-group col-sm-3 required">
                                         <asp:Label ID="lblBuild" CssClass="ctrlStyle_Label" runat="server" Text="Build No"></asp:Label>
                                         <asp:TextBox ID="txtBuild" CssClass="form-control form-group-sm" runat="server"></asp:TextBox>
                                     </div>

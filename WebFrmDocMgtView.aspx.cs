@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -249,7 +250,7 @@ namespace BPWEBAccessControl
 
             #endregion
 
-            #region Load Document Details
+        #region Load Document Details
             protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
             {
             TreeNode selectedNode = TreeView1.SelectedNode;
@@ -268,6 +269,7 @@ namespace BPWEBAccessControl
                 DataRow docRow = dtDocument.Rows[0];
 
                 lblDocDESC.Text = docRow["DocumentDescription"].ToString();
+
                 lblVNo.Text = docRow["VersionNo"].ToString();
                 lblBNo.Text = docRow["BuildNo"].ToString();
                 lblHeader.Text = docRow["Header"].ToString();
@@ -275,6 +277,35 @@ namespace BPWEBAccessControl
                 dvSec2.InnerHtml = Server.HtmlDecode("" + docRow["Section2"].ToString());
                 dvCon1.InnerHtml = Server.HtmlDecode("" + docRow["Content1"].ToString());
                 dvCon2.InnerHtml = Server.HtmlDecode("" + docRow["Content2"].ToString());
+                if (!string.IsNullOrEmpty(docRow["FilePath1"].ToString()))
+                {
+                    btnDownload1.Visible = true;
+                    btnDownload1.Text = Path.GetFileName(docRow["FilePath1"].ToString());
+                }
+                else
+                {
+                    btnDownload1.Visible = false;
+                }
+                
+                if (!string.IsNullOrEmpty(docRow["FilePath2"].ToString()))
+                {
+                    btnDownload2.Visible = true;
+                    btnDownload2.Text = Path.GetFileName(docRow["FilePath2"].ToString());
+                }
+                else
+                {
+                    btnDownload2.Visible = false;
+                }
+
+                if (!string.IsNullOrEmpty(docRow["FilePath3"].ToString()))
+                {
+                    btnDownload3.Visible = true;
+                    btnDownload3.Text = Path.GetFileName(docRow["FilePath3"].ToString());
+                }
+                else
+                {
+                    btnDownload3.Visible = false;
+                }
 
                 lblFooter.Text = docRow["Footer"].ToString();
                 Show_Content();//Show View After Click any node 
@@ -299,7 +330,7 @@ namespace BPWEBAccessControl
                     if (!string.IsNullOrEmpty(nodeId))
                     {
                         DataView dvLocal = new DataView(dtDocument); // Create a DataView to filter the DataTable
-                        dvLocal.RowFilter = "DocumentName = '" + nodeId.Replace("'", "''") + "'"; // Apply the filter
+                        dvLocal.RowFilter = "EntryID = '" + nodeId.Replace("'", "''") + "'"; // Apply the filter
                         dtDocument = dvLocal.ToTable(); // Convert the filtered DataView back to a DataTable
                     }
                 }
@@ -340,7 +371,12 @@ namespace BPWEBAccessControl
                         {
                             btnDownload1.Text = docRow["FilePath1"].ToString();
                             filePath = btnDownload1.Text;
-                            btnDownload1.Text = "Download File 1";
+                        if (filePath != null)
+                        {
+                           
+                            btnDownload1.Text = filePath;
+                        }
+                           
                         }
                         else if (btnName == "btnDownload2")
                         {
@@ -398,46 +434,7 @@ namespace BPWEBAccessControl
 
         #endregion
 
-
         #region Search Document view Related
-
-        //[WebMethod]
-        //[ScriptMethod]
-        
-        //public static List<string> GetSearchResults(string searchTerm)
-        //{
-        //    System.Data.DataSet dsLocal = null;
-        //    PWOMS.clsDocApplication objApp = null;
-
-        //    List<string> results = new List<string>();
-           
-        //    try
-        //    {
-        //        objApp = new PWOMS.clsDocApplication();
-        //        objApp.SearchDocName(searchTerm,out dsLocal);
-                
-        //        if (dsLocal != null && dsLocal.Tables.Count > 0)
-        //        {
-        //            DataTable dtDocument = dsLocal.Tables[0];
-
-        //            foreach (DataRow row in dtDocument.Rows)
-        //            {
-        //                results.Add(row["DocumentName"].ToString());
-        //            }
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    finally
-        //    {
-        //        objApp = null;
-        //    }
-
-        //    return results;
-        //}
 
         protected void btnSearchView_Click(object sender,EventArgs e)
 		{
@@ -460,10 +457,6 @@ namespace BPWEBAccessControl
             
         }
 
-        #endregion
-
-       
-        #region SEARCH RELATED FUNCTIONS
         private void LoadData(bool IsLoad, string strKey, string FLAG)
         {
 
@@ -586,22 +579,7 @@ namespace BPWEBAccessControl
             dt.AcceptChanges();
             return dt;
         } //eof
-        private void CancelSearch()
-        {
-            string vwIndex = this.lblViewName.Text;
-            try
-            {
-   
-                    this.mvwDataVw.SetActiveView(this.vw02);
-            }
-            catch (Exception ex)
-            {
-                ShowLog("Error: \n" + ex.Message.ToString());
-            }
-            finally
-            {
-            }
-        }//eof
+        
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -630,37 +608,33 @@ namespace BPWEBAccessControl
         }//eof
         protected void btnCancelSearch_Click(object sender, EventArgs e)
         {
-            CancelSearch();
+            this.mvwDataVw.SetActiveView(this.vw02);
         }//eof
         public void Grid_Command(object sender, DataGridCommandEventArgs e)
         {
-            string vwIndex = this.lblViewName.Text;
+            //string vwIndex = this.lblViewName.Text;
             string DOCID = "";
-            string CollectionID = "";
+            //string CollectionID = "";
             if (((LinkButton)e.CommandSource).CommandName != "Page")
             {
 
                 TableCell DOCIDCell = e.Item.Cells[1];
-                TableCell CollectionIDCell = e.Item.Cells[2];
+                //TableCell CollectionIDCell = e.Item.Cells[2];
                 DOCID = DOCIDCell.Text;
-                CollectionID = CollectionIDCell.Text;
+               // CollectionID = CollectionIDCell.Text;
             }
             if (((LinkButton)e.CommandSource).CommandName == "ViewDoc")
             {
-                //Edit
-                if (this.lblViewState.Text.Trim() == "")
+                
+                if (this.lblViewState.Text.Trim() == "DOCVIEW")
                 {
-                    //Cancel();
-                   // this.txtEntryId.Text = DOCID;
-                    //LoadDetails();
+                    
+                    string EntryID = DOCID;
+                    DataTable dtDocument = GetDocumentDetails(EntryID);
+                    SetDoucmentDetails(dtDocument);
+
                 }
-                //if (this.lblViewState.Text.Trim() == "DOCMANAGER")
-                //{
-                //    Cancel();
-                //    this.txtEntryId.Text = DOCID;
-                //    LoadDetails();
-                //}
-                this.mvwDataVw.ActiveViewIndex = returnView(vwIndex.Trim());
+                this.mvwDataVw.SetActiveView(this.vw02);
             }
 
         }//eof 

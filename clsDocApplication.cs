@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -155,23 +156,31 @@ DocumentDescription,VersionNo,BuildNo,
         #endregion
 
         #region Load TreeView Data
-        public void GetAllData( out System.Data.DataSet dsRef)
+        //public void GetAllData( out System.Data.DataSet dsRef)
+        //{
+        //    string strSQl;
+        //    ConnectionManager.DAL.ConManager objCon;
+        //    try
+        //    {
+        //        strSQl = "select * from tblDOCMgt ";
+        //        objCon = new ConnectionManager.DAL.ConManager("1");
+        //        objCon.OpenDataSetThroughAdapter(strSQl, out dsRef, false, "1");
+        //    }
+        //    catch (System.Exception ex)
+        //    { throw (ex); }
+        //    finally
+        //    {
+        //        objCon = null;
+        //    }
+        //}//eof
+
+        public void GetAllData(out DataSet dsRef)
         {
-            string strSQl;
-            ConnectionManager.DAL.ConManager objCon;
-            try
-            {
-                strSQl = "select * from tblDOCMgt ";
-                objCon = new ConnectionManager.DAL.ConManager("1");
-                objCon.OpenDataSetThroughAdapter(strSQl, out dsRef, false, "1");
-            }
-            catch (System.Exception ex)
-            { throw (ex); }
-            finally
-            {
-                objCon = null;
-            }
-        }//eof
+            string strSQl = "select * from tblDOCMgt";
+            ConnectionManager.DAL.ConManager objCon = new ConnectionManager.DAL.ConManager("1");
+            objCon.OpenDataSetThroughAdapter(strSQl, out dsRef, false, "1");
+        }
+
         #endregion
 
         #region Search Document

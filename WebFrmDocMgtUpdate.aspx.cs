@@ -591,23 +591,23 @@ namespace BPWEBAccessControl
                         System.Exception ex = new Exception("Define the Document Name...(Max length allowed 500)");
                         throw (ex);
                     }
-                    //if (this.txtDocDESC.Text.Trim() == "" || this.txtDocDESC.Text.Trim().Length > 500)
-                    //{
-                    //    System.Exception ex = new Exception("Define the Document Description...(Max length allowed 500)");
-                    //    throw (ex);
-                    //}
-                    //if (this.txtVersion.Text.Trim() == "" || this.txtVersion.Text.Trim().Length > 50)
-                    //{
-                    //    System.Exception ex = new Exception("Define the Version NO...(Max length allowed 50)");
-                      
-                    //   throw (ex);
-                    //} 
-                    // if (this.txtBuild.Text.Trim() == "" || this.txtBuild.Text.Trim().Length > 50)
-                    // {
-                    //        System.Exception ex = new Exception("Define the Document Build No...(Max length allowed 50)");
-                    //        throw (ex);
-                    // }
-                   
+                    if (this.ddlDocGroup.Text.Trim() == "")
+                    {
+                        System.Exception ex = new Exception("Define the Documents Group...");
+                        throw (ex);
+                    }
+                    if (this.txtVersion.Text.Trim() == "" || this.txtVersion.Text.Trim().Length > 50)
+                    {
+                        System.Exception ex = new Exception("Define the Version NO...(Max length allowed 50)");
+
+                        throw (ex);
+                    }
+                    if (this.txtBuild.Text.Trim() == "" || this.txtBuild.Text.Trim().Length > 50)
+                    {
+                        System.Exception ex = new Exception("Define the Document Build No...(Max length allowed 50)");
+                        throw (ex);
+                    }
+
                     //if (this.txtHeader.Text.Trim() == "")
                     //{
                     //    System.Exception ex = new Exception("Define the Document Header...");
@@ -639,7 +639,7 @@ namespace BPWEBAccessControl
                     //    throw (ex);
                     //}
 
-					DATA_OK = true;
+                    DATA_OK = true;
                 }
 
                 if (DATA_OK == true)
@@ -741,7 +741,7 @@ namespace BPWEBAccessControl
                 drLocal["EntryDateTime"] = "" + bplib.clsWebLib.DateData_AppToDB(this.txtEntryDT.Text.ToString(), bplib.clsWebLib.DB_DATE_FORMAT);
                 drLocal["Documents_Group"] = bplib.clsWebLib.RetValidLen(this.ddlDocGroup.Text.Trim(),50);
                 drLocal["DocumentName"] = bplib.clsWebLib.RetValidLen(this.txtDocName.Text.Trim(),500);
-                drLocal["DocumentDescription"] = bplib.clsWebLib.RetValidLen(this.txtDocName.Text.Trim(),500);
+                drLocal["DocumentDescription"] = bplib.clsWebLib.RetValidLen(this.txtDocDESC.Text.Trim(),500);
                 drLocal["VersionNo"] = bplib.clsWebLib.RetValidLen(this.txtVersion.Text.Trim(),50);
                 drLocal["BuildNo"] = bplib.clsWebLib.RetValidLen(this.txtBuild.Text.Trim(),50);
                 drLocal["Header"] = bplib.clsWebLib.RetValidLen(this.txtHeader.Text.Trim());
