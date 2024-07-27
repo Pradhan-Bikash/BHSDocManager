@@ -13,7 +13,7 @@ namespace BPWEBAccessControl
         protected void Page_Load(object sender, EventArgs e)
         {
             lblfrmName.Text = "About";
-            Master.UpdateBody("bg-offwhite");
+            //Master.UpdateBody("bg-offwhite");
             this.LinkButton1.CssClass = "btn pillButton";
         }
 
