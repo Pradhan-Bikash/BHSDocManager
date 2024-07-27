@@ -19,7 +19,7 @@ namespace BPWEBAccessControl
 
         protected void lblClose_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AppControlPanel.aspx");
+            //Response.Redirect("AppControlPanel.aspx");
         }
         #endregion
     }
